@@ -1,0 +1,96 @@
+[
+{
+    "name": "id",
+    "dbType": "increments",
+    "htmlType": null,
+    "validations": null,
+    "searchable": false,
+    "fillable": false,
+    "primary": true,
+    "inForm": false,
+    "inIndex": false
+},
+{
+    "name": "display_name",
+    "dbType": "string",
+    "htmlType": "text",
+    "validations": "required|string"
+},
+{
+    "name": "user_id:unsigned:foreign,users,id",
+    "dbType": "integer",
+    "htmlType": "text",
+    "validations": "required|numeric"
+},
+{
+    "name": "avatar",
+    "dbType": "string,255",
+    "htmlType": "file",
+    "validations": "required|string",
+    "searchable": false
+},
+{
+    "name": "pic_urls",
+    "dbType": "string",
+    "htmlType": "file",
+    "searchable": false
+},
+{
+    "name": "indetity_urls",
+    "dbType": "string",
+    "htmlType": "file",
+    "searchable": false
+},
+{
+    "name": "prov_id",
+    "dbType": "integer",
+    "htmlType": "select,All:0",
+    "validations": "numeric"
+},
+{
+    "name": "city_id",
+    "dbType": "integer",
+    "htmlType": "select,All:0",
+    "validations": "numeric"
+},
+{
+    "name": "address",
+    "dbType": "string,255",
+    "htmlType": "textarea",
+    "validations": "string"
+},
+{
+    "name": "service",
+    "dbType": "string",
+    "htmlType": "textarea",
+    "validations": "string"
+},
+{
+    "name": "description",
+    "dbType": "string",
+    "htmlType": "textarea",
+    "validations": "string"
+},
+{
+    "name": "created_at",
+    "dbType": "timestamp",
+    "htmlType": null,
+    "validations": null,
+    "searchable": false,
+    "fillable": false,
+    "primary": false,
+    "inForm": false,
+    "inIndex": false
+},
+{
+    "name": "updated_at",
+    "dbType": "timestamp",
+    "htmlType": null,
+    "validations": null,
+    "searchable": false,
+    "fillable": false,
+    "primary": false,
+    "inForm": false,
+    "inIndex": false
+}
+]

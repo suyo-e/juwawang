@@ -1,0 +1,150 @@
+[
+{
+    "name": "id",
+    "dbType": "increments",
+    "htmlType": null,
+    "validations": null,
+    "searchable": false,
+    "fillable": false,
+    "primary": true,
+    "inForm": false,
+    "inIndex": false
+},
+{
+    "name": "title",
+    "dbType": "string",
+    "htmlType": "text",
+    "validations": "required|string"
+},
+{
+    "name": "description",
+    "dbType": "string",
+    "htmlType": "textarea",
+    "validations": "required|string"
+},
+{
+    "name": "user_id:unsigned:foreign,users,id",
+    "dbType": "integer",
+    "htmlType": "text",
+    "validations": "required|numeric"
+},
+{
+    "name": "type_name",
+    "dbType": "string",
+    "htmlType": "text",
+    "validations": "string"
+},
+{
+    "name": "category_id",
+    "dbType": "integer",
+    "validations": "numeric",
+    "htmlType": "select,All:0"
+},
+{
+    "name": "industry_id",
+    "dbType": "integer",
+    "validations": "numeric",
+    "htmlType": "select,All:0"
+},
+{
+    "name": "prov_id",
+    "dbType": "integer",
+    "validations": "numeric",
+    "htmlType": "select,All:0"
+},
+{
+    "name": "city_id",
+    "dbType": "integer",
+    "validations": "numeric",
+    "htmlType": "select,All:0"
+},
+{
+    "name": "brand_name",
+    "dbType": "string",
+    "htmlType": "text",
+    "validations": "string"
+},
+{
+    "name": "price",
+    "dbType": "string",
+    "htmlType": "text"
+},
+{
+    "name": "address",
+    "dbType": "string",
+    "htmlType": "textarea",
+    "validations": "string"
+},
+{
+    "name": "contact_name",
+    "dbType": "string",
+    "htmlType": "text",
+    "validations": "string"
+},
+{
+    "name": "wechat",
+    "dbType": "string",
+    "htmlType": "text",
+    "validations": "string"
+},
+{
+    "name": "qq",
+    "dbType": "string",
+    "htmlType": "text",
+    "validations": "string"
+},
+{
+    "name": "phone",
+    "dbType": "string",
+    "htmlType": "text",
+    "validations": "string"
+},
+{
+    "name": "view_count",
+    "dbType": "integer",
+    "htmlType": "text",
+    "validations": "numeric",
+    "searchable": false
+},
+{
+    "name": "collect_count",
+    "dbType": "integer",
+    "htmlType": "text",
+    "validations": "numeric",
+    "searchable": false
+},
+{
+    "name": "banner_urls",
+    "dbType": "string",
+    "htmlType": "file",
+    "searchable": false
+},
+{
+    "name": "status",
+    "dbType": "integer",
+    "htmlType": "select,Normal:0,Off:1",
+    "validations": "numeric"
+},
+{
+    "name": "created_at",
+    "dbType": "timestamp",
+    "htmlType": null,
+    "validations": null,
+    "searchable": false,
+    "fillable": false,
+    "primary": false,
+    "inForm": false,
+    "inIndex": false
+},
+{
+    "name": "updated_at",
+    "dbType": "timestamp",
+    "htmlType": null,
+    "validations": null,
+    "searchable": false,
+    "fillable": false,
+    "primary": false,
+    "inForm": false,
+    "inIndex": false
+}
+]

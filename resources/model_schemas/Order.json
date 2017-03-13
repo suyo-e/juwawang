@@ -1,0 +1,89 @@
+[
+{
+    "name": "id",
+    "dbType": "increments",
+    "htmlType": null,
+    "validations": null,
+    "searchable": false,
+    "fillable": false,
+    "primary": true,
+    "inForm": false,
+    "inIndex": false
+},
+{
+    "name": "product_id",
+    "dbType": "integer",
+    "htmlType": "text",
+    "validations": "required|numeric"
+},
+{
+    "name": "user_id:unsigned:foreign,users,id",
+    "dbType": "integer",
+    "htmlType": "text",
+    "validations": "required|numeric"
+},
+{
+    "name": "contact_name",
+    "dbType": "string",
+    "htmlType": "text",
+    "validations": "required|string"
+},
+{
+    "name": "phone",
+    "dbType": "string",
+    "htmlType": "text",
+    "validations": "required|string"
+},
+{
+    "name": "prov_id",
+    "dbType": "integer",
+    "validations": "numeric",
+    "htmlType": "select,All:0"
+},
+{
+    "name": "city_id",
+    "dbType": "integer",
+    "validations": "numeric",
+    "htmlType": "select,All:0"
+},
+{
+    "name": "quantity",
+    "dbType": "integer",
+    "validations": "numeric",
+    "htmlType": "text"
+},
+{
+    "name": "remark",
+    "dbType": "string",
+    "validations": "string",
+    "htmlType": "textarea"
+},
+{
+    "name": "status",
+    "dbType": "integer",
+    "validations": "numeric",
+    "htmlType": "select,All:0"
+},
+{
+    "name": "created_at",
+    "dbType": "timestamp",
+    "htmlType": null,
+    "validations": null,
+    "searchable": false,
+    "fillable": false,
+    "primary": false,
+    "inForm": false,
+    "inIndex": false
+},
+{
+    "name": "updated_at",
+    "dbType": "timestamp",
+    "htmlType": null,
+    "validations": null,
+    "searchable": false,
+    "fillable": false,
+    "primary": false,
+    "inForm": false,
+    "inIndex": false
+}
+]

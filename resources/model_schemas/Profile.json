@@ -1,0 +1,89 @@
+[
+    {
+        "name": "id",
+        "dbType": "increments",
+        "htmlType": null,
+        "validations": null,
+        "searchable": false,
+        "fillable": false,
+        "primary": true,
+        "inForm": false,
+        "inIndex": false
+    },
+    {
+        "name": "type",
+        "dbType": "integer",
+        "validations": "required|numeric",
+        "htmlType": "radio,admin:0,manufacturer:1,agent:2,user:3"
+    },
+    {
+        "name": "user_id",
+        "dbType": "integer",
+        "htmlType": "text",
+        "validations": "required|numeric"
+    },
+    {
+        "name": "prov_id",
+        "dbType": "integer",
+        "validations": "numeric",
+        "htmlType": "select,All:0"
+    },
+    {
+        "name": "city_id",
+        "dbType": "integer",
+        "validations": "numeric",
+        "htmlType": "select,All:0"
+    },
+    {
+        "name": "industry_id",
+        "dbType": "integer",
+        "validations": "numeric",
+        "htmlType": "select,All:0"
+    },
+    {
+        "name": "industry_name",
+        "dbType": "string,255",
+        "validations": "string",
+        "htmlType": "text"
+    },
+    {
+        "name": "category_id",
+        "dbType": "integer",
+        "validations": "numeric",
+        "htmlType": "select,All:0"
+    },
+    {
+        "name": "service",
+        "dbType": "string",
+        "htmlType": "textarea",
+        "validations": "string"
+    },
+    {
+        "name": "identity_urls",
+        "dbType": "string",
+        "validations": "string",
+        "htmlType": "file"
+    },
+    {
+        "name": "created_at",
+        "dbType": "timestamp",
+        "htmlType": null,
+        "validations": null,
+        "searchable": false,
+        "fillable": false,
+        "primary": false,
+        "inForm": false,
+        "inIndex": false
+    },
+    {
+        "name": "updated_at",
+        "dbType": "timestamp",
+        "htmlType": null,
+        "validations": null,
+        "searchable": false,
+        "fillable": false,
+        "primary": false,
+        "inForm": false,
+        "inIndex": false
+    }
+]

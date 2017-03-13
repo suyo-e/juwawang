@@ -1,0 +1,65 @@
+[
+{
+    "name": "id",
+    "dbType": "increments",
+    "htmlType": null,
+    "validations": null,
+    "searchable": false,
+    "fillable": false,
+    "primary": true,
+    "inForm": false,
+    "inIndex": false
+},
+{
+    "name": "display_name",
+    "dbType": "string,255",
+    "validations": "required|string",
+    "htmlType": "text"
+},
+{
+    "name": "url",
+    "dbType": "string,255",
+    "validations": "required|string",
+    "htmlType": "text"
+},
+{
+    "name": "pic_url",
+    "dbType": "string,255",
+    "validations": "required|string",
+    "htmlType": "text"   
+},
+{
+    "name": "type",
+    "dbType": "integer",
+    "validations": "required|numeric",
+    "htmlType": "select,All:0,manufacturer:1,agent:2,user:3"
+},
+{
+    "name": "description",
+    "dbType": "text",
+    "validations": "string",
+    "htmlType": "textarea"
+},
+{
+    "name": "created_at",
+    "dbType": "timestamp",
+    "htmlType": null,
+    "validations": null,
+    "searchable": false,
+    "fillable": false,
+    "primary": false,
+    "inForm": false,
+    "inIndex": false
+},
+{
+    "name": "updated_at",
+    "dbType": "timestamp",
+    "htmlType": null,
+    "validations": null,
+    "searchable": false,
+    "fillable": false,
+    "primary": false,
+    "inForm": false,
+    "inIndex": false
+}
+]

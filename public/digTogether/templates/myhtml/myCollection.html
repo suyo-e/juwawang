@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>我的收藏</title>
+    <meta name="format-detection" content="telephone=yes">
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"/>
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no" name="format-detection">
+    <link rel="stylesheet" href="../../public/css/index.css"/>
+</head>
+<body>
+<div class="purchase">
+    <ul>
+        <li class="active BrandNew"><a href="#tab1">商品 / 信息</a></li>
+        <li><a href="#tab2">商家</a></li>
+    </ul>
+</div>
+<div class="purchaseCont">
+    <div class="listClas show" id="tab1">
+        <ul class="IntentList">
+            <li>
+                <div class="classImg">
+                    <img src="../../image/listimg.jpg" alt=""/>
+                </div>
+                <div class="classcont">
+                    <p><b>韩国工兵破碎锤</b></p>
+                    <p class="txt">价格 : <span class="price">0.9万</span></p>
+                    <p class="txt">预购数量 : <span>4</span></p>
+                </div>
+            </li>
+            <li>
+                <div class="classImg">
+                    <img src="../../image/listimg.jpg" alt=""/>
+                </div>
+                <div class="classcont">
+                    <p><b>韩国工兵破碎锤</b></p>
+                    <p class="txt">价格 : <span class="price">0.9万</span></p>
+                    <p class="txt">预购数量 : <span>4</span></p>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div class="listClas content" id="tab2">
+        <ul>
+            <li>
+                <a href="#">
+                    <div class="listCont">
+                        <div class="iconbox">
+                            <img src="../../image/touxiang.png" alt=""/>
+                        </div>
+                        <div class="companyName">
+                            <p><b>深圳润田经销商</b> （张总）</p>
+                            <p>深圳市宝安区</p>
+                        </div>
+                        <div class="Authentication">
+                            <span>已认证</span>
+                        </div>
+                    </div>
+                    <p>
+                        <span class="TheMain">主营业务 : </span>
+                        <span class="span1"> 二手挖掘机，破碎锤，大型翻斗车</span>
+                    </p>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
+<script src="../../public/js/jquery-1.9.1.min.js"></script>
+<script>
+    var Oa=$('.purchase ul li a');
+    Oa.click(function(e){
+        e.preventDefault();
+        $(this).parent().addClass('active').siblings('.active').removeClass('active');
+        var h = $(this).attr('href');
+        $(h).addClass('show').siblings('.show').removeClass('show');
+    })
+</script>
+</body>
+</html>
