@@ -22,14 +22,19 @@ class Profile extends Model
 
     public $fillable = [
         'type',
+        'avatar',
         'user_id',
         'prov_id',
         'city_id',
+        'sex',
         'industry_id',
         'industry_name',
         'category_id',
         'service',
-        'identity_urls'
+        'identity_urls',
+        'identity_str',
+        'is_identity',
+        'realname'
     ];
 
     /**
@@ -42,11 +47,16 @@ class Profile extends Model
         'user_id' => 'integer',
         'prov_id' => 'integer',
         'city_id' => 'integer',
+        'sex' => 'integer',
         'industry_id' => 'integer',
         'industry_name' => 'string',
         'category_id' => 'integer',
         'service' => 'string',
-        'identity_urls' => 'string'
+        'avatar' => 'string',
+        'identity_str' => 'string',
+        'identity_urls' => 'string',
+        'is_identity' => 'integer',
+        'realname' => 'string'
     ];
 
     /**
@@ -59,12 +69,12 @@ class Profile extends Model
         'user_id' => 'required|numeric',
         'prov_id' => 'numeric',
         'city_id' => 'numeric',
+        'sex' => 'numeric',
         'industry_id' => 'numeric',
         'industry_name' => 'string',
         'category_id' => 'numeric',
         'service' => 'string',
-        'identity_urls' => 'string'
+        'avatar' => 'string',
+        //'identity_urls' => 'string'
     ];
-
-    
 }

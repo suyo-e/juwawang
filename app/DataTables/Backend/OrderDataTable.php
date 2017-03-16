@@ -73,7 +73,7 @@ class OrderDataTable extends DataTable
     {
         return [
             'product_id' => ['name' => 'product_id', 'data' => 'product_id'],
-            'user_id:unsigned:foreign,users,id' => ['name' => 'user_id:unsigned:foreign,users,id', 'data' => 'user_id:unsigned:foreign,users,id'],
+            'user_id' => ['name' => 'user_id', 'data' => 'user_id'],
             'contact_name' => ['name' => 'contact_name', 'data' => 'contact_name'],
             'phone' => ['name' => 'phone', 'data' => 'phone'],
             'prov_id' => ['name' => 'prov_id', 'data' => 'prov_id'],

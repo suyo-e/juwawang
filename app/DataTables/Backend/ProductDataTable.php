@@ -74,7 +74,7 @@ class ProductDataTable extends DataTable
         return [
             'title' => ['name' => 'title', 'data' => 'title'],
             'description' => ['name' => 'description', 'data' => 'description'],
-            'user_id' => ['name' => 'user_id:unsigned:foreign,users,id', 'data' => 'user_id:unsigned:foreign,users,id'],
+            'user_id' => ['name' => 'user_id', 'data' => 'user_id'],
             'type_name' => ['name' => 'type_name', 'data' => 'type_name'],
             //'category_id' => ['name' => 'category_id', 'data' => 'category_id'],
             //'industry_id' => ['name' => 'industry_id', 'data' => 'industry_id'],

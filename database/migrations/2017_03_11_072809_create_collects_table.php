@@ -16,7 +16,8 @@ class CreateCollectsTable extends Migration
         Schema::create('collects', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id');
-            $table->integer('product_id');
+            $table->integer('seller_id')->nullable()->default(0);
+            $table->integer('product_id')->nullable()->default(0);
             $table->timestamps();
             $table->softDeletes();
         });

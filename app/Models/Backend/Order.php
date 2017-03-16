@@ -16,13 +16,15 @@ class Order extends Model
 
     public $table = 'orders';
     
+    const STATUS_NORMAL = 1;
+    const STATUS_UNPAID = 2;
 
     protected $dates = ['deleted_at'];
 
 
     public $fillable = [
         'product_id',
-        'user_id:unsigned:foreign,users,id',
+        'user_id',
         'contact_name',
         'phone',
         'prov_id',
@@ -39,7 +41,7 @@ class Order extends Model
      */
     protected $casts = [
         'product_id' => 'integer',
-        'user_id:unsigned:foreign,users,id' => 'integer',
+        'user_id' => 'integer',
         'contact_name' => 'string',
         'phone' => 'string',
         'prov_id' => 'integer',
@@ -56,7 +58,7 @@ class Order extends Model
      */
     public static $rules = [
         'product_id' => 'required|numeric',
-        'user_id:unsigned:foreign,users,id' => 'required|numeric',
+        'user_id' => 'numeric',
         'contact_name' => 'required|string',
         'phone' => 'required|string',
         'prov_id' => 'numeric',

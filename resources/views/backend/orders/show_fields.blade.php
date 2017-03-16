@@ -10,10 +10,10 @@
     <p>{!! $order->product_id !!}</p>
 </div>
 
-<!-- User Id:unsigned:foreign,users,id Field -->
+<!-- User Id Field -->
 <div class="form-group">
-    {!! Form::label('user_id:unsigned:foreign,users,id', 'User Id:unsigned:foreign,users,id:') !!}
-    <p>{!! $order->user_id:unsigned:foreign,users,id !!}</p>
+    {!! Form::label('user_id', 'User Id:') !!}
+    <p>{!! $order->user_id !!}</p>
 </div>
 
 <!-- Contact Name Field -->

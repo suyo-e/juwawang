@@ -117,8 +117,11 @@ class ProfileController extends AppBaseController
 
             return redirect(route('admin.profiles.index'));
         }
+        $input = $request->all();
+        if(!isset($input['identity_urls']))
+            $input['identity_urls'] = '';
 
-        $profile = $this->profileRepository->update($request->all(), $id);
+        $profile = $this->profileRepository->update($input, $id);
 
         Flash::success('Profile updated successfully.');
 

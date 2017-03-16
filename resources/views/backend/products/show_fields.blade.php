@@ -16,10 +16,10 @@
     <p>{!! $product->description !!}</p>
 </div>
 
-<!-- User Id:unsigned:foreign,users,id Field -->
+<!-- User Id Field -->
 <div class="form-group">
-    {!! Form::label('user_id:unsigned:foreign,users,id', 'User Id:unsigned:foreign,users,id:') !!}
-    <p>{!! $product->user_id:unsigned:foreign,users,id !!}</p>
+    {!! Form::label('user_id', 'User Id:') !!}
+    <p>{!! $product->user_id !!}</p>
 </div>
 
 <!-- Type Name Field -->
@@ -56,6 +56,12 @@
 <div class="form-group">
     {!! Form::label('brand_name', 'Brand Name:') !!}
     <p>{!! $product->brand_name !!}</p>
+</div>
+
+<!-- Pic Url Field -->
+<div class="form-group">
+    {!! Form::label('pic_url', 'Pic Url:') !!}
+    <p>{!! $product->pic_url !!}</p>
 </div>
 
 <!-- Price Field -->

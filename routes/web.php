@@ -63,3 +63,17 @@ Route::patch('admin/profiles/{profiles}', ['as'=> 'admin.profiles.update', 'uses
 Route::delete('admin/profiles/{profiles}', ['as'=> 'admin.profiles.destroy', 'uses' => 'Backend\ProfileController@destroy']);
 Route::get('admin/profiles/{profiles}', ['as'=> 'admin.profiles.show', 'uses' => 'Backend\ProfileController@show']);
 Route::get('admin/profiles/{profiles}/edit', ['as'=> 'admin.profiles.edit', 'uses' => 'Backend\ProfileController@edit']);
+
+
+
+
+
+
+Route::get('admin/products', ['as'=> 'admin.products.index', 'uses' => 'Backend\ProductController@index']);
+Route::post('admin/products', ['as'=> 'admin.products.store', 'uses' => 'Backend\ProductController@store']);
+Route::get('admin/products/create', ['as'=> 'admin.products.create', 'uses' => 'Backend\ProductController@create']);
+Route::put('admin/products/{products}', ['as'=> 'admin.products.update', 'uses' => 'Backend\ProductController@update']);
+Route::patch('admin/products/{products}', ['as'=> 'admin.products.update', 'uses' => 'Backend\ProductController@update']);
+Route::delete('admin/products/{products}', ['as'=> 'admin.products.destroy', 'uses' => 'Backend\ProductController@destroy']);
+Route::get('admin/products/{products}', ['as'=> 'admin.products.show', 'uses' => 'Backend\ProductController@show']);
+Route::get('admin/products/{products}/edit', ['as'=> 'admin.products.edit', 'uses' => 'Backend\ProductController@edit']);

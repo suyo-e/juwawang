@@ -16,7 +16,7 @@ class CreateIndustriesTable extends Migration
         Schema::create('industries', function (Blueprint $table) {
             $table->increments('id');
             $table->string('display_name');
-            $table->integer('user_id:unsigned:foreign,users,id');
+            $table->integer('user_id');
             $table->string('avatar', 255);
             $table->string('pic_urls');
             $table->string('indetity_urls');

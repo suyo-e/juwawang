@@ -1,26 +1,27 @@
+<?php //dd(Active::checkUriPattern('home')); ?>
 <div class="footerNav">
     <ul>
         <li>
-            <a href="#">
-                <img src="image/foter-nav-h.png" alt=""/>
+            <a href="/home">
+                <img src="/image/{{ Active::checkUriPattern('home')?'foter-nav-h': 'foter-nav-hui' }}.png" alt="" data-active="foter-nav-h"/>
                 <p>首页</p>
             </a>
         </li>
         <li>
-            <a href="#">
-                <img class="foter-nav-f" src="image/foter-nav-f.png" alt=""/>
+            <a href="/class">
+                <img class="foter-nav-f" src="/image/{{ Active::checkUriPattern('class')?'fanleilan': 'foter-nav-f' }}.png" data-active="fanleilan" alt=""/>
                 <p>分类</p>
             </a>
         </li>
         <li>
-            <a href="#">
-                <img class="foter-nav-z" src="image/foter-nav-z.png" alt=""/>
+            <a href="/information">
+                <img class="foter-nav-z" src="/image/{{ Active::checkUriPattern('information')?'foter-nav-z-active': 'foter-nav-z' }}.png" alt=""/>
                 <p>咨询</p>
             </a>
         </li>
         <li>
-            <a href="#">
-                <img class="foter-nav-z" src="image/foter-nav-r.png" alt=""/>
+            <a href="/user">
+                <img class="foter-nav-z" src="/image/{{ Active::checkUriPattern('user')?'renlan': 'foter-nav-r' }}.png" data-active="fanleilan" alt=""/>
                 <p>我的</p>
             </a>
         </li>

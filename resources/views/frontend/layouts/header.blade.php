@@ -4,6 +4,6 @@
         <input type="text" placeholder="搜索商家"/>
     </div>
     <div class="Release">
-        <a href="#">发布</a>
+        <a href="/products/categories">发布</a>
     </div>
 </div>

@@ -8,14 +8,16 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 /**
  * Class Product
  * @package App\Models\Backend
- * @version March 11, 2017, 7:44 am UTC
+ * @version March 13, 2017, 10:04 am UTC
  */
 class Product extends Model
 {
     use SoftDeletes;
 
     public $table = 'products';
-    
+
+    const STATUS_NORMAL = 1;
+    const STATUS_UNPAID = 2;
 
     protected $dates = ['deleted_at'];
 
@@ -23,13 +25,14 @@ class Product extends Model
     public $fillable = [
         'title',
         'description',
-        'user_id:unsigned:foreign,users,id',
+        'user_id',
         'type_name',
         'category_id',
         'industry_id',
         'prov_id',
         'city_id',
         'brand_name',
+        'pic_url',
         'price',
         'address',
         'contact_name',
@@ -50,13 +53,14 @@ class Product extends Model
     protected $casts = [
         'title' => 'string',
         'description' => 'string',
-        'user_id:unsigned:foreign,users,id' => 'integer',
+        'user_id' => 'integer',
         'type_name' => 'string',
         'category_id' => 'integer',
         'industry_id' => 'integer',
         'prov_id' => 'integer',
         'city_id' => 'integer',
         'brand_name' => 'string',
+        //'pic_url' => 'string',
         'price' => 'string',
         'address' => 'string',
         'contact_name' => 'string',
@@ -77,13 +81,14 @@ class Product extends Model
     public static $rules = [
         'title' => 'required|string',
         'description' => 'required|string',
-        'user_id:unsigned:foreign,users,id' => 'required|numeric',
+        'user_id' => 'numeric',
         'type_name' => 'string',
         'category_id' => 'numeric',
         'industry_id' => 'numeric',
         'prov_id' => 'numeric',
         'city_id' => 'numeric',
         'brand_name' => 'string',
+        //'pic_url' => 'string',
         'address' => 'string',
         'contact_name' => 'string',
         'wechat' => 'string',

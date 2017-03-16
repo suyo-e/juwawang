@@ -73,7 +73,7 @@ class IndustryDataTable extends DataTable
     {
         return [
             'display_name' => ['name' => 'display_name', 'data' => 'display_name'],
-            'user_id:unsigned:foreign,users,id' => ['name' => 'user_id:unsigned:foreign,users,id', 'data' => 'user_id:unsigned:foreign,users,id'],
+            'user_id' => ['name' => 'user_id', 'data' => 'user_id'],
             'avatar' => ['name' => 'avatar', 'data' => 'avatar'],
             'pic_urls' => ['name' => 'pic_urls', 'data' => 'pic_urls'],
             'indetity_urls' => ['name' => 'indetity_urls', 'data' => 'indetity_urls'],

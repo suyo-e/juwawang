@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers\Frontend;
 
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\AppBaseController;
 
 use App\Models\Backend\Banner;
+use Illuminate\Http\Request;
 /**
  * Class FrontendController.
  */
-class FrontendController extends Controller
+class FrontendController extends AppBaseController
 {
     /**
      * @return \Illuminate\View\View
@@ -25,5 +26,19 @@ class FrontendController extends Controller
     public function macros()
     {
         return view('frontend.macros');
+    }
+
+    public function upload(Request $request) 
+    {
+        $files = $request->file();
+        foreach($files as $key=>$file) {
+            $path = upload($request, $key);
+        }
+    
+        return $this->sendResponse(['path'=>$path], '上传成功');
+    }
+
+    public function setting() {
+        return view('frontend.setting');
     }
 }

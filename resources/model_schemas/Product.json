@@ -23,7 +23,7 @@
     "validations": "required|string"
 },
 {
-    "name": "user_id:unsigned:foreign,users,id",
+    "name": "user_id",
     "dbType": "integer",
     "htmlType": "text",
     "validations": "required|numeric"
@@ -62,6 +62,12 @@
     "name": "brand_name",
     "dbType": "string",
     "htmlType": "text",
+    "validations": "string"
+},
+{
+    "name": "pic_url",
+    "dbType": "string",
+    "htmlType": "file",
     "validations": "string"
 },
 {

@@ -53,6 +53,9 @@ class ProductController extends AppBaseController
     {
         $input = $request->all();
 
+        $path = upload($request, 'pic_url');
+        $input['pic_url'] = $path;
+
         $product = $this->productRepository->create($input);
 
         Flash::success('Product saved successfully.');
@@ -118,7 +121,16 @@ class ProductController extends AppBaseController
             return redirect(route('admin.products.index'));
         }
 
-        $product = $this->productRepository->update($request->all(), $id);
+        $input = $request->all();
+        if($request->file('pic_url')) {
+            $path = upload($request, 'pic_url');
+            $input['pic_url'] = $path;
+        }
+        else {
+            unset($input['pic_url']);
+        }
+
+        $product = $this->productRepository->update($input, $id);
 
         Flash::success('Product updated successfully.');
 

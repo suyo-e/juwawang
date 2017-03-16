@@ -22,7 +22,7 @@ class Industry extends Model
 
     public $fillable = [
         'display_name',
-        'user_id:unsigned:foreign,users,id',
+        'user_id',
         'avatar',
         'pic_urls',
         'indetity_urls',
@@ -40,7 +40,7 @@ class Industry extends Model
      */
     protected $casts = [
         'display_name' => 'string',
-        'user_id:unsigned:foreign,users,id' => 'integer',
+        'user_id' => 'integer',
         'avatar' => 'string',
         'pic_urls' => 'string',
         'indetity_urls' => 'string',
@@ -58,7 +58,7 @@ class Industry extends Model
      */
     public static $rules = [
         'display_name' => 'required|string',
-        'user_id:unsigned:foreign,users,id' => 'required|numeric',
+        'user_id' => 'required|numeric',
         'avatar' => 'required|string',
         'prov_id' => 'numeric',
         'city_id' => 'numeric',

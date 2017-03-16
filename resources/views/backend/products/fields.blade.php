@@ -10,10 +10,10 @@
     {!! Form::textarea('description', null, ['class' => 'form-control']) !!}
 </div>
 
-<!-- User Id:unsigned:foreign,users,id Field -->
+<!-- User Id Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('user_id:unsigned:foreign,users,id', 'User Id:unsigned:foreign,users,id:') !!}
-    {!! Form::text('user_id:unsigned:foreign,users,id', null, ['class' => 'form-control']) !!}
+    {!! Form::label('user_id', 'User Id:') !!}
+    {!! Form::text('user_id', null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Type Name Field -->
@@ -51,6 +51,13 @@
     {!! Form::label('brand_name', 'Brand Name:') !!}
     {!! Form::text('brand_name', null, ['class' => 'form-control']) !!}
 </div>
+
+<!-- Pic Url Field -->
+<div class="form-group col-sm-6">
+    {!! Form::label('pic_url', 'Pic Url:') !!}
+    {!! Form::file('pic_url') !!}
+</div>
+<div class="clearfix"></div>
 
 <!-- Price Field -->
 <div class="form-group col-sm-6">

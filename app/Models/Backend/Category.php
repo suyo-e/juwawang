@@ -19,6 +19,10 @@ class Category extends Model
     const TYPE_AGENT = 2;
     const TYPE_MANUFACTURER = 1;
 
+    const TYPE_USER_PRODUCT = 6;
+    const TYPE_AGENT_PRODUCT = 5;
+    const TYPE_MANUFACTURER_PRODUCT = 4;
+
     public $table = 'categories';
     
 

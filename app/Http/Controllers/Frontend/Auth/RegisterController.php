@@ -11,6 +11,8 @@ use App\Repositories\Frontend\Access\User\UserRepository;
 use App\Models\Backend\Category;
 use App\Models\Backend\Profile;
 
+use Flash;
+
 /**
  * Class RegisterController.
  */
@@ -91,6 +93,7 @@ class RegisterController extends Controller
             access()->login($user);
             event(new UserRegistered(access()->user()));
 
+            Flash::success('注册成功.');
             return redirect($this->redirectPath());
         }
     }

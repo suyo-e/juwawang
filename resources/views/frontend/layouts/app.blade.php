@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <title>@yield('title', app_name())</title>
+        <title>聚挖网</title>
 
         <!-- Meta -->
         <meta name="description" content="@yield('meta_description', 'Laravel 5 Boilerplate')">
@@ -14,12 +14,16 @@
         <meta content="yes" name="apple-mobile-web-app-capable">
         <meta content="black" name="apple-mobile-web-app-status-bar-style">
         <meta content="telephone=no" name="format-detection">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-weui/1.0.1/css/jquery-weui.min.css" />
+        <link href="//cdn.bootcss.com/jquery-weui/1.0.1/css/jquery-weui.min.css" rel="stylesheet">
         <link rel="stylesheet" href="/css/swiper-3.4.1.min.css"/>
         <link rel="stylesheet" href="/css/index.css"/>
         @yield('meta')
 
         @yield('css')
+        <style>
+        .hidden { display: none}
+        .weui-toptips.weui-toptips_visible { top: 0; position: absolute; width: 100%; }
+        </style>
 
         <!-- Scripts -->
         <script>
@@ -30,12 +34,12 @@
     </head>
     <body id="app-layout">
         @yield('header')
-        @include('includes.partials.messages')
         @yield('content')
         @yield('footer')
 
         <script src="/js/jquery-1.9.1.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-weui/1.0.1/js/jquery-weui.min.js"></script>
+        <script src="//cdn.bootcss.com/jquery-weui/1.0.1/js/jquery-weui.min.js"></script>
+        @include('frontend.includes.messages')
         @yield('script')
         @include('includes.partials.ga')
     </body>

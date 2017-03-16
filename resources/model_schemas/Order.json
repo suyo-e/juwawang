@@ -17,7 +17,7 @@
     "validations": "required|numeric"
 },
 {
-    "name": "user_id:unsigned:foreign,users,id",
+    "name": "user_id",
     "dbType": "integer",
     "htmlType": "text",
     "validations": "required|numeric"

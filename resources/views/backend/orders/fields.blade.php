@@ -4,10 +4,10 @@
     {!! Form::text('product_id', null, ['class' => 'form-control']) !!}
 </div>
 
-<!-- User Id:unsigned:foreign,users,id Field -->
+<!-- User Id Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('user_id:unsigned:foreign,users,id', 'User Id:unsigned:foreign,users,id:') !!}
-    {!! Form::text('user_id:unsigned:foreign,users,id', null, ['class' => 'form-control']) !!}
+    {!! Form::label('user_id', 'User Id:') !!}
+    {!! Form::text('user_id', null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Contact Name Field -->

@@ -1,7 +1,4 @@
 
-<li class="{{ Request::is('products*') ? 'active' : '' }}">
-    <a href="{!! route('admin.products.index') !!}"><i class="fa fa-circle-o"></i><span>Products</span></a>
-</li>
 
 <li class="{{ Request::is('orders*') ? 'active' : '' }}">
     <a href="{!! route('admin.orders.index') !!}"><i class="fa fa-circle-o"></i><span>Orders</span></a>
@@ -28,5 +25,11 @@
 
 <li class="{{ Request::is('profiles*') ? 'active' : '' }}">
     <a href="{!! route('admin.profiles.index') !!}"><i class="fa fa-circle-o"></i><span>Profiles</span></a>
+</li>
+
+
+
+<li class="{{ Request::is('products*') ? 'active' : '' }}">
+    <a href="{!! route('admin.products.index') !!}"><i class="fa fa-circle-o"></i><span>Products</span></a>
 </li>
 
