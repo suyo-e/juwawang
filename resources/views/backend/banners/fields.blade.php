@@ -19,7 +19,7 @@
 <!-- Type Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('type', 'Type:') !!}
-    {!! Form::select('type', ['0' => 'All', '1' => 'manufacturer', '2' => 'agent', '3' => 'user'], null, ['class' => 'form-control']) !!}
+    {!! Form::select('type', ['0' => 'All', '1' => '厂商', '2' => '代理商', '3' => '用户 '], null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Description Field -->

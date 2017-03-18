@@ -31,6 +31,7 @@ class Order extends Model
         'city_id',
         'quantity',
         'remark',
+        'price',
         'status'
     ];
 

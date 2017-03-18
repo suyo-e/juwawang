@@ -9,7 +9,7 @@
         <div class="swiper-container">
             <div class="swiper-wrapper">
             @foreach ($banners as $banner) 
-                <div class="swiper-slide" ><img src="{{ $banner->pic_url }}" alt=""/></div>
+                <div class="swiper-slide" ><a href="{{ $banner->url }}"><img src="{{ $banner->pic_url }}" alt=""/></a></div>
             @endforeach
             </div>
             <div class="swiper-pagination"></div>
@@ -70,18 +70,21 @@
     <div class="content">
         <p class="hot">热门商家推荐</p>
         <ul>
+        @foreach ($profiles as $profile)   
+            @if (!$profile) continue;
+            @endif
             <li>
-                <a href="#">
+            <a href="{{ route('frontend.industries.show', ['user_id'=>$profile->user_id]) }}">
                     <div class="listCont">
                         <div class="iconbox">
-                            <img src="image/touxiang.png" alt=""/>
+                            <img src="{{ $profile->avatar }}" alt=""/>
                         </div>
                         <div class="companyName">
-                            <p><b>深圳润田经销商</b> （张总）</p>
-                            <p>深圳市宝安区</p>
+                        <p><b>{{ $profile->industry_name}}</b> （{{$profile->realname==''?$profile->user->name:$profile->realname}}）</p>
+                            <p>{{ $profile->province_city_name }}</p>
                         </div>
                         <div class="Authentication">
-                            <span>已认证</span>
+                            <span>{{ $profile->is_identity == 1 ?'已认证': '未认证' }}</span>
                         </div>
                     </div>
                     <p>
@@ -90,6 +93,7 @@
                     </p>
                 </a>
             </li>
+        @endforeach
         </ul>
     </div>
 @endsection

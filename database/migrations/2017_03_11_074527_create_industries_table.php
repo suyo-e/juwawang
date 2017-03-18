@@ -18,13 +18,13 @@ class CreateIndustriesTable extends Migration
             $table->string('display_name');
             $table->integer('user_id');
             $table->string('avatar', 255);
-            $table->string('pic_urls');
-            $table->string('indetity_urls');
+            $table->string('pic_urls')->nullable()->default('');
+            $table->string('identity_urls')->nullable()->default('');
             $table->integer('prov_id');
             $table->integer('city_id');
-            $table->string('address', 255);
-            $table->string('service');
-            $table->string('description');
+            $table->string('address', 255)->nullable()->default('');
+            $table->string('service')->nullable()->default('');
+            $table->text('description')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

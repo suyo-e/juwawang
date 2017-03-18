@@ -11,9 +11,9 @@
         </div>
         <input class="inputAll" type="password" name="password" value="{{ old('password') }}" placeholder=" 请设置密码">
         <div class="Aradio">
-            <label><input class="Fruit" type="radio" value="3" name="type" checked="" {{old('type')==2?'checked':''}}>用户</label>
-            <label><input class="Fruit" type="radio" value="2" name="type" {{old('type')==2?'checked':''}}>厂家</label>
-            <label><input class="Fruit" type="radio" value="1" name="type" {{old('type')==1?'checked':''}}>经销商</label>
+            <label><input class="Fruit" type="radio" value="3" name="type" checked="" {{old('type')==3?'checked':''}}>用户</label>
+            <label><input class="Fruit" type="radio" value="2" name="type" {{old('type')==2?'checked':''}}>经销商</label>
+            <label><input class="Fruit" type="radio" value="1" name="type" {{old('type')==1?'checked':''}}>厂家</label>
         </div>
         <div class="NextStep">
             <button type="button" id="toStep2">下一步</button>

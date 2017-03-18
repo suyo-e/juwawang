@@ -48,7 +48,7 @@
         <span>{{ $product->address }}</span>
     </div>
     <div class="SeeMerchant SeeMe">
-        <a href="#">查看商家<img src="/image/on_right.png" alt=""/></a>
+        <a href="{{ route('frontend.industries.show', ['user_id' => $product->user_id ]) }}">查看商家<img src="/image/on_right.png" alt=""/></a>
     </div>
 </section>
     <footer>

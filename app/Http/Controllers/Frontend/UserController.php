@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Access\User\User;
 use App\Models\Backend\Profile;
 use App\Models\Backend\Category;
+use App\Models\Backend\Industry;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
@@ -76,6 +77,7 @@ class UserController extends Controller
         }
 
         $profile = Profile::where('user_id', $user->id)->first();
+        $industry = Industry::where('user_id', $user->id)->first();
 
         if($request->input('avatar')) {
             $profile->avatar = $request->input('avatar');
@@ -84,14 +86,23 @@ class UserController extends Controller
             $user->name = $request->input('name');
         }
         if($request->input('province_city')) {
-            $province_city = explode(',', $request->input('province_city'));
-            $profile->prov_id = $province_city[0];
-            $profile->city_id = $province_city[1];
+            $province_city = province_city($request->input('province_city'));
+            $profile->prov_id = $province_city['prov_id'];
+            $profile->city_id = $province_city['city_id'];
+
+            $industry->prov_id = $province_city['prov_id'];
+            $industry->city_id = $province_city['city_id'];
         }
         if($request->input('service')) {
             $profile->service = $request->input('service');
         }
+        $profile->sex = $request->input('sex');
 
+        if($request->input('industry_name')) {
+            $industry->display_name = $request->input('industry_name');
+        }
+
+        $industry->save();
         $profile->save();
         $user->save();
 

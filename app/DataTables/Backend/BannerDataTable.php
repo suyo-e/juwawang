@@ -74,7 +74,7 @@ class BannerDataTable extends DataTable
         return [
             'display_name' => ['name' => 'display_name', 'data' => 'display_name'],
             'url' => ['name' => 'url', 'data' => 'url'],
-            'pic_url' => ['name' => 'pic_url', 'data' => 'pic_url', 'render' => '"<img src=\""+data+"\" height=\"50\"/>"'],
+            'pic_url' => ['name' => 'pic_url', 'data' => 'pic_url', 'render' => render_image()],
             'type' => ['name' => 'type', 'data' => 'type'],
             'description' => ['name' => 'description', 'data' => 'description']
         ];

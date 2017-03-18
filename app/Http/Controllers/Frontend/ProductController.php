@@ -26,8 +26,7 @@ class ProductController extends AppBaseController
     {
         $user = access()->user();
 
-        $products = Product::where('user_id', $user->id)
-            ->get();
+        $products = Product::where('user_id', $user->id)->get();
 
         return view('frontend.products.index', compact('products'));
     }
@@ -67,7 +66,7 @@ class ProductController extends AppBaseController
 
         $categories = Category::select('display_name', 'id')
             ->where('parent_id', 0);
-        $type = 0;
+
         switch($profile->type) {
         case Category::TYPE_USER:
             $type = Category::TYPE_USER_PRODUCT;
@@ -80,7 +79,7 @@ class ProductController extends AppBaseController
             break;
         }
         if($type) {
-            //$categories = $categories->where('type', $type);
+            $categories = $categories->where('type', $type);
         }
         $categories = $categories->get();
 
@@ -101,27 +100,20 @@ class ProductController extends AppBaseController
     {
         $input = $request->all();
 
-        if($request->file('pic_url')) {
-            $path = upload($request, 'pic_url');
-            $input['pic_url'] = $path;
-        }
-        else {
-            $input['pic_url'] = '';
-        }
-
         $input['banner_urls'] = '';
 
         $user = access()->user();
 
+        $input['pic_url'] = $request->input('pic_url');
         $input['user_id'] = $user->id;
         $input['contact_name'] = $user->name;
         $input['view_count'] = 0;
         $input['collect_count'] = 0;
         $input['status'] = Product::STATUS_UNPAID;
 
-        $province_city = explode(',', $input['province_city']);
-        $input['prov_id'] = $province_city[0];
-        $input['city_id'] = $province_city[1];
+        $province_city = province_city($input['province_city']);
+        $input['prov_id'] = $province_city['prov_id'];
+        $input['city_id'] = $province_city['city_id'];
         $input['industry_id'] = 0;
 
         $product = Product::create($input);

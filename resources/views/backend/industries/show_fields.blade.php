@@ -30,8 +30,8 @@
 
 <!-- Indetity Urls Field -->
 <div class="form-group">
-    {!! Form::label('indetity_urls', 'Indetity Urls:') !!}
-    <p>{!! $industry->indetity_urls !!}</p>
+    {!! Form::label('identity_urls', 'Indetity Urls:') !!}
+    <p>{!! $industry->identity_urls !!}</p>
 </div>
 
 <!-- Prov Id Field -->

@@ -76,7 +76,7 @@ class IndustryDataTable extends DataTable
             'user_id' => ['name' => 'user_id', 'data' => 'user_id'],
             'avatar' => ['name' => 'avatar', 'data' => 'avatar'],
             'pic_urls' => ['name' => 'pic_urls', 'data' => 'pic_urls'],
-            'indetity_urls' => ['name' => 'indetity_urls', 'data' => 'indetity_urls'],
+            'identity_urls' => ['name' => 'identity_urls', 'data' => 'identity_urls'],
             'prov_id' => ['name' => 'prov_id', 'data' => 'prov_id'],
             'city_id' => ['name' => 'city_id', 'data' => 'city_id'],
             'address' => ['name' => 'address', 'data' => 'address'],

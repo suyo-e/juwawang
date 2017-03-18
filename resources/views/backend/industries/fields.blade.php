@@ -26,8 +26,8 @@
 
 <!-- Indetity Urls Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('indetity_urls', 'Indetity Urls:') !!}
-    {!! Form::file('indetity_urls') !!}
+    {!! Form::label('identity_urls', 'Indetity Urls:') !!}
+    {!! Form::file('identity_urls') !!}
 </div>
 <div class="clearfix"></div>
 

@@ -34,6 +34,7 @@ class Profile extends Model
         'identity_urls',
         'identity_str',
         'is_identity',
+        'is_recommand',
         'realname'
     ];
 

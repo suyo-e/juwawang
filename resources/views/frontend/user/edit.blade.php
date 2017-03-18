@@ -23,7 +23,7 @@
             </div>
             <div class="name">
                 <span>性别 : </span>
-                <select>
+                <select name="sex">
                     <option value="0" {{$profile->sex==0?'selected':''}}>女</option>
                     <option value="1" {{$profile->sex==1?'selected':''}}>男</option>
                 </select>
@@ -39,7 +39,7 @@
     @endif
             <div class="name name4">
                 <span>职业: </span>
-                <input readonly type="text" name="category_name" value="{{ $profile->category_name}}"/>
+                <input type="text" name="service" value="{{ $profile->service}}"/>
             </div>
     
     
@@ -49,15 +49,17 @@
                 <input id="province_city" type="hidden" name="province_city" value="{{ $user->province_city }}"/>
             </div>
     </div>
+<!--
     <p class="title">主营业务</p>
     <div class="PersonalInfo">
         <div class="texta">
             <textarea name="service" cols="40" rows="8" placeholder="简单描述商家主营业务....">{{ $profile->service }}</textarea>
         </div>
+    </div>
+-->
         <div class="btn">
             <button type="submit" class="btnAll">保存</button>
         </div>
-    </div>
 {!! Form::close() !!}
 </div>
 

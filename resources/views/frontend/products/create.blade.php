@@ -5,10 +5,13 @@
 
 <input type="hidden" name="category_id" value="{{ $category_id }}" />
 <div class="bjMap">
-    <img src="../../image/Sbj.png" alt=""/>
+    <img id="upload-avatar-img" src="/image/Sbj.png" alt=""/>
     <p class="bjBtn">
-        <img src="../../image/camera.png" alt=""/><br/>
-        <span class="file"><input name="pic_url" type="file"/></span>
+        <img src="/image/camera.png" alt=""/><br/>
+        <span class="file">
+            <input id="upload-avatar-input" type="hidden" name="pic_url" value="{{ old('pic_url') }}" />
+            <input id="upload-avatar" type="file" name="pic_url_file" value="{{ old('pic_url_file') }}" />
+        </span>
     </p>
     <span class="Prompt">上传商品图片</span>
 </div>
@@ -63,9 +66,21 @@
 @endsection
 
 @section('script')
+<script src="/js/jquery.ui.widget.js"></script>
+<script src="/js/jquery.iframe-transport.js"></script>
+<script src="/js/jquery.fileupload.js"></script>
 <script src="//cdn.bootcss.com/jquery-weui/1.0.1/js/city-picker.min.js"></script>
 <script> 
 $(function() {
+    $('#upload-avatar').fileupload({
+        url: '/upload',
+        dataType: 'json',
+        done: function (e, data) {
+            var path = data.result.data.path;
+            $("#upload-avatar-input").val(path);
+            $("#upload-avatar-img").attr('src', path);
+        }
+    });
     $("#submit").click(function() {
         if($("input[name='pic_url']").val() == "") {
             alert("请上传图片");

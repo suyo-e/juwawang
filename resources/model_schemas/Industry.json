@@ -36,7 +36,7 @@
     "searchable": false
 },
 {
-    "name": "indetity_urls",
+    "name": "identity_urls",
     "dbType": "string",
     "htmlType": "file",
     "searchable": false

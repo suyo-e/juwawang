@@ -74,9 +74,9 @@ class CategoryDataTable extends DataTable
         return [
             'display_name' => ['name' => 'display_name', 'data' => 'display_name'],
             'parent_id' => ['name' => 'parent_id', 'data' => 'parent_id'],
-            'pic_url' => ['name' => 'pic_url', 'data' => 'pic_url', 'render' => '"<img src=\""+data+"\" height=\"50\"/>"'],
-            'type' => ['name' => 'type', 'data' => 'type'],
-            'url' => ['name' => 'url', 'data' => 'url']
+            'pic_url' => ['name' => 'pic_url', 'data' => 'pic_url', 'render' => render_image()],
+            'type' => ['name' => 'type', 'data' => 'type', 'render' => render_category_type()],
+            //'url' => ['name' => 'url', 'data' => 'url']
         ];
     }
 

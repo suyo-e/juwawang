@@ -23,7 +23,7 @@ class CreateOrdersTable extends Migration
             $table->integer('city_id');
             $table->integer('quantity');
             $table->string('price');
-            $table->string('remark');
+            $table->text('remark')->nullable();
             $table->integer('status');
             $table->timestamps();
             $table->softDeletes();

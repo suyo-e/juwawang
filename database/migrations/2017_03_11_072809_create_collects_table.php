@@ -18,6 +18,7 @@ class CreateCollectsTable extends Migration
             $table->integer('user_id');
             $table->integer('seller_id')->nullable()->default(0);
             $table->integer('product_id')->nullable()->default(0);
+            $table->integer('type')->nullable()->default(0);
             $table->timestamps();
             $table->softDeletes();
         });

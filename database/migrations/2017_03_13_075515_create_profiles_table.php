@@ -15,25 +15,27 @@ class CreateProfilesTable extends Migration
     {
         Schema::create('profiles', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('avatar')->nullable()->default('');
             $table->integer('type');
             $table->integer('user_id');
             $table->integer('prov_id');
             $table->integer('city_id');
-            $table->integer('industry_id');
-            $table->string('industry_name', 255);
+            $table->integer('area_id')->nullable()->default(0);
             $table->integer('category_id');
-            $table->string('service');
-            $table->string('avatar');
+            $table->integer('sex')->nullable()->default(0);
+            $table->string('service')->nullable()->default('');
+
+            $table->integer('industry_id')->nullable()->default(0);
+            $table->string('industry_name', 255)->nullable()->default('');
 
             $table->integer('is_identity')->nullable()->default(0);
+            $table->integer('is_recommand')->nullable()->default(0);
+            // verify
             $table->string('realname')->nullable()->default('');
             $table->string('identity_str')->nullable()->default('');
-            $table->text('identity_urls')->nullable()->default('');
-            $table->text('remark')->nullable()->default('');
+            $table->text('identity_urls')->nullable();
 
-            $table->string('shop_background')->nullable()->default('');
-            $table->string('shop_description')->nullable()->default('');
-            $table->string('shop_identity')->nullable()->default('');
+            $table->text('remark')->nullable();
 
             $table->timestamps();
             $table->softDeletes();

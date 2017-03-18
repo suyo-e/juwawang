@@ -84,4 +84,14 @@ class UserStatusController extends Controller
 
         return redirect()->route('admin.access.user.index')->withFlashSuccess(trans('alerts.backend.users.restored'));
     }
+    
+    public function recommand(ManageUserRequest $request)
+    {
+        $profile = \App\Models\Backend\Profile::whereIn('user_id', array_keys($request->all()))->first();
+        
+        $profile->is_recommand = $profile->is_recommand==1?0:1;
+        $profile->save();
+
+        return redirect()->route('admin.access.user.index')->withFlashSuccess('操作成功');
+    }
 }

@@ -8,6 +8,7 @@ Route::get('/', 'FrontendController@index')->name('index');
 Route::get('/home', 'FrontendController@index')->name('home');
 Route::get('/class', 'ClassController@index')->name('class');
 Route::get('/information', 'InformationController@index')->name('information');
+Route::get('/information/show', 'InformationController@show')->name('information.show');
 Route::get('/user', 'UserController@show')->name('user')->middleware('auth');
 Route::post('/upload', 'FrontendController@upload')->name('upload');
 
@@ -33,7 +34,15 @@ Route::post('/profiles/store', 'ProfileController@store')->name('profiles.store'
 Route::get('/sellers/create', 'SellerController@create')->name('sellers.create')->middleware('auth');
 Route::get('/sellers/show', 'SellerController@show')->name('sellers.show')->middleware('auth');
 Route::post('/sellers/store', 'SellerController@store')->name('sellers.store')->middleware('auth');
+
 Route::get('/sellers', 'SellerController@index')->name('sellers.index');
+Route::get('/sellers/edit', 'SellerController@edit')->name('sellers.edit');
+Route::post('/sellers/update', 'SellerController@update')->name('sellers.update');
+
+Route::get('/industries', 'IndustryController@index')->name('industries.index');
+Route::get('/industries/edit', 'IndustryController@edit')->name('industries.edit');
+Route::get('/industries/show', 'IndustryController@show')->name('industries.show');
+Route::post('/industries/update', 'IndustryController@update')->name('industries.update');
 
 Route::get('/categories', 'CategoryApiController@index')->name('api.categories');
 

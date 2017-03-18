@@ -77,3 +77,13 @@ Route::patch('admin/products/{products}', ['as'=> 'admin.products.update', 'uses
 Route::delete('admin/products/{products}', ['as'=> 'admin.products.destroy', 'uses' => 'Backend\ProductController@destroy']);
 Route::get('admin/products/{products}', ['as'=> 'admin.products.show', 'uses' => 'Backend\ProductController@show']);
 Route::get('admin/products/{products}/edit', ['as'=> 'admin.products.edit', 'uses' => 'Backend\ProductController@edit']);
+
+
+Route::get('admin/information', ['as'=> 'admin.information.index', 'uses' => 'Backend\InformationController@index']);
+Route::post('admin/information', ['as'=> 'admin.information.store', 'uses' => 'Backend\InformationController@store']);
+Route::get('admin/information/create', ['as'=> 'admin.information.create', 'uses' => 'Backend\InformationController@create']);
+Route::put('admin/information/{information}', ['as'=> 'admin.information.update', 'uses' => 'Backend\InformationController@update']);
+Route::patch('admin/information/{information}', ['as'=> 'admin.information.update', 'uses' => 'Backend\InformationController@update']);
+Route::delete('admin/information/{information}', ['as'=> 'admin.information.destroy', 'uses' => 'Backend\InformationController@destroy']);
+Route::get('admin/information/{information}', ['as'=> 'admin.information.show', 'uses' => 'Backend\InformationController@show']);
+Route::get('admin/information/{information}/edit', ['as'=> 'admin.information.edit', 'uses' => 'Backend\InformationController@edit']);

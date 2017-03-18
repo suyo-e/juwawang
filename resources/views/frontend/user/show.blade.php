@@ -40,10 +40,12 @@
         </div>
         <div class="address">
             @if ($user->type != 3)
+            <a href="{{ route('frontend.industries.edit') }}">
             <p class="namePhone">
                 <img src="/image/my-sp.png" alt=""/>
                 <span class="name">我的商铺</span>
             </p>
+            </a>
             @endif
             <a href="{{ route('frontend.orders.index') }}">
             <p class="DetailedAdds">

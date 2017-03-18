@@ -16,10 +16,10 @@ class CreateBannersTable extends Migration
         Schema::create('banners', function (Blueprint $table) {
             $table->increments('id');
             $table->string('display_name', 255);
-            $table->string('url', 255);
-            $table->string('pic_url', 255);
+            $table->string('url', 255)->nullable()->default('');
+            $table->string('pic_url', 255)->nullable()->default('');
             $table->integer('type');
-            $table->text('description');
+            $table->text('description')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

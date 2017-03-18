@@ -109,3 +109,69 @@ if (! function_exists('upload')) {
         return $path;
     }
 }
+
+if (! function_exists('render_image')) {
+    function render_image(){
+        return 'data!=""?"<img src=\""+data+"\" height=\"50\"/>":"暂无图片"';
+    }
+}
+
+if (! function_exists('render_category_type')) {
+    function render_category_type() {
+        return 'function(data) {
+            switch(data){
+            case '.\App\Models\Backend\Category::TYPE_USER.':
+                return "用户注册";
+            case '.\App\Models\Backend\Category::TYPE_AGENT.':
+                return "代理商注册";
+            case '.\App\Models\Backend\Category::TYPE_MANUFACTURER.':
+                return "厂商注册";
+            case '.\App\Models\Backend\Category::TYPE_USER_PRODUCT.':
+                return "用户商品发布";
+            case '.\App\Models\Backend\Category::TYPE_AGENT_PRODUCT.':
+                return "代理商商品发布";
+            case '.\App\Models\Backend\Category::TYPE_MANUFACTURER_PRODUCT.':
+                return "厂商商品发布";
+            default:
+                return data;
+            }
+        }(data);';
+    }
+}
+
+if(! function_exists('province_city')) {
+    function province_city($province_city){
+        $province_city = explode(',', $province_city);
+        $data = array();
+        $data['prov_id'] = isset($province_city[0]) ? $province_city[0]: '';
+        $data['city_id'] = isset($province_city[1]) ? $province_city[1]: '';
+        $data['area_id'] = isset($province_city[2]) ? $province_city[2]: '';
+
+        return $data;
+    }
+}
+
+if(! function_exists('get_product_types')){ 
+    function get_product_types( $profile_type ) {
+
+        switch($profile_type) {
+        //用户只能看用户和经销商
+        case \App\Models\Backend\Category::TYPE_USER:
+            return array(
+                \App\Models\Backend\Category::TYPE_USER_PRODUCT,
+                \App\Models\Backend\Category::TYPE_AGENT_PRODUCT
+            );
+        //经销商看全部
+        case \App\Models\Backend\Category::TYPE_AGENT:
+            return array(
+                \App\Models\Backend\Category::TYPE_USER_PRODUCT,
+                \App\Models\Backend\Category::TYPE_AGENT_PRODUCT,
+                \App\Models\Backend\Category::TYPE_MANUFACTURER_PRODUCT
+            );
+        case \App\Models\Backend\Category::TYPE_MANUFACTURER:
+            return array(\App\Models\Backend\Category::TYPE_MANUFACTURER_PRODUCT);
+        default:
+            return null;
+        }
+    }
+}

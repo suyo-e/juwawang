@@ -27,6 +27,11 @@ Route::group([
             Route::get('user/deactivated', 'UserStatusController@getDeactivated')->name('user.deactivated');
             Route::get('user/deleted', 'UserStatusController@getDeleted')->name('user.deleted');
 
+            /**
+             * User Recommand
+             */
+            Route::get('user/recommand', 'UserStatusController@recommand')->name('user.recommand');
+
             /*
              * User CRUD
              */
