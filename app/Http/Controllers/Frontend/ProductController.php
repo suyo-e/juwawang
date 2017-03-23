@@ -7,6 +7,7 @@ use App\Http\Requests\Backend\CreateProductRequest;
 use App\Http\Requests\Backend\UpdateProductRequest;
 
 use App\Models\Backend\Category;
+use App\Models\Backend\Collect;
 use App\Models\Backend\Product;
 use Illuminate\Http\Request;
 
@@ -27,7 +28,7 @@ class ProductController extends AppBaseController
         $user = access()->user();
 
         $products = Product::where('user_id', $user->id)->get();
-
+        
         return view('frontend.products.index', compact('products'));
     }
 
@@ -40,9 +41,17 @@ class ProductController extends AppBaseController
             return redirect()->back();
         }
 
+        $product->view_count ++;
+        $product->save();
+
         $user_id = access()->user()->id;
 
-        return view('frontend.products.show', compact('product', 'user_id'));
+
+        $collect = Collect::where('product_id', $product_id)
+            ->where('user_id', $user_id)
+            ->first();
+
+        return view('frontend.products.show', compact('product', 'user_id', 'collect'));
     }
 
     public function intend(Request $request) 
@@ -64,25 +73,7 @@ class ProductController extends AppBaseController
         $user = access()->user();
         $profile = Profile::where('user_id', $user->id)->first();
 
-        $categories = Category::select('display_name', 'id')
-            ->where('parent_id', 0);
-
-        switch($profile->type) {
-        case Category::TYPE_USER:
-            $type = Category::TYPE_USER_PRODUCT;
-            break;
-        case Category::TYPE_AGENT:
-            $type = Category::TYPE_AGENT_PRODUCT;
-            break;
-        case Category::TYPE_MANUFACTURER:
-            $type = Category::TYPE_MANUFACTURER_PRODUCT;
-            break;
-        }
-        if($type) {
-            $categories = $categories->where('type', $type);
-        }
-        $categories = $categories->get();
-
+        $categories = get_categories($profile->type);
         return view('frontend.products.categories', compact('categories'));
     }
 
@@ -93,18 +84,28 @@ class ProductController extends AppBaseController
     {
         $category_id = $request->input('category_id');
 
-        return view('frontend.products.create', compact('category_id'));
+        $user = access()->user();
+        $profile = Profile::where('user_id', $user->id)->first();
+        $categories = get_categories($profile->type);
+
+        $category_ids = [];
+        $category_values = [];
+        foreach($categories as $category) {
+            $category_ids[] = $category->id;
+            $category_values[] = "'".$category->display_name."'";
+        }
+        $category = Category::find($category_id);
+        return view('frontend.products.create', compact('category_id', 'category', 'category_ids', 'category_values'));
     }
 
     public function store(CreateProductRequest $request)
     {
         $input = $request->all();
 
-        $input['banner_urls'] = '';
-
         $user = access()->user();
 
         $input['pic_url'] = $request->input('pic_url');
+        $input['banner_urls'] = json_encode($request->input('banner_urls'));
         $input['user_id'] = $user->id;
         $input['contact_name'] = $user->name;
         $input['view_count'] = 0;
@@ -114,6 +115,7 @@ class ProductController extends AppBaseController
         $province_city = province_city($input['province_city']);
         $input['prov_id'] = $province_city['prov_id'];
         $input['city_id'] = $province_city['city_id'];
+        $input['area_id'] = $province_city['area_id'];
         $input['industry_id'] = 0;
 
         $product = Product::create($input);

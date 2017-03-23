@@ -72,16 +72,16 @@ class ProductDataTable extends DataTable
     private function getColumns()
     {
         return [
-            'title' => ['name' => 'title', 'data' => 'title'],
-            'description' => ['name' => 'description', 'data' => 'description'],
-            'user_id' => ['name' => 'user_id', 'data' => 'user_id'],
-            'type_name' => ['name' => 'type_name', 'data' => 'type_name'],
+            '标题' => ['name' => 'title', 'data' => 'title'],
+            '描述' => ['name' => 'description', 'data' => 'description'],
+            '用户id' => ['name' => 'user_id', 'data' => 'user_id'],
+            '类型' => ['name' => 'type_name', 'data' => 'type_name'],
             //'category_id' => ['name' => 'category_id', 'data' => 'category_id'],
             //'industry_id' => ['name' => 'industry_id', 'data' => 'industry_id'],
             //'prov_id' => ['name' => 'prov_id', 'data' => 'prov_id'],
             //'city_id' => ['name' => 'city_id', 'data' => 'city_id'],
-            'brand_name' => ['name' => 'brand_name', 'data' => 'brand_name'],
-            'price' => ['name' => 'price', 'data' => 'price'],
+            '品牌' => ['name' => 'brand_name', 'data' => 'brand_name'],
+            '价格' => ['name' => 'price', 'data' => 'price'],
             //'address' => ['name' => 'address', 'data' => 'address'],
             /*
             'contact_name' => ['name' => 'contact_name', 'data' => 'contact_name'],
@@ -89,8 +89,8 @@ class ProductDataTable extends DataTable
             'qq' => ['name' => 'qq', 'data' => 'qq'],
             'phone' => ['name' => 'phone', 'data' => 'phone'],
              */
-            'view_count' => ['name' => 'view_count', 'data' => 'view_count'],
-            'collect_count' => ['name' => 'collect_count', 'data' => 'collect_count'],
+            '访问数量' => ['name' => 'view_count', 'data' => 'view_count'],
+            //'收藏数量' => ['name' => 'collect_count', 'data' => 'collect_count'],
             //'banner_urls' => ['name' => 'banner_urls', 'data' => 'banner_urls'],
             //'status' => ['name' => 'status', 'data' => 'status']
         ];

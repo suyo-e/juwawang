@@ -1,8 +1,10 @@
 {!! Form::open(['route' => ['admin.products.destroy', $id], 'method' => 'delete']) !!}
 <div class='btn-group'>
+<!--
     <a href="{{ route('admin.products.show', $id) }}" class='btn btn-default btn-xs'>
         <i class="glyphicon glyphicon-eye-open"></i>
     </a>
+-->
     <a href="{{ route('admin.products.edit', $id) }}" class='btn btn-default btn-xs'>
         <i class="glyphicon glyphicon-edit"></i>
     </a>

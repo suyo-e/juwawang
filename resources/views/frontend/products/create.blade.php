@@ -1,9 +1,12 @@
 @extends('frontend.layouts.app')
 
+<link rel="stylesheet" href="/css/weui.css"/>
+
 @section('content')
 {!! Form::open(['route' => 'frontend.products.store', 'files' => true]) !!}
 
 <input type="hidden" name="category_id" value="{{ $category_id }}" />
+<!--
 <div class="bjMap">
     <img id="upload-avatar-img" src="/image/Sbj.png" alt=""/>
     <p class="bjBtn">
@@ -14,6 +17,32 @@
         </span>
     </p>
     <span class="Prompt">上传商品图片</span>
+</div>
+-->
+
+<div class="container">
+    <div class="weui_cells_title">上传图片</div>
+    <div class="weui_cells weui_cells_form">
+        <div class="weui_cell">
+            <div class="weui_cell_bd weui_cell_primary">
+                <div class="weui_uploader">
+                    <!--<div class="weui_uploader_hd weui_cell">-->
+                    <!--<div class="weui_cell_bd weui_cell_primary">图片上传</div>-->
+                    <!--<div class="weui_cell_ft js_counter">0/6</div>-->
+                    <!--</div>-->
+                    <div class="weui_uploader_bd">
+                        <ul class="weui_uploader_files">
+                            <!-- 预览图插入到这 --> 
+                        </ul>
+                        <div class="weui_uploader_input_wrp">
+                            <input id="upload-avatar" class="weui_uploader_input js_file" type="file" accept="image/jpg,image/jpeg,image/png,image/gif" name="file">
+                            <input type="hidden" id="upload-avatar-input" name="pic_url" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 <div class="biaoti">
     <div class="title">
@@ -27,7 +56,8 @@
 <div class="inforlist">
     <div class="list1 borderAll">
         <span>类别</span>
-        <input type="text" name="type_name" value="{{ old('type_name') }}" placeholder="请输入您要发布的商品类型"/>
+        <input id="display_name" readonly type="text" name="type_name" value="{{ $category->display_name }}" placeholder="请输入您要发布的商品类型"/>
+        <input id="category_id" name="category_id" type="hidden" value="{{ $category->id}}"/>
     </div>
     <div class="list1 borderAll">
         <span>品牌</span>
@@ -72,15 +102,38 @@
 <script src="//cdn.bootcss.com/jquery-weui/1.0.1/js/city-picker.min.js"></script>
 <script> 
 $(function() {
+    /*
+    $("#display_name").picker({
+        title: "请选择类目",
+        cols: [
+            {  
+                textAlign: 'center',
+                values: [{!! implode(',', $category_values) !!}],
+            }
+        ],
+        onChange: function(data) {
+            debugger;
+        },
+        onClose: function() {
+            debugger;
+        }
+    });
+     */
     $('#upload-avatar').fileupload({
         url: '/upload',
         dataType: 'json',
         done: function (e, data) {
             var path = data.result.data.path;
-            $("#upload-avatar-input").val(path);
-            $("#upload-avatar-img").attr('src', path);
+            //$("#upload-avatar-input").val(path);
+            //$("#upload-avatar-img").attr('src', path);
+
+            if( $('.weui_uploader_files li').length == 1 )  
+                $('#upload-avatar-input').val(path);
+            var $preview = $('<li class="weui_uploader_file" style="background-image:url('+path+')"><input type="hidden" value="'+path+'" name="banner_urls[]"/></li>');
+            $('.weui_uploader_files').append($preview);
         }
     });
+
     $("#submit").click(function() {
         if($("input[name='pic_url']").val() == "") {
             alert("请上传图片");
@@ -126,7 +179,7 @@ $(function() {
 
     $("#city-picker").cityPicker({
         title: "请选择省份城市",
-        showDistrict: false,
+        //showDistrict: false,
         onChange: function() {
             $("#province_city").val( $("#city-picker").attr("data-codes") );
         }

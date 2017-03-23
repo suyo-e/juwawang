@@ -14,12 +14,12 @@
         <meta content="yes" name="apple-mobile-web-app-capable">
         <meta content="black" name="apple-mobile-web-app-status-bar-style">
         <meta content="telephone=no" name="format-detection">
-        <link href="//cdn.bootcss.com/jquery-weui/1.0.1/css/jquery-weui.min.css" rel="stylesheet">
         <link rel="stylesheet" href="/css/swiper-3.4.1.min.css"/>
-        <link rel="stylesheet" href="/css/index.css"/>
+        <link href="//cdn.bootcss.com/jquery-weui/1.0.1/css/jquery-weui.min.css" rel="stylesheet">
         @yield('meta')
 
         @yield('css')
+        <link rel="stylesheet" href="/css/index.css"/>
         <style>
         .hidden { display: none}
         .weui-toptips.weui-toptips_visible { top: 0; position: absolute; width: 100%; }

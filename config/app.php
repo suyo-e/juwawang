@@ -192,6 +192,8 @@ return [
         Prettus\Repository\Providers\RepositoryServiceProvider::class,
         \InfyOm\Generator\InfyOmGeneratorServiceProvider::class,
         \InfyOm\AdminLTETemplates\AdminLTETemplatesServiceProvider::class, 
+        SimpleSoftwareIO\QrCode\QrCodeServiceProvider::class,
+
 
         /*
          * Application Service Providers...
@@ -267,7 +269,8 @@ return [
         'Html'        => Collective\Html\HtmlFacade::class,
         'Socialite'   => Laravel\Socialite\Facades\Socialite::class,
         'Flash'       => Laracasts\Flash\Flash::class,
-        'Datatables' => \Yajra\Datatables\Datatables::class,
+        'Datatables'  => \Yajra\Datatables\Datatables::class,
+        'QrCode'      => SimpleSoftwareIO\QrCode\Facades\QrCode::class,
 
     ],
 

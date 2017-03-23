@@ -31,6 +31,7 @@ class Product extends Model
         'industry_id',
         'prov_id',
         'city_id',
+        'area_id',
         'brand_name',
         'pic_url',
         'price',

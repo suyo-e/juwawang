@@ -22,8 +22,14 @@ class CreateProfilesTable extends Migration
             $table->integer('city_id');
             $table->integer('area_id')->nullable()->default(0);
             $table->integer('category_id');
+            $table->string('category_ids');
             $table->integer('sex')->nullable()->default(0);
             $table->string('service')->nullable()->default('');
+
+            // 邀请机制
+            $table->string('invite_code')->nullable()->default('');
+            $table->integer('invite_count')->nullable()->default(0);
+            $table->integer('recommand_count')->nullable()->default(0);
 
             $table->integer('industry_id')->nullable()->default(0);
             $table->string('industry_name', 255)->nullable()->default('');

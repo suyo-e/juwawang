@@ -40,20 +40,10 @@
             <li class="header">{{ trans('menus.backend.sidebar.system') }}</li>
 
             @permissions(['manage-users'])
-            <li class="{{ active_class(Active::checkUriPattern('admin/*')) }} treeview">
-                <a href="#">
-                    <i class="fa fa-edit"></i> <span>System Management</span>
-                    <span class="pull-right-container">
-                      <i class="fa fa-angle-left pull-right"></i>
-                    </span>
-                </a>
-                <ul class="treeview-menu menu-open" style="display: block;">
-                @include('backend.includes.menu')
-                </ul>
-            </li>
+            @include('backend.includes.menu')
             @endauth
 
-            @permissions(['manage-users', 'manage-roles'])
+            @permissions(['manage-roles'])
             <li class="{{ active_class(Active::checkUriPattern('admin/access/*')) }} treeview">
                 <a href="#">
                     <i class="fa fa-users"></i>
@@ -62,23 +52,18 @@
                 </a>
 
                 <ul class="treeview-menu {{ active_class(Active::checkUriPattern('admin/access/*'), 'menu-open') }}" style="display: none; {{ active_class(Active::checkUriPattern('admin/access/*'), 'display: block;') }}">
-                    @permission('manage-users')
                     <li class="{{ active_class(Active::checkUriPattern('admin/access/user*')) }}">
                         <a href="{{ route('admin.access.user.index') }}">
                             <i class="fa fa-circle-o"></i>
                             <span>{{ trans('labels.backend.access.users.management') }}</span>
                         </a>
                     </li>
-                    @endauth
-
-                    @permission('manage-roles')
                     <li class="{{ active_class(Active::checkUriPattern('admin/access/role*')) }}">
                         <a href="{{ route('admin.access.role.index') }}">
                             <i class="fa fa-circle-o"></i>
                             <span>{{ trans('labels.backend.access.roles.management') }}</span>
                         </a>
                     </li>
-                    @endauth
                 </ul>
             </li>
             @endauth

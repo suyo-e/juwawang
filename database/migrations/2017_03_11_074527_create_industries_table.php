@@ -22,6 +22,7 @@ class CreateIndustriesTable extends Migration
             $table->string('identity_urls')->nullable()->default('');
             $table->integer('prov_id');
             $table->integer('city_id');
+            $table->integer('area_id')->nullable()->default(0);
             $table->string('address', 255)->nullable()->default('');
             $table->string('service')->nullable()->default('');
             $table->text('description')->nullable();

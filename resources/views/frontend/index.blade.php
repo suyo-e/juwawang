@@ -74,14 +74,14 @@
             @if (!$profile) continue;
             @endif
             <li>
-            <a href="{{ route('frontend.industries.show', ['user_id'=>$profile->user_id]) }}">
+            <a href="{{ route('frontend.profiles.show', ['user_id'=>$profile->user_id]) }}">
                     <div class="listCont">
                         <div class="iconbox">
                             <img src="{{ $profile->avatar }}" alt=""/>
                         </div>
                         <div class="companyName">
-                        <p><b>{{ $profile->industry_name}}</b> （{{$profile->realname==''?$profile->user->name:$profile->realname}}）</p>
-                            <p>{{ $profile->province_city_name }}</p>
+                        <p><b>{{ $profile->industry_name}}</b> （{{$profile->user->name}}）</p>
+                            <p>{{ $profile->province_city_name.' '.$profile->address }}</p>
                         </div>
                         <div class="Authentication">
                             <span>{{ $profile->is_identity == 1 ?'已认证': '未认证' }}</span>

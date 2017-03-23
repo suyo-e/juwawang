@@ -4,6 +4,7 @@
     <div class="classContent">
       <ul>
         @foreach ($products as $product)
+        <a href="{{ route('frontend.products.show', ['product_id'=>$product->id])}}">
           <li>
               <div class="classImg">
                   <img src="{{ $product->pic_url }}" alt="">
@@ -15,6 +16,7 @@
                   <p>地址 : <span>{{ $product->address }}</span></p>
               </div>
           </li>
+        </a>
         @endforeach
       </ul>
    </div>

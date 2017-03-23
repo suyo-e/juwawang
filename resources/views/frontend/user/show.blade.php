@@ -40,7 +40,7 @@
         </div>
         <div class="address">
             @if ($user->type != 3)
-            <a href="{{ route('frontend.industries.edit') }}">
+            <a href="{{ route('frontend.profiles.show') }}">
             <p class="namePhone">
                 <img src="/image/my-sp.png" alt=""/>
                 <span class="name">我的商铺</span>

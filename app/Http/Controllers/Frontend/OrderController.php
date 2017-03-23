@@ -56,6 +56,21 @@ class OrderController extends AppBaseController
         return view('frontend.orders.index', compact('sell_orders', 'purchase_orders'));
     }
 
+    public function show(Request $request) {
+        $order_id = $request->input('order_id');
+
+        $order = Order::find($order_id);
+        $product = Product::find($order->product_id);
+
+        $user = User::find($product->user_id);
+        if (empty($product)) {
+            Flash::error('商品不存在');
+            return redirect()->back();
+        }
+
+        return view('frontend.orders.show', compact('product', 'user', 'order'));
+    }
+
     /**
      * @return \Illuminate\View\View
      */
@@ -79,19 +94,30 @@ class OrderController extends AppBaseController
         $input = $request->all();
         $user = access()->user();
 
+        /*
+        $order = Order::where('user_id', $user->id)
+            ->where('product_id', $input['product_id'])
+            ->first();
+        if($order) {
+            return redirect()->back();
+        }
+         */
+
         $product = Product::find($input['product_id']);
         $input['price'] = $product->price;
 
         $input['user_id'] = $user->id;
 
-        $province_city = explode(',', $input['province_city']);
-        $input['prov_id'] = $province_city[0];
-        $input['city_id'] = $province_city[1];
+        //$province_city = explode(',', $input['province_city']);
+        $province_city = province_city($input['province_city']);
+        $input['prov_id'] = $province_city['prov_id'];
+        $input['city_id'] = $province_city['city_id'];
+        $input['area_id'] = $province_city['area_id'];
 
         $input['status'] = Order::STATUS_UNPAID;
 
         $order = Order::create($input);
-        Flash::success('发布成功');
+        //Flash::success('发布成功');
         return redirect(route('frontend.orders.success', ['product_id'=>$input['product_id']]));
     }
 

@@ -6,7 +6,7 @@
  */
 Route::get('/', 'FrontendController@index')->name('index');
 Route::get('/home', 'FrontendController@index')->name('home');
-Route::get('/class', 'ClassController@index')->name('class');
+Route::get('/class', 'ClassController@index')->name('class')->middleware('auth');
 Route::get('/information', 'InformationController@index')->name('information');
 Route::get('/information/show', 'InformationController@show')->name('information.show');
 Route::get('/user', 'UserController@show')->name('user')->middleware('auth');
@@ -21,15 +21,21 @@ Route::get('/products/create', 'ProductController@create')->name('products.creat
 Route::get('/products', 'ProductController@index')->name('products.index')->middleware('auth');
 Route::get('/products/show', 'ProductController@show')->name('products.show')->middleware('auth');
 Route::post('/products/store', 'ProductController@store')->name('products.store')->middleware('auth');
+
 Route::get('/collects', 'CollectController@index')->name('collects.index')->middleware('auth');
 Route::post('/collects/store', 'CollectController@store')->name('collects.store')->middleware('auth');
+Route::get('/collects/like', 'CollectController@like')->name('collects.like')->middleware('auth');
+Route::get('/collects/collect', 'CollectController@collect')->name('collects.collect')->middleware('auth');
+
 Route::get('/orders', 'OrderController@index')->name('orders.index')->middleware('auth');
+Route::get('/orders/show', 'OrderController@show')->name('orders.show')->middleware('auth');
 Route::get('/orders/create', 'OrderController@create')->name('orders.create')->middleware('auth');
 Route::post('/orders/store', 'OrderController@store')->name('orders.store')->middleware('auth');
 Route::get('/orders/success', 'OrderController@success')->name('orders.success')->middleware('auth');
 Route::get('/profiles/create', 'ProfileController@create')->name('profiles.create')->middleware('auth');
 Route::get('/profiles/show', 'ProfileController@show')->name('profiles.show')->middleware('auth');
 Route::post('/profiles/store', 'ProfileController@store')->name('profiles.store')->middleware('auth');
+#Route::get('/profiles/recommand', 'ProfileController@recommand')->name('profiles.recommand')->middleware('auth');
 
 Route::get('/sellers/create', 'SellerController@create')->name('sellers.create')->middleware('auth');
 Route::get('/sellers/show', 'SellerController@show')->name('sellers.show')->middleware('auth');
@@ -41,13 +47,15 @@ Route::post('/sellers/update', 'SellerController@update')->name('sellers.update'
 
 Route::get('/industries', 'IndustryController@index')->name('industries.index');
 Route::get('/industries/edit', 'IndustryController@edit')->name('industries.edit');
-Route::get('/industries/show', 'IndustryController@show')->name('industries.show');
+Route::get('/industries/show', 'IndustryController@show')->name('industries.show')->middleware('auth');
 Route::post('/industries/update', 'IndustryController@update')->name('industries.update');
 
 Route::get('/categories', 'CategoryApiController@index')->name('api.categories');
 
 Route::get('macros', 'FrontendController@macros')->name('macros');
 Route::get('setting', 'FrontendController@setting')->name('setting');
+Route::get('about', 'FrontendController@about')->name('about');
+Route::get('feedback', 'FrontendController@feedback')->name('feedback');
 
 /*
  * These frontend controllers require the user to be logged in

@@ -1,6 +1,7 @@
 @extends('frontend.layouts.app')
 
 @section('content')
+<!--
 <div class="headTop shousuo">
     {!! Form::open(['route' => 'frontend.industries.index', 'method' => 'get']) !!}
     <div class="search">
@@ -10,17 +11,53 @@
     </div>
     {!! Form::close() !!}
 </div>
+-->
+<div class="xiala">
+    <div class="scring">
+        <ul>
+            <li class="clasStion">
+                分类
+                <img src="/image/on_bottom.png" alt="">
+            </li>
+            <li class="ReleaseTime">
+                时间
+                <img src="/image/on_bottom.png" alt="">
+            </li>
+        </ul>
+    </div>
+    <div class="grade">
+        <ul class="grade-w ejectAll" style="display: none;">
+        @foreach ($categories as $category) 
+            <a href="{{route('frontend.industries.index', ['category_id'=>$category->id, 'display_name'=>$display_name, 'time'=>$time])}}">
+            <li data="{{ $category->id }}">{{ $category->display_name }}</li>
+            </a>
+        @endforeach
+        </ul>
+        <ul class="grade-s ejectAll" style="">
+            <a href="{{route('frontend.industries.index', ['category_id'=>$category_id, 'display_name'=>$display_name])}}">
+            <li data="">全部</li>
+            </a>
+            <a href="{{route('frontend.industries.index', ['category_id'=>$category_id, 'display_name'=>$display_name, 'time'=>'week'])}}">
+            <li data="week">一个星期内</li>
+            </a>
+            <a href="{{route('frontend.industries.index', ['category_id'=>$category_id, 'display_name'=>$display_name, 'time'=>'month'])}}">
+            <li data="month">一个月内</li>
+            </a>
+        </ul>
+    </div>
+</div>
+<br>
 <div class="content">
     <ul>
         @foreach ($industries as $industry) 
         <li>
-            <a href="{{ route('frontend.industries.show', ['user_id'=>$industry->user_id]) }}">
+            <a href="{{ route('frontend.profiles.show', ['user_id'=>$industry->user_id]) }}">
                 <div class="listCont">
                     <div class="iconbox">
                         <img src="{{$industry->avatar}}" alt="">
                     </div>
                     <div class="companyName">
-                        <p><b>{{ $industry->display_name}}</b> （{{$industry->profile->realname==''?$industry->user->name:$industry->profile->realname}}）</p>
+                        <p><b>{{ $industry->display_name}}</b> （{{$industry->user->name}}）</p>
                         <p>{{ $industry->province_city_name }}</p>
                     </div>
                     <div class="Authentication">
@@ -39,4 +76,5 @@
 @endsection
 
 @section('script')
+<script src="/js/public.js"></script>
 @endsection

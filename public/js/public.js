@@ -214,4 +214,60 @@ $(function(){
         };
         sbj.style.borderBottom = "solid 1px #ff7c08"
     }
+
+});
+
+$(function(){
+    //点击出现弹框 查看图片
+    $('#onzhao').on('click',function(){
+        $("#onblock").show();
+        $('#removee').on('click','img',function(){
+            $("#onblock").hide();
+        })
+    });
+    $('#onyier').on('click',function(){
+        $("#onkuai").show();
+        $('#remove').on('click','img',function(){
+            $("#onkuai").hide();
+        })
+    });
+    $('.onbutton').on('click',function(){
+        $(".motai").show();
+        $('.removee').on('click','img',function(){
+            $(".motai").hide();
+        })
+    });
+
+    //点击查看联系方式弹框
+    $('.chakanbtn').on('click','button',function(){
+        $('#tankuang').show();
+        $('#quxiao').click(function(){
+            $('#tankuang').hide();
+        })
+
+    });
+
+    $('.clasStion').click(function(){
+        $('.grade-w').slideToggle(300).siblings('ul').attr("style","");
+        $('.weui-picker-container').hide();
+    });
+    $('.clasRegion').click(function(){
+        $('.ejectAll').hide();
+        $("#city-picker").cityPicker({
+            title: "选择省市区/县",
+            onChange: function (picker, values, displayValues) {
+                console.log(values, displayValues);
+            }
+        });
+    });
+    $('.ReleaseTime').click(function(){
+        $('.grade-s').slideToggle(300).siblings('ul').attr("style","");
+        $('.weui-picker-container').hide();
+    });
+    $('.source').click(function(){
+        $('.grade-y').slideToggle(300).siblings('ul').attr("style","");
+        $('.weui-picker-container').hide();
+    });
 })
+
+

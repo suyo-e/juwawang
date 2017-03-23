@@ -42,6 +42,8 @@ Route::group(['namespace' => 'Backend', 'prefix' => 'admin', 'as' => 'admin.', '
     Route::resource('categories', 'CategoryController');
     Route::resource('banners', 'BannerController');
     Route::resource('profiles', 'ProfileController');
+
+    Route::get('profile/verify', 'ProfileController@verify')->name('profile.verify');
 });
 
 $router->get( '/_debugbar/assets/stylesheets', '\Barryvdh\Debugbar\Controllers\AssetController@css' );

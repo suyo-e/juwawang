@@ -89,9 +89,11 @@ class UserController extends Controller
             $province_city = province_city($request->input('province_city'));
             $profile->prov_id = $province_city['prov_id'];
             $profile->city_id = $province_city['city_id'];
+            $profile->area_id = $province_city['area_id'];
 
             $industry->prov_id = $province_city['prov_id'];
             $industry->city_id = $province_city['city_id'];
+            $industry->area_id = $province_city['area_id'];
         }
         if($request->input('service')) {
             $profile->service = $request->input('service');

@@ -8,6 +8,7 @@ use App\Models\Backend\Category;
 use App\Models\Backend\Product;
 use App\Models\Backend\Profile;
 
+use Illuminate\Http\Request;
 /**
  * Class FrontendController.
  */
@@ -16,40 +17,70 @@ class ClassController extends Controller
     /**
      * @return \Illuminate\View\View
      */
-    public function index()
+    public function index(Request $request)
     {
-        $categories = Category::where('parent_id', 0)
-            ->select('display_name', 'id')
-            ->get();
+
+        $category_id = $request->input('category_id');
+        $time = $request->input('time');
+        $from = $request->input('from');
+        $province_city_code = $request->input('province_city_code');
 
         $user = access()->user();
-
-        $class_value = array();
-        $class_display_value = array();
-        foreach($categories as $category) {
-            $class_value[] = $category->id;
-            $class_display_value[] = "'".$category->display_name."'";
-        }
-
-        $class_value = implode(',', $class_value);
-        $class_display_value = implode(',', $class_display_value);
-
-
         $products = Product::orderBy('id', 'desc');
-
         $profile = Profile::where('user_id', $user->id)->first();
         $types = get_product_types($profile->type);
 
-        if($types) {
+        if($category_id) {
+            $products = $products->where('category_id', $category_id);
+        }
+        else if($types) {
             $category_ids = Category::select('id')
                 ->whereIn('type', $types)
                 ->pluck('id')
                 ->toArray();
-            $products->whereIn('category_id', $category_ids);
+            $products = $products->whereIn('category_id', $category_ids);
         }
+
+        switch($time) {
+        case 'week':
+            $date = date("Y-m-d H:i:s", strtotime("-1 week"));
+            $products = $products->where('created_at', '>', $date);
+            break;
+        case 'month':
+            $date = date("Y-m-d H:i:s", strtotime("-1 month"));
+            $products = $products->where('created_at', '>', $date);
+            break;
+        default:
+        }
+
+        switch($from) {
+        case 'user':
+            $user_ids = Profile::where('type', Category::TYPE_USER)->pluck('user_id');
+            $products = $products->whereIn('user_id', $user_ids);
+            break;
+        case 'agent':
+            $user_ids = Profile::where('type', Category::TYPE_AGENT)->pluck('user_id');
+            $products = $products->whereIn('user_id', $user_ids);
+            break;
+        case 'manufacturer':
+            $user_ids = Profile::where('type', Category::TYPE_MANUFACTURER)->pluck('user_id');
+            $products = $products->whereIn('user_id', $user_ids);
+            break;
+        }
+
+        if($province_city_code) {
+            $codes = province_city($province_city_code);
+
+            $products = $products->where('prov_id', $codes['prov_id'])
+                ->where('city_id', $codes['city_id'])
+                ->where('area_id', $codes['area_id']);
+        }
+
         $products = $products->get();
 
-        return view('frontend.class.index', compact('class_value', 'class_display_value', 'products'));
+        $categories = get_categories($profile->type);
+
+        return view('frontend.class.index', compact('categories', 'products', 'category_id', 'time', 'from', 'province_city_code'));
     }
 
     /**

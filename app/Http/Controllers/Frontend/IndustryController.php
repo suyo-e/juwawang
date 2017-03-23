@@ -25,11 +25,17 @@ class IndustryController extends Controller
     {
 
         $display_name = $request->input('display_name');
+        $category_id = $request->input('category_id');
+        $time = $request->input('time');
 
         $gb2260 = new \GB2260\GB2260();
         $industries = new Industry;
         if($display_name) {
             $industries = $industries->where('display_name', 'LIKE', "%$display_name%");
+        }
+        if($category_id) {
+            $user_ids = Profile::where('category_id', $category_id)->pluck('user_id');
+            $industries = $industries->whereIn('user_id', $user_ids);
         }
         $industries = $industries->get();
 
@@ -45,7 +51,9 @@ class IndustryController extends Controller
             $industry->profile = Profile::where('user_id', $industry->user_id)->first();
         }
 
-        return view('frontend.industries.index', compact('industries', 'display_name'));
+        $profile = Profile::where('user_id', access()->user()->id)->first();
+        $categories = get_categories($profile->type);
+        return view('frontend.industries.index', compact('industries', 'display_name', 'categories', 'time', 'category_id'));
     }
 
     /**

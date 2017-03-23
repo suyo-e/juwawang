@@ -15,14 +15,18 @@ class Collect extends Model
     use SoftDeletes;
 
     public $table = 'collects';
-    
+
+    const TYPE_LIKE = 1;
+    const TYPE_COLLECT = 2;
 
     protected $dates = ['deleted_at'];
 
 
     public $fillable = [
         'user_id',
-        'product_id'
+        'seller_id',
+        'product_id',
+        'type'
     ];
 
     /**

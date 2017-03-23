@@ -72,10 +72,10 @@ class InformationDataTable extends DataTable
     private function getColumns()
     {
         return [
-            'title' => ['name' => 'title', 'data' => 'title'],
-            'subtitle' => ['name' => 'subtitle', 'data' => 'subtitle'],
-            'pic_url' => ['name' => 'pic_url', 'data' => 'pic_url', 'render' => '"<img src=\""+data+"\" height=\"50\"/>"'],
-            'content' => ['name' => 'content', 'data' => 'content']
+            '标题' => ['name' => 'title', 'data' => 'title'],
+            '子标题' => ['name' => 'subtitle', 'data' => 'subtitle'],
+            '图片' => ['name' => 'pic_url', 'data' => 'pic_url', 'render' => '"<img src=\""+data+"\" height=\"50\"/>"'],
+            #'内容' => ['name' => 'content', 'data' => 'content']
         ];
     }
 

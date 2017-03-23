@@ -26,6 +26,7 @@ class Profile extends Model
         'user_id',
         'prov_id',
         'city_id',
+        'area_id',
         'sex',
         'industry_id',
         'industry_name',
@@ -35,7 +36,10 @@ class Profile extends Model
         'identity_str',
         'is_identity',
         'is_recommand',
-        'realname'
+        'realname',
+        'invite_code',
+        'invite_count',
+        'recommand_count'
     ];
 
     /**
@@ -48,6 +52,7 @@ class Profile extends Model
         'user_id' => 'integer',
         'prov_id' => 'integer',
         'city_id' => 'integer',
+        'area_id' => 'integer',
         'sex' => 'integer',
         'industry_id' => 'integer',
         'industry_name' => 'string',
@@ -70,6 +75,7 @@ class Profile extends Model
         'user_id' => 'required|numeric',
         'prov_id' => 'numeric',
         'city_id' => 'numeric',
+        'area_id' => 'numeric',
         'sex' => 'numeric',
         'industry_id' => 'numeric',
         'industry_name' => 'string',

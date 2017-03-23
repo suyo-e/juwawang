@@ -23,6 +23,7 @@ class CreateProductsTable extends Migration
             $table->integer('industry_id');
             $table->integer('prov_id');
             $table->integer('city_id');
+            $table->integer('area_id')->nullable()->default(0);
             $table->string('brand_name');
             $table->string('pic_url');
             $table->string('price');

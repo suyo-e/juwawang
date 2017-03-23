@@ -85,6 +85,7 @@ class RegisterController extends Controller
             $profile_data = array(
                 'prov_id' => $province_city['prov_id'],
                 'city_id' => $province_city['city_id'],
+                'area_id' => $province_city['area_id'],
                 'type' => $request->input('type'),
                 'industry_id' => 0,
                 'industry_name' => $request->input('industry_name'),

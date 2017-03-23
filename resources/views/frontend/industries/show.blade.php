@@ -17,7 +17,7 @@ $identity_urls = json_decode($industry->identity_urls);
     <div class="userCont">
         <p class="Villain"><img src="/image/ren.png" alt=""></p>
         <p class="userIntroduce">
-            <span class="daiV">{{ $industry->industry_name }}({{$profile->realname}})<!--<img src="../../image/V.png" alt="">--></span>
+            <span class="daiV">{{ $industry->industry_name}}({{$user->name}})<img src="/image/V.png" alt=""></span>
             <span>{{$industry->recommand_count}}人推荐</span>
         </p>
     </div>
@@ -43,19 +43,17 @@ $identity_urls = json_decode($industry->identity_urls);
             </p>
         </div>
     </div>
-<!--
     <div class="SeeMerchant">
-        <a id="onyier" href="#">商家二维码<img class="seeimg" src="../../image/erweima.png" alt=""></a>
+        <a id="onyier" href="#">商家二维码<img class="seeimg" src="/image/erweima.png" alt=""></a>
         <div id="onkuai" class="zhezhao" style="display: none;">
-            <p class="motai">
-                <img src="../../image/listimg.jpg" alt="">
+            <p class="motai" style="height:300px">
+                {!! QrCode::size(300)->generate(Request::url()); !!}
                 <span id="remove" class="removee">
-                    <img class="remoimg" src="../../image/remo.png" alt="">
+                    <img class="remoimg" src="/image/remo.png" alt="">
                 </span>
             </p>
         </div>
     </div>
--->
     <div class="SeeMerchant">
         <span>地区位置 : </span><span>{{ $industry->province_city_name }}</span>
     </div>

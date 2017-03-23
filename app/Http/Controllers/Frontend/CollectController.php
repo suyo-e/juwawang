@@ -87,8 +87,68 @@ class CollectController extends AppBaseController
             ->first();
         if(!$collect) 
             $this->collectRepository->create($input);
+        else 
+            $this->collectRepository->delete($collect->id);
 
         Flash::success('收藏成功');
+
+        return redirect()->back();
+    }
+
+    public function like(Request $request) 
+    {
+        $input = $request->all();
+
+        $collect = Collect::where('user_id', access()->user()->id);
+        if(!isset($input['seller_id'])) {
+            return redirect()->back();
+        }
+
+        $collect = $collect->where('seller_id', $input['seller_id'])
+            ->where('type', Collect::TYPE_LIKE);
+        $collect = $collect->first();
+        if(!$collect) {
+            $collect = new Collect;
+            $collect->user_id = access()->user()->id;
+            $collect->seller_id = $input['seller_id'];
+            $collect->type = Collect::TYPE_LIKE;
+            $collect->save();
+
+            $profile = Profile::where('user_id', $input['seller_id'])->first();
+            $profile->recommand_count ++;
+            $profile->save();
+        }
+        else {
+            $profile = Profile::where('user_id', $input['seller_id'])->first();
+            $profile->recommand_count --;
+            $profile->save();
+            $this->collectRepository->delete($collect->id);
+        }
+
+        return redirect()->back();
+    }
+
+    public function collect(Request $request) 
+    {
+        $input = $request->all();
+
+        $collect = Collect::where('user_id', access()->user()->id);
+        if(!isset($input['seller_id'])) {
+            return redirect()->back();
+        }
+        $collect = $collect->where('seller_id', $input['seller_id'])
+            ->where('type', Collect::TYPE_COLLECT)
+            ->first();
+        if(!$collect) {
+            $collect = new Collect;
+            $collect->user_id = access()->user()->id;
+            $collect->seller_id = $input['seller_id'];
+            $collect->type = Collect::TYPE_COLLECT;
+            $collect->save();
+        }
+        else {
+            $this->collectRepository->delete($collect->id);
+        }
 
         return redirect()->back();
     }

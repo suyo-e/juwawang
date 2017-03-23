@@ -21,6 +21,7 @@ class CreateOrdersTable extends Migration
             $table->string('phone');
             $table->integer('prov_id');
             $table->integer('city_id');
+            $table->integer('area_id')->nullable()->default(0);
             $table->integer('quantity');
             $table->string('price');
             $table->text('remark')->nullable();

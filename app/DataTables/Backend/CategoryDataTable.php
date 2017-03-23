@@ -72,10 +72,10 @@ class CategoryDataTable extends DataTable
     private function getColumns()
     {
         return [
-            'display_name' => ['name' => 'display_name', 'data' => 'display_name'],
-            'parent_id' => ['name' => 'parent_id', 'data' => 'parent_id'],
-            'pic_url' => ['name' => 'pic_url', 'data' => 'pic_url', 'render' => render_image()],
-            'type' => ['name' => 'type', 'data' => 'type', 'render' => render_category_type()],
+            '显示名称' => ['name' => 'display_name', 'data' => 'display_name'],
+            '上级id' => ['name' => 'parent_id', 'data' => 'parent_id'],
+            '图片' => ['name' => 'pic_url', 'data' => 'pic_url', 'render' => render_image()],
+            '类型' => ['name' => 'type', 'data' => 'type', 'render' => render_category_type()],
             //'url' => ['name' => 'url', 'data' => 'url']
         ];
     }

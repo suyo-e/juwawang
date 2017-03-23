@@ -12,6 +12,7 @@
     <div class="listClas show">
         <ul class="IntentList">
             @foreach ($purchase_orders as $order) 
+            <a href="{{ route('frontend.orders.show', ['order_id'=>$order->id]) }}">
             <li>
                 <div class="classImg">
                     <img src="{{ $order->product->pic_url }}" alt="">
@@ -22,6 +23,7 @@
                     <p class="txt">预购数量 : <span>{{ $order->quantity }}</span></p>
                 </div>
             </li>
+            </a>
             @endforeach
         </ul>
     </div>
@@ -32,6 +34,7 @@
         
         <ul class="IntentList">
             @foreach ($sell_orders as $order) 
+            <a href="{{ route('frontend.orders.show', ['order_id'=>$order->id]) }}">
             <li style="width:100%">
                 <div class="name" style="width:95%">
                     <span><img src="{{ $order->profile->avatar }}" alt=""></span>
@@ -49,6 +52,7 @@
                 </div>
                 </div>
             </li>
+            </a>
             @endforeach
         </ul>
     </div>

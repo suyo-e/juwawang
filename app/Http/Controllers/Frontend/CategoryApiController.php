@@ -22,6 +22,7 @@ class CategoryApiController extends AppBaseController
         $parent_id = $request->input('parent_id');
 
         $data = array();
+
         $categories = Category::select('display_name', 'id')
             ->orderBy('parent_id', 'asc')
             ->orderBy('type', 'asc');

@@ -72,15 +72,15 @@ class OrderDataTable extends DataTable
     private function getColumns()
     {
         return [
-            'product_id' => ['name' => 'product_id', 'data' => 'product_id'],
-            'user_id' => ['name' => 'user_id', 'data' => 'user_id'],
-            'contact_name' => ['name' => 'contact_name', 'data' => 'contact_name'],
-            'phone' => ['name' => 'phone', 'data' => 'phone'],
-            'prov_id' => ['name' => 'prov_id', 'data' => 'prov_id'],
-            'city_id' => ['name' => 'city_id', 'data' => 'city_id'],
-            'quantity' => ['name' => 'quantity', 'data' => 'quantity'],
-            'remark' => ['name' => 'remark', 'data' => 'remark'],
-            'status' => ['name' => 'status', 'data' => 'status']
+            '商品id' => ['name' => 'product_id', 'data' => 'product_id'],
+            '用户id' => ['name' => 'user_id', 'data' => 'user_id'],
+            '联系名称' => ['name' => 'contact_name', 'data' => 'contact_name'],
+            '联系电话' => ['name' => 'phone', 'data' => 'phone'],
+            #'prov_id' => ['name' => 'prov_id', 'data' => 'prov_id'],
+            #'city_id' => ['name' => 'city_id', 'data' => 'city_id'],
+            '购买数量' => ['name' => 'quantity', 'data' => 'quantity'],
+            '备注' => ['name' => 'remark', 'data' => 'remark'],
+            #'status' => ['name' => 'status', 'data' => 'status']
         ];
     }
 

@@ -28,6 +28,7 @@ class Industry extends Model
         'identity_urls',
         'prov_id',
         'city_id',
+        'area_id',
         'address',
         'service',
         'description'
@@ -46,6 +47,7 @@ class Industry extends Model
         'identity_urls' => 'string',
         'prov_id' => 'integer',
         'city_id' => 'integer',
+        'area_id' => 'integer',
         'address' => 'string',
         'service' => 'string',
         'description' => 'string'

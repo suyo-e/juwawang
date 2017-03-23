@@ -79,7 +79,7 @@ $(function () {
 
     $("#city-picker").cityPicker({
         title: "请选择省份城市",
-        showDistrict: false,
+        //showDistrict: false,
         onChange: function() {
             $("#province_city").val( $("#city-picker").attr("data-codes") );
         }

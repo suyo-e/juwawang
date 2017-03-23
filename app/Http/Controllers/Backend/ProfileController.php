@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Backend;
 
+use Illuminate\Http\Request;
 use App\DataTables\Backend\ProfileDataTable;
 use App\Http\Requests\Backend;
 use App\Http\Requests\Backend\CreateProfileRequest;
@@ -149,6 +150,21 @@ class ProfileController extends AppBaseController
 
         Flash::success('Profile deleted successfully.');
 
+        return redirect(route('admin.profiles.index'));
+    }
+
+    public function verify(Request $request) 
+    {
+        $id = array_keys($request->all())[0];
+
+        $profile = \App\Models\Backend\Profile::find($id);
+        if(!$profile) {
+            Flash::error('该用户信息不存在');
+            return redirect(route('admin.profiles.index'));
+        }
+        $profile->is_identity = $profile->is_identity?0:1;
+        $profile->save();
+        Flash::success('审核成功');
         return redirect(route('admin.profiles.index'));
     }
 }

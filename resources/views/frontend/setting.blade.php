@@ -6,10 +6,10 @@
         <a href="{{ route('frontend.users.password') }}" class="DetailedAdds">修改密码</a>
     </div>
     <div class="address">
-        <p class="DetailedAdds">关于版本（1.0）</p>
+        <a href="{{ route('frontend.about') }}" class="DetailedAdds">关于版本（1.0）</a>
     </div>
     <div class="address">
-        <p class="DetailedAdds">意见反馈</p>
+        <a href="{{ route('frontend.feedback') }}" class="DetailedAdds">意见反馈</a>
     </div>
 </div>
 <div class="SignOut pbcCenter">

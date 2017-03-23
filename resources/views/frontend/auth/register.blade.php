@@ -100,7 +100,7 @@ $(function() {
         
         $("#city-picker").cityPicker({
             title: "请选择省份城市",
-            showDistrict: false,
+            //showDistrict: false,
         });
 
         var type = $("input[name='type']:checked").val();

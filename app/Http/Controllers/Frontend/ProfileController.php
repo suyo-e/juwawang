@@ -6,7 +6,10 @@ use App\Http\Controllers\Controller;
 
 use App\Models\Backend\Category;
 use App\Models\Backend\Profile;
+use App\Models\Backend\Collect;
+use App\Models\Backend\Industry;
 use App\Models\Backend\Product;
+use App\Models\Access\User\User;
 use Illuminate\Http\Request;
 
 use Flash;
@@ -21,6 +24,66 @@ class ProfileController extends Controller
      */
     public function index()
     {
+    }
+
+    public function show(Request $request) 
+    {
+        $user_id = $request->input('user_id');
+        $category_id = $request->input('category_id');
+        $time = $request->input('time');
+
+        if(!$user_id) {
+            $user_id = access()->user()->id;
+        }
+
+        $product_name = $request->input('product_name');
+
+        $user = User::find($user_id);
+        $profile = Profile::where('user_id', $user_id)->first();
+        $industry = Industry::where('user_id', $user_id)->first();
+
+        $products = Product::where('user_id', $user_id);
+        if($product_name) {
+            $products->where('title', 'LIKE', '%'.$product_name.'%');
+        }
+
+        if($category_id) {
+            $products = $products->where('category_id', $category_id);
+        }
+        switch($time) {
+        case 'week':
+            $date = date("Y-m-d H:i:s", strtotime("-1 week"));
+            $products = $products->where('created_at', '>', $date);
+            break;
+        case 'month':
+            $date = date("Y-m-d H:i:s", strtotime("-1 month"));
+            $products = $products->where('created_at', '>', $date);
+            break;
+        default:
+        }
+
+        $products = $products->get();
+
+        $gb2260 = new \GB2260\GB2260();
+        foreach($products as $product) {
+            $city = $gb2260->get($product->city_id); 
+            $city = explode(" ", $city)[0];
+            $province = $gb2260->get($product->prov_id); 
+            
+            $product->province_city_name = "$province $city";
+            $product->province_city = $product->prov_id."," .$product->city_id;           
+        }
+        
+        $categories = get_categories($profile->type);
+
+        $like = Collect::where('user_id', access()->user()->id)
+            ->where('seller_id', $user_id)
+            ->where('type', Collect::TYPE_LIKE)->first();
+        $collect = Collect::where('user_id', access()->user()->id)
+            ->where('seller_id', $user_id)
+            ->where('type', Collect::TYPE_COLLECT)->first();
+
+        return view('frontend.profiles.show', compact('user', 'profile', 'industry', 'products', 'categories', 'product_name', 'user_id', 'like', 'collect', 'category_id', 'time'));
     }
 
     /**
@@ -59,6 +122,20 @@ class ProfileController extends Controller
         $profile->identity_urls = $identity_urls;
 
         $profile->save();
+        Flash::success('上传成功，请等待审核');
+        return redirect()->route('frontend.user');
+    }
+
+    public function recommand(Request $request) 
+    {
+        $user_id = $request->input('user_id');
+        $profile = Profile::where('user_id', $user_id)->first();
+        if(!$profile) {
+            //
+        }
+        $profile->recommand_count ++;
+        $profile->save();
+
         return redirect()->back();
     }
 }

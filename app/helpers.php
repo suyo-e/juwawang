@@ -151,6 +151,30 @@ if(! function_exists('province_city')) {
     }
 }
 
+
+if(! function_exists('province_city_name')) {
+    function province_city_name($obj){
+        $gb2260 = new \GB2260\GB2260();
+
+        if(isset($obj->area_id) && $obj->area_id != '') {
+            $name = $gb2260->get($obj->area_id);
+        }
+        else {
+            #$prov = $gb2260->get($obj->prov_id);
+            $name = $gb2260->get($obj->city_id);
+        }
+
+        $code = implode(',', array(
+            $obj->prov_id,
+            $obj->city_id,
+            $obj->area_id
+        )); 
+        $obj->province_city_name = $name;
+        $obj->province_city = $code;
+        return $obj;
+    }
+}
+
 if(! function_exists('get_product_types')){ 
     function get_product_types( $profile_type ) {
 
@@ -173,5 +197,32 @@ if(! function_exists('get_product_types')){
         default:
             return null;
         }
+    }
+}
+
+if(!function_exists('get_categories')) {
+
+    function get_categories($type) 
+    {
+        $categories = \App\Models\Backend\Category::select('display_name', 'id')
+            ->where('parent_id', 0);
+
+        switch($type) {
+        case \App\Models\Backend\Category::TYPE_USER:
+            $type = \App\Models\Backend\Category::TYPE_USER_PRODUCT;
+            break;
+        case \App\Models\Backend\Category::TYPE_AGENT:
+            $type = \App\Models\Backend\Category::TYPE_AGENT_PRODUCT;
+            break;
+        case \App\Models\Backend\Category::TYPE_MANUFACTURER:
+            $type = \App\Models\Backend\Category::TYPE_MANUFACTURER_PRODUCT;
+            break;
+        }
+        if($type) {
+            $categories = $categories->where('type', $type);
+        }
+        $categories = $categories->get();
+
+        return $categories;
     }
 }
