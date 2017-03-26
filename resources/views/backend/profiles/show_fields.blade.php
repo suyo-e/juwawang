@@ -39,9 +39,11 @@
     {!! Form::label('identity_urls', '审核图片:') !!}
     <p></p>
     <?php $urls = json_decode($profile->identity_urls) ?>
+    @if ($urls)
     @foreach ($urls as $url) 
         <img src="{{$url}}" height="100"/>
     @endforeach
+    @endif
 </div>
 
 <!-- Created At Field -->

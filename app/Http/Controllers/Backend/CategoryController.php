@@ -83,6 +83,11 @@ class CategoryController extends AppBaseController
         if(!$input['url']) {
             $input['url'] = '';
         }
+        if($input['pic_url_input'])
+        {
+            $input['pic_url'] = $input['pic_url_input'];
+            unset($input['pic_url_input']);
+        }
 
         $path = upload($request, 'pic_url');
         $input['pic_url'] = $path;
@@ -104,7 +109,11 @@ class CategoryController extends AppBaseController
     public function show($id)
     {
         $category = $this->categoryRepository->findWithoutFail($id);
+        $category->updated_at = date("Y-m-d H:i:s");
+        $category->save();
 
+        return redirect(route('admin.categories.index'));
+/*
         if (empty($category)) {
             Flash::error('Category not found');
 
@@ -112,6 +121,7 @@ class CategoryController extends AppBaseController
         }
 
         return view('backend.categories.show')->with('category', $category);
+*/
     }
 
     /**
@@ -180,6 +190,14 @@ class CategoryController extends AppBaseController
         }
         else {
             unset($input['pic_url']);
+        }
+        if($input['pic_url_input'])
+        {
+            $input['pic_url'] = $input['pic_url_input'];
+            unset($input['pic_url_input']);
+        }
+        if(!$input['url']) {
+            $input['url'] = '';
         }
 
         $category = $this->categoryRepository->update($input, $id);

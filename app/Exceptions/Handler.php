@@ -60,6 +60,12 @@ class Handler extends ExceptionHandler
             return redirect()->back()->withInput()->withFlashDanger($exception->getMessage());
         }
 
+        /*
+        if (substr($exception->getMessage(), 0, 36) == "Trying to get property of non-object") {
+            return redirect()->route('frontend.auth.logout');
+        }
+         */
+
         return parent::render($request, $exception);
     }
 

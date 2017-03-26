@@ -3,7 +3,7 @@
 @section('content')
     <section class="content-header">
         <h1>
-            Industry
+            商户资料编辑
         </h1>
    </section>
    <div class="content">

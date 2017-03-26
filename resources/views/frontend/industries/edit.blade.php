@@ -16,11 +16,18 @@
 </div>
 <div class="main">
     <div class="SeeMerchant">
+        <a id="onzhao" class="onbutton" href=" ">
+            证件照
+            <label for="seeimg_file" class="seeimg_file"></label>
+            <input type="file" id="seeimg_file">
+        </a >
+<!--
         <a id="onzhao" class="onbutton" >证件照
             <img id="upload-identity-img" class="seeimg" src="{{ $identity_urls[0] }}" alt="">
             <input id="upload-identity" type="file" class="file" name="identity_url_file" value="{{ $identity_urls[0] }}"/>
             <input type="hidden" id="upload-identity-input" name="identity_url" value="{{ $identity_urls[0] }}"/>
         </a>
+-->
         <div id="onblock" class="zhezhao" style="display: none;">
             <p class="motai" style="display: none;">
                 <img src="/image/listimg.jpg" alt="">
@@ -46,6 +53,24 @@
     <div class="SeeMerchant">
         <span>主营业务 : </span><span><input class="inputa" type="text" name="service" placeholder="请输入您的主营业务" value="{{ $industry->service }}"></span>
     </div>
+    <div class="SeeMerchant">
+        <span>QQ : </span>
+        <span>
+            <input class="inputa" type="text" name="qq" placeholder="请输入QQ" value="{{$industry->qq}}">
+        </span>
+    </div>
+    <div class="SeeMerchant">
+        <span>Wechat: </span>
+        <span>
+            <input class="inputa" type="text" name="wechat" placeholder="请输入微信账号" value="{{$industry->wechat}}">
+        </span>
+    </div>
+    <div class="SeeMerchant">
+        <span>详细联系电话 : </span>
+        <span>
+            <input class="inputa" type="text" name="phone" placeholder="请输入联系电话" value="{{$industry->phone}}">
+        </span>
+    </div>
     <div class="DetailsIntro">
         <p class="deinro">简介</p>
         <div class="DetailsCont">
@@ -68,7 +93,7 @@
 <script>
 $("#city-picker").cityPicker({
     title: "请选择省份城市",
-    showDistrict: false,
+    //showDistrict: false,
     onChange: function() {
         $("#province_city").val( $("#city-picker").attr("data-codes") );
     }

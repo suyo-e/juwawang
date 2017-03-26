@@ -25,6 +25,8 @@ class ClassController extends Controller
         $from = $request->input('from');
         $province_city_code = $request->input('province_city_code');
 
+        $product_name = $request->input('product_name');
+
         $user = access()->user();
         $products = Product::orderBy('id', 'desc');
         $profile = Profile::where('user_id', $user->id)->first();
@@ -55,14 +57,17 @@ class ClassController extends Controller
 
         switch($from) {
         case 'user':
+            $profile_type = Category::TYPE_USER;
             $user_ids = Profile::where('type', Category::TYPE_USER)->pluck('user_id');
             $products = $products->whereIn('user_id', $user_ids);
             break;
         case 'agent':
+            $profile_type = Category::TYPE_AGENT;
             $user_ids = Profile::where('type', Category::TYPE_AGENT)->pluck('user_id');
             $products = $products->whereIn('user_id', $user_ids);
             break;
         case 'manufacturer':
+            $profile_type = Category::TYPE_MANUFACTURER;
             $user_ids = Profile::where('type', Category::TYPE_MANUFACTURER)->pluck('user_id');
             $products = $products->whereIn('user_id', $user_ids);
             break;
@@ -76,11 +81,19 @@ class ClassController extends Controller
                 ->where('area_id', $codes['area_id']);
         }
 
+        if($product_name) {
+            $products = $products->where('title', 'LIKE', "%$product_name%");
+        }
+
         $products = $products->get();
 
-        $categories = get_categories($profile->type);
+        if(!isset($profile_type)) {
+            $profile_type = $profile->type;
+        }
 
-        return view('frontend.class.index', compact('categories', 'products', 'category_id', 'time', 'from', 'province_city_code'));
+        $categories = get_product_categories($profile_type);
+
+        return view('frontend.class.index', compact('categories', 'products', 'category_id', 'time', 'from', 'province_city_code', 'product_name', 'profile_type'));
     }
 
     /**

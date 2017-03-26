@@ -35,7 +35,7 @@
     @endif
 @elseif (session()->get('flash_notification.message'))
     $("body").append('<div class="flashMessage chenggong ok" style="display: none;"><p><img src="/image/gou.png" alt=""></p><span>{!! session()->get("flash_notification.message") !!}</span></div>');
-    $(".flashMessage").show().fadeOut(1000);
+    $(".flashMessage").show().fadeOut(3000);
     //$.toptip('{!! session()->get('flash_notification.message') !!}', 'success');
 @elseif (session()->get('flash_notification.error'))
     $.toptip('{!! session()->get('flash_notification.error') !!}', 'error');

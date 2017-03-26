@@ -17,50 +17,16 @@
     </div>
     <div class="nav">
         <ul>
+            @foreach ($categories as $category)
             <li>
-                <a href="#">
-                    <img class="iocn-1" src="image/nav-w.png" alt=""/>
-                    <p>挖掘机</p>
+                <a href="{{route('frontend.industries.index', ['category_id'=>$category->id])}}">
+                    <img class="iocn-1" src="{{ $category->pic_url }}" alt=""/>
+                    <p>{{ $category->display_name }}</p>
                 </a>
             </li>
+            @endforeach
             <li>
-                <a href="#">
-                    <img src="image/nav-c.png" alt=""/>
-                    <p>破碎锤</p>
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                    <img src="image/nav-p.png" alt=""/>
-                    <p>破碎锤配件</p>
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                    <img src="image/nav-f.png" alt=""/>
-                    <p>挖掘机配件</p>
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                    <img src="image/nav-s.png" alt=""/>
-                    <p>挖掘属具</p>
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                    <img src="image/nav-y.png" alt=""/>
-                    <p>油封系列</p>
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                    <img src="image/nav-g.png" alt=""/>
-                    <p>液压管路</p>
-                </a>
-            </li>
-            <li>
-                <a href="#">
+                <a href="{{route('frontend.industries.index')}}">
                     <img src="image/nav-q.png" alt=""/>
                     <p>其他设备</p>
                 </a>
@@ -80,11 +46,11 @@
                             <img src="{{ $profile->avatar }}" alt=""/>
                         </div>
                         <div class="companyName">
-                        <p><b>{{ $profile->industry_name}}</b> （{{$profile->user->name}}）</p>
+                        <p><b>{{ $profile->industry_name}}</b> （{{$profile->user->name}} - {{($profile->type == 1?'厂商':'经销商') }}）</p>
                             <p>{{ $profile->province_city_name.' '.$profile->address }}</p>
                         </div>
                         <div class="Authentication">
-                            <span>{{ $profile->is_identity == 1 ?'已认证': '未认证' }}</span>
+                            {!! $profile->is_identity == 1 ?'<span style="background-color:#F4BE46">已认证</span>': '<span>未认证</span>' !!}
                         </div>
                     </div>
                     <p>

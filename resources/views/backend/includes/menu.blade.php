@@ -1,42 +1,88 @@
+<li class="active treeview">
+    <a href="#">
+        <i class="fa fa-list"></i>
+        <span>用户管理</span>
+        <i class="fa fa-angle-left pull-right"></i>
+    </a>
+    <ul class="treeview-menu"> 
+        <li class="{{ Request::is('users*') ? 'active' : '' }}">
+            <a href="{{ route('admin.access.user.index') }}">
+                <i class="fa fa-circle-o"></i><span>用户资料</span>
+            </a>
+        </li>
+<!--
+        <li class="{{ Request::is('industries*') ? 'active' : '' }}">
+            <a href="{{ route('admin.industries.index', ['type'=>'user']) }}">
+                <i class="fa fa-circle-o"></i><span>普通商户管理</span>
+            </a>
+        </li>
+-->
+        <li class="{{ Request::is('industries*') ? 'active' : '' }}">
+            <a href="{{ route('admin.industries.index', ['type'=>'agent']) }}">
+                <i class="fa fa-circle-o"></i><span>经销商商户管理</span>
+            </a>
+        </li>
+        <li class="{{ Request::is('industries*') ? 'active' : '' }}">
+            <a href="{{ route('admin.industries.index', ['type'=>'manufacturer']) }}">
+                <i class="fa fa-circle-o"></i><span>厂商商户管理</span>
+            </a>
+        </li>
+    </ul>
+</li>
+<li class="active treeview">
+    <a href="#">
+        <i class="fa fa-list"></i>
+        <span>内容管理</span>
+        <i class="fa fa-angle-left pull-right"></i>
+    </a>
+    <ul class="treeview-menu">
+        <li class="{{ Request::is('banners*') ? 'active' : '' }}">
+            <a href="{!! route('admin.banners.index') !!}">
+                <i class="fa fa-circle-o"></i><span>导航banner</span>
+            </a>
+        </li>
+        <li class="{{ Request::is('information*') ? 'active' : '' }}">
+            <a href="{!! route('admin.information.index') !!}">
+                <i class="fa fa-circle-o"></i><span>资讯文章</span>
+            </a>
+        </li>
+    </ul>
+</li>
+<li class="active treeview">
+    <a href="#">
+        <i class="fa fa-list"></i>
+        <span>商品管理</span>
+        <i class="fa fa-angle-left pull-right"></i>
+    </a>
+    <ul class="treeview-menu">
+        <li class="{{ Request::is('categories*') ? 'active' : '' }}">
+            <a href="{!! route('admin.categories.index', ['type'=>'product']) !!}">
+                <i class="fa fa-circle-o"></i><span>商品发布行业</span>
+            </a>
+        </li>
+        <li class="{{ Request::is('categories*') ? 'active' : '' }}">
+            <a href="{!! route('admin.categories.index', ['type'=>'register']) !!}">
+                <i class="fa fa-circle-o"></i><span>商户注册行业</span>
+            </a>
+        </li>
+        <li class="{{ Request::is('products*') ? 'active' : '' }}">
+            <a href="{!! route('admin.products.index') !!}">
+                <i class="fa fa-circle-o"></i><span>商品管理</span>
+            </a>
+        </li>
+        <li class="{{ Request::is('orders*') ? 'active' : '' }}">
+            <a href="{!! route('admin.orders.index') !!}">
+                <i class="fa fa-circle-o"></i><span>求购意向列表</span>
+            </a>
+        </li>
+    </ul>
+</li>
 <li class="{{ Request::is('profiles*') ? 'active' : '' }}">
-    <a href="{!! route('admin.profiles.index') !!}">
-        <i class="fa fa-circle-o"></i><span>审核管理</span>
+    <a href="{!! route('admin.profiles.index', ['is_identities'=>'1,3']) !!}">
+        <i class="fa fa-circle-o"></i><span>审核及资料修改</span>
     </a>
 </li>
-
-<li class="{{ Request::is('users*') ? 'active' : '' }}">
-    <a href="{{ route('admin.access.user.index') }}">
-        <i class="fa fa-circle-o"></i><span>用户管理</span>
-    </a>
-</li>
-
-<li class="{{ Request::is('orders*') ? 'active' : '' }}">
-    <a href="{!! route('admin.orders.index') !!}">
-        <i class="fa fa-circle-o"></i><span>订单管理</span>
-    </a>
-</li>
-
-<li class="{{ Request::is('categories*') ? 'active' : '' }}">
-    <a href="{!! route('admin.categories.index') !!}">
-        <i class="fa fa-circle-o"></i><span>目录管理</span>
-    </a>
-</li>
-
-<li class="{{ Request::is('banners*') ? 'active' : '' }}">
-    <a href="{!! route('admin.banners.index') !!}">
-        <i class="fa fa-circle-o"></i><span>导航banner</span>
-    </a>
-</li>
-
-<li class="{{ Request::is('products*') ? 'active' : '' }}">
-    <a href="{!! route('admin.products.index') !!}">
-        <i class="fa fa-circle-o"></i><span>商品管理</span>
-    </a>
-</li>
-
-<li class="{{ Request::is('information*') ? 'active' : '' }}">
-    <a href="{!! route('admin.information.index') !!}">
-        <i class="fa fa-circle-o"></i><span>资讯管理</span>
-    </a>
+<li class="{{ Request::is('feedback*') ? 'active' : '' }}">
+    <a href="{!! route('admin.feedback.index') !!}"><i class="fa fa-circle-o"></i><span>反馈</span></a>
 </li>
 

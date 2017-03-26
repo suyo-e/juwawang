@@ -8,8 +8,11 @@
 
 @section('page-header')
     <h1>
+<!--
         {{ trans('labels.backend.access.users.management') }}
         <small>{{ trans('labels.backend.access.users.active') }}</small>
+-->
+        用户管理
     </h1>
 @endsection
 
@@ -28,13 +31,13 @@
                 <table id="users-table" class="table table-condensed table-hover">
                     <thead>
                         <tr>
-                            <th>{{ trans('labels.backend.access.users.table.id') }}</th>
-                            <th>{{ trans('labels.backend.access.users.table.name') }}</th>
-                            <th>{{ trans('labels.backend.access.users.table.email') }}</th>
-                            <th>{{ trans('labels.backend.access.users.table.confirmed') }}</th>
-                            <th>{{ trans('labels.backend.access.users.table.roles') }}</th>
-                            <th>{{ trans('labels.backend.access.users.table.created') }}</th>
-                            <th>{{ trans('labels.backend.access.users.table.last_updated') }}</th>
+                            <th>用户id</th>
+                            <th>用户名</th>
+                            <th>是否激活</th>
+                            <th>角色</th>
+                            <th>类型</th>
+                            <th>创建时间</th>
+                            <th>更新时间</th>
                             <th>{{ trans('labels.general.actions') }}</th>
                         </tr>
                     </thead>
@@ -43,6 +46,7 @@
         </div><!-- /.box-body -->
     </div><!--box-->
 
+    @permissions(['manage-roles'])
     <div class="box box-info">
         <div class="box-header with-border">
             <h3 class="box-title">{{ trans('history.backend.recent_history') }}</h3>
@@ -54,6 +58,7 @@
             {!! history()->renderType('User') !!}
         </div><!-- /.box-body -->
     </div><!--box box-success-->
+    @endauth
 @endsection
 
 @section('after-scripts')
@@ -73,9 +78,10 @@
                 columns: [
                     {data: 'id', name: '{{config('access.users_table')}}.id'},
                     {data: 'name', name: '{{config('access.users_table')}}.name'},
-                    {data: 'email', name: '{{config('access.users_table')}}.email'},
+                    //{data: 'email', name: '{{config('access.users_table')}}.email'},
                     {data: 'confirmed', name: '{{config('access.users_table')}}.confirmed'},
                     {data: 'roles', name: '{{config('access.roles_table')}}.name', sortable: false},
+                    {data: 'type', name: 'type', sortable: false},
                     {data: 'created_at', name: '{{config('access.users_table')}}.created_at'},
                     {data: 'updated_at', name: '{{config('access.users_table')}}.updated_at'},
                     {data: 'actions', name: 'actions', searchable: false, sortable: false}

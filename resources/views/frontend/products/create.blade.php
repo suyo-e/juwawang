@@ -68,16 +68,16 @@
         <input type="text" name="price" value="{{ old('price') }}" placeholder="请输入金额"/>
     </div>
     <div class="list1 borderAll">
-        <span>手机号码</span>
-        <input type="text" name="phone" value="{{ old('phone') }}" placeholder="请输入手机号码"/>
+        <span>手机号</span>
+        <input type="text" name="phone" value="{{ old('phone')?old('phone'): $industry->phone }}" placeholder="请输入手机号码"/>
     </div>
     <div class="list1 borderAll">
         <span>QQ号码</span>
-        <input type="text" name="qq" value="{{ old('qq') }}" placeholder="请输入QQ号码"/>
+        <input type="text" name="qq" value="{{ old('qq')?old('qq'): $industry->qq }}" placeholder="请输入QQ号码"/>
     </div>
     <div class="list1 borderAll">
         <span>微信号</span>
-        <input type="text" name="wechat" value="{{ old('wechat') }}" placeholder="请输入微信号"/>
+        <input type="text" name="wechat" value="{{ old('wechat')?old('wechat'): $industry->wechat }}" placeholder="请输入微信号"/>
     </div>
     <div class="list1 borderAll">
         <span>地区</span>
@@ -85,7 +85,7 @@
         <input id="province_city" type="hidden" name="province_city" value="{{ old('province_city') }}"/>
     </div>
     <div class="list1 borderAll">
-        <span>详细地址</span>
+        <span>地址</span>
         <input type="text" name="address" value="{{ old('address') }}" placeholder="请输入详细地址"/>
     </div>
 </div>
@@ -127,8 +127,9 @@ $(function() {
             //$("#upload-avatar-input").val(path);
             //$("#upload-avatar-img").attr('src', path);
 
-            if( $('.weui_uploader_files li').length == 1 )  
+            if( $('.weui_uploader_files li').length == 0 )   {
                 $('#upload-avatar-input').val(path);
+            }
             var $preview = $('<li class="weui_uploader_file" style="background-image:url('+path+')"><input type="hidden" value="'+path+'" name="banner_urls[]"/></li>');
             $('.weui_uploader_files').append($preview);
         }
@@ -136,7 +137,7 @@ $(function() {
 
     $("#submit").click(function() {
         if($("input[name='pic_url']").val() == "") {
-            alert("请上传图片");
+            alert("至少上传一张图片");
             return false;
         }
         if($("input[name='title']").val() == "") {

@@ -230,19 +230,7 @@ trait UserAttribute
                 $this->getDeletePermanentlyButtonAttribute();
         }
 
-        $profile= \App\Models\Backend\Profile::where('user_id', $this->id)->first();
-        if(!$profile) {
-            $button = '';
-        }
-        else if($profile && $profile->is_recommand == 1) {
-            $button = '<a href="'.route('admin.access.user.recommand', $this).'" class="btn btn-xs btn-success">取消推荐</a> ';
-        }
-        else {
-            $button = '<a href="'.route('admin.access.user.recommand', $this).'" class="btn btn-xs btn-success">推荐</a> ';
-        }
-
-        return $button.
-            $this->getLoginAsButtonAttribute().
+        return $this->getLoginAsButtonAttribute().
             $this->getShowButtonAttribute().
             $this->getEditButtonAttribute().
             $this->getChangePasswordButtonAttribute().

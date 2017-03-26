@@ -30,7 +30,7 @@ class OrderController extends AppBaseController
         // 发出的
         $purchase_orders = Order::where('user_id', $user_id)->get();
         foreach($purchase_orders as $order) {
-            $product = Product::find($order->product_id);
+            $product = Product::withTrashed()->find($order->product_id);
 
             if($product) 
                 $order->product = $product;

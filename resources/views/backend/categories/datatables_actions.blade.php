@@ -5,6 +5,9 @@
         <i class="glyphicon glyphicon-eye-open"></i>
     </a>
 -->
+    <a href="{{ route('admin.categories.show', $id) }}" class='btn btn-default btn-xs'>
+        置顶
+    </a>
     <a href="{{ route('admin.categories.edit', $id) }}" class='btn btn-default btn-xs'>
         <i class="glyphicon glyphicon-edit"></i>
     </a>

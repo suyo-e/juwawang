@@ -102,6 +102,7 @@ class UserController extends Controller
 
         if($request->input('industry_name')) {
             $industry->display_name = $request->input('industry_name');
+            $profile->industry_name = $request->input('industry_name');
         }
 
         $industry->save();

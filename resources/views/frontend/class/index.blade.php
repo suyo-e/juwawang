@@ -1,8 +1,20 @@
 @extends('frontend.layouts.app')
 
 @section('content')
+    <div class="headTop">
+        <form method="GET" accept-charset="UTF-8">
+        <div class="search">
+            <p><img src="image/search.png" alt=""></p>
+            <input name="product_name" type="text" placeholder="搜索商品" value="{{$product_name}}">
+            <input type="submit" style="display:none">
+        </div>
+        </form>
+    </div>
     <div class="screening">
         <ul>
+            <li class="source">
+                来源
+            </li>
             <li class="clasStion">
                 分类
             </li>
@@ -12,13 +24,24 @@
             <li class="ReleaseTime">
                 时间
             </li>
-            <li class="source">
-                来源
-            </li>
         </ul>
     </div>
 
     <div class="grade-eject">
+        <ul class="grade-y ejectAll">
+            <li class="from" data="user"> 
+                用户 
+                {!! $profile_type==3?'<img src="/image/right.pic" style="width:1.5rem">':'' !!}
+            </li>
+            <li class="from" data="agent"> 
+                经销商
+                {!! $profile_type==2?'<img src="/image/right.pic" style="width:1.5rem">':'' !!}
+            </li>
+            <li class="from" data="manufacturer"> 
+                厂商
+                {!! $profile_type==1?'<img src="/image/right.pic" style="width:1.5rem">':'' !!}
+            </li>
+        </ul>
         <ul class="grade-w ejectAll">
         @foreach ($categories as $category) 
             <li class="category_id" data="{{$category->id}}">{{ $category->display_name }}</li>
@@ -28,11 +51,6 @@
             <li class="time" data="0">全部</li>
             <li class="time" data="week">一个星期内</li>
             <li class="time" data="month">一个月内</li>
-        </ul>
-        <ul class="grade-y ejectAll">
-            <li class="from" data="user">来源 : 用户</li>
-            <li class="from" data="agent">来源 : 经销商</li>
-            <li class="from" data="manufacturer">来源 : 厂商</li>
         </ul>
     </div>
 

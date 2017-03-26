@@ -12,8 +12,11 @@
                 <div class="row" style="padding-left: 20px">
                     @include('backend.profiles.show_fields')
                     <a href="{!! route('admin.profiles.index') !!}" class="btn btn-default">Back</a>
-                    <a href="{!! route('admin.profile.verify', $profile->id) !!}" class="btn btn-default">
-                        {{ $profile->is_identity?'取消':'审核' }}
+                    <a href="{!! route('admin.profile.verify', ['profile_id'=>$profile->id, 'is_identity' => 2]) !!}" class="btn btn-default">
+                        审核通过
+                    </a>
+                    <a href="{!! route('admin.profile.verify', ['profile_id'=>$profile->id, 'is_identity' => 3]) !!}" class="btn btn-danger">
+                        审核拒绝
                     </a>
                 </div>
             </div>

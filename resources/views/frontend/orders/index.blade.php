@@ -11,8 +11,13 @@
 <div id="buy" class="purchaseCont ">
     <div class="listClas show">
         <ul class="IntentList">
-            @foreach ($purchase_orders as $order) 
+        @foreach ($purchase_orders as $order) 
+            @if (is_null($order->product->deleted_at))
             <a href="{{ route('frontend.orders.show', ['order_id'=>$order->id]) }}">
+            @else
+            <a>
+            @endif
+
             <li>
                 <div class="classImg">
                     <img src="{{ $order->product->pic_url }}" alt="">

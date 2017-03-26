@@ -42,6 +42,7 @@ Route::group(['namespace' => 'Backend', 'prefix' => 'admin', 'as' => 'admin.', '
     Route::resource('categories', 'CategoryController');
     Route::resource('banners', 'BannerController');
     Route::resource('profiles', 'ProfileController');
+    Route::resource('information', 'InformationController');
 
     Route::get('profile/verify', 'ProfileController@verify')->name('profile.verify');
 });
@@ -53,39 +54,11 @@ $router->get( '/_debugbar/assets/javascript', '\Barryvdh\Debugbar\Controllers\As
 #Route::get('register', 'Frontend\UserController@register');
 
 
-
-
-
-
-Route::get('admin/profiles', ['as'=> 'admin.profiles.index', 'uses' => 'Backend\ProfileController@index']);
-Route::post('admin/profiles', ['as'=> 'admin.profiles.store', 'uses' => 'Backend\ProfileController@store']);
-Route::get('admin/profiles/create', ['as'=> 'admin.profiles.create', 'uses' => 'Backend\ProfileController@create']);
-Route::put('admin/profiles/{profiles}', ['as'=> 'admin.profiles.update', 'uses' => 'Backend\ProfileController@update']);
-Route::patch('admin/profiles/{profiles}', ['as'=> 'admin.profiles.update', 'uses' => 'Backend\ProfileController@update']);
-Route::delete('admin/profiles/{profiles}', ['as'=> 'admin.profiles.destroy', 'uses' => 'Backend\ProfileController@destroy']);
-Route::get('admin/profiles/{profiles}', ['as'=> 'admin.profiles.show', 'uses' => 'Backend\ProfileController@show']);
-Route::get('admin/profiles/{profiles}/edit', ['as'=> 'admin.profiles.edit', 'uses' => 'Backend\ProfileController@edit']);
-
-
-
-
-
-
-Route::get('admin/products', ['as'=> 'admin.products.index', 'uses' => 'Backend\ProductController@index']);
-Route::post('admin/products', ['as'=> 'admin.products.store', 'uses' => 'Backend\ProductController@store']);
-Route::get('admin/products/create', ['as'=> 'admin.products.create', 'uses' => 'Backend\ProductController@create']);
-Route::put('admin/products/{products}', ['as'=> 'admin.products.update', 'uses' => 'Backend\ProductController@update']);
-Route::patch('admin/products/{products}', ['as'=> 'admin.products.update', 'uses' => 'Backend\ProductController@update']);
-Route::delete('admin/products/{products}', ['as'=> 'admin.products.destroy', 'uses' => 'Backend\ProductController@destroy']);
-Route::get('admin/products/{products}', ['as'=> 'admin.products.show', 'uses' => 'Backend\ProductController@show']);
-Route::get('admin/products/{products}/edit', ['as'=> 'admin.products.edit', 'uses' => 'Backend\ProductController@edit']);
-
-
-Route::get('admin/information', ['as'=> 'admin.information.index', 'uses' => 'Backend\InformationController@index']);
-Route::post('admin/information', ['as'=> 'admin.information.store', 'uses' => 'Backend\InformationController@store']);
-Route::get('admin/information/create', ['as'=> 'admin.information.create', 'uses' => 'Backend\InformationController@create']);
-Route::put('admin/information/{information}', ['as'=> 'admin.information.update', 'uses' => 'Backend\InformationController@update']);
-Route::patch('admin/information/{information}', ['as'=> 'admin.information.update', 'uses' => 'Backend\InformationController@update']);
-Route::delete('admin/information/{information}', ['as'=> 'admin.information.destroy', 'uses' => 'Backend\InformationController@destroy']);
-Route::get('admin/information/{information}', ['as'=> 'admin.information.show', 'uses' => 'Backend\InformationController@show']);
-Route::get('admin/information/{information}/edit', ['as'=> 'admin.information.edit', 'uses' => 'Backend\InformationController@edit']);
+Route::get('admin/feedback', ['as'=> 'admin.feedback.index', 'uses' => 'Backend\FeedbackController@index']);
+Route::post('admin/feedback', ['as'=> 'admin.feedback.store', 'uses' => 'Backend\FeedbackController@store']);
+Route::get('admin/feedback/create', ['as'=> 'admin.feedback.create', 'uses' => 'Backend\FeedbackController@create']);
+Route::put('admin/feedback/{feedback}', ['as'=> 'admin.feedback.update', 'uses' => 'Backend\FeedbackController@update']);
+Route::patch('admin/feedback/{feedback}', ['as'=> 'admin.feedback.update', 'uses' => 'Backend\FeedbackController@update']);
+Route::delete('admin/feedback/{feedback}', ['as'=> 'admin.feedback.destroy', 'uses' => 'Backend\FeedbackController@destroy']);
+Route::get('admin/feedback/{feedback}', ['as'=> 'admin.feedback.show', 'uses' => 'Backend\FeedbackController@show']);
+Route::get('admin/feedback/{feedback}/edit', ['as'=> 'admin.feedback.edit', 'uses' => 'Backend\FeedbackController@edit']);

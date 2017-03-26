@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Frontend;
 use App\Http\Controllers\AppBaseController;
 
 use App\Models\Backend\Banner;
+use App\Models\Backend\Category;
 use App\Models\Backend\Profile;
 use App\Models\Access\User\User;
 use Illuminate\Http\Request;
@@ -19,14 +20,45 @@ class FrontendController extends AppBaseController
     public function index()
     {
         $banners = Banner::get();
-        $profiles = Profile::where('is_recommand', 1)->get();
+
+        $profile = Profile::where('user_id', access()->user()->id)->first();
+        
+        switch($profile->type) {
+        //用户只看经销商
+        case \App\Models\Backend\Category::TYPE_USER:
+            $type = array(
+                \App\Models\Backend\Category::TYPE_AGENT
+            );
+        //经销商看经销商，厂商
+        case \App\Models\Backend\Category::TYPE_AGENT:
+            $type = array(
+                \App\Models\Backend\Category::TYPE_AGENT,
+                \App\Models\Backend\Category::TYPE_MANUFACTURER
+            );
+        case \App\Models\Backend\Category::TYPE_MANUFACTURER:
+            $type = array(\App\Models\Backend\Category::TYPE_MANUFACTURER);
+        default:
+            $type = array(
+                \App\Models\Backend\Category::TYPE_USER,
+                \App\Models\Backend\Category::TYPE_AGENT,
+                \App\Models\Backend\Category::TYPE_MANUFACTURER
+            );
+        }
+        $profiles = Profile::where('is_recommand', 1)
+            ->whereIn('type', $type)
+            ->orderBy('updated_at', 'desc')
+            ->limit(20)
+            ->get();
         
         $gb2260 = new \GB2260\GB2260();
         foreach($profiles as $profile) {
             province_city_name($profile);
             $profile->user = User::find($profile->user_id);
         }
-        return view('frontend.index', compact('banners', 'profiles'));
+
+        $categories = get_categories($profile->type)->slice(0, 7);
+
+        return view('frontend.index', compact('banners', 'profiles', 'categories'));
     }
 
     /**

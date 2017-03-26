@@ -37,7 +37,7 @@ class RegisterRequest extends Request
             'manufa_1'             => 'required',
             //'manufa_2'             => 'required',
             'province_city'        => 'required',
-            'industry_name'        => 'required',
+            //'industry_name'        => 'required',
             'g-recaptcha-response' => 'required_if:captcha_status,true|captcha',
         ];
     }

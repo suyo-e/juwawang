@@ -43,7 +43,7 @@ $identity_urls = json_decode($profile->identity_urls);
     <div class="upload">
             <div class="Sname">
                 <lebel>商家名称 : </lebel>
-                <input name="realname" type="text" placeholder="填写商家名称" value="{{$profile->realname}}">
+                <input name="realname" type="text" placeholder="填写商家名称" value="{{$profile->industry_name}}">
             </div>
             <div class="store">
                 <lebel>营业执照/门店号 : </lebel>

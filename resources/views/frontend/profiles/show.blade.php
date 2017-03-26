@@ -26,7 +26,7 @@
         </a>
         <p class="userIntroduce">
             <span class="daiV">
-                {{ $industry->industry_name}}({{$user->name}})
+                {{ $industry->display_name}}({{$user->name}})
                 @if ($profile->is_identity == 1)
                 <img src="/image/V.png" alt="">
                 @endif
@@ -34,7 +34,7 @@
             <span>{{ $profile->recommand_count }}人推荐</span>
         </p>
         <!-- 点赞 // 送心-->
-        <p class="dainzan">
+        <p class="dainzan" style="display:block">
             <span><a href="{{ route('frontend.collects.like', ['seller_id'=>$user_id]) }}"><img class="zan a" src="/image/{{ $like?'hding':'zhan' }}.png" alt=""></a></span>
             <span><a href="{{ route('frontend.collects.collect', ['seller_id'=>$user_id]) }}"><img class="xin a" src="/image/{{ $collect?'hxin': 'shouchang'}}.png" alt=""></a></span>
         </p>
@@ -54,6 +54,7 @@
         </ul>
     </div>
     <div class="grade">
+        @if (!empty($categories))
         <ul class="grade-w ejectAll" style="display: none;">
         @foreach ($categories as $category) 
         <a href="{{route('frontend.profiles.show', ['user_id'=>$user_id, 'category_id'=>$category->id, 'time'=>$time])}}">
@@ -61,6 +62,7 @@
         </a>
         @endforeach
         </ul>
+        @endif
         <ul class="grade-s ejectAll" style="">
         <a href="{{route('frontend.profiles.show', ['user_id'=>$user_id, 'category_id'=>$category_id, 'time'=>''])}}">
             <li data="">全部</li>

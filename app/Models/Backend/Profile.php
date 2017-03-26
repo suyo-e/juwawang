@@ -31,6 +31,7 @@ class Profile extends Model
         'industry_id',
         'industry_name',
         'category_id',
+        'category_ids',
         'service',
         'identity_urls',
         'identity_str',

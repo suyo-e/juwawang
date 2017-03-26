@@ -88,10 +88,19 @@ class UserStatusController extends Controller
     public function recommand(ManageUserRequest $request)
     {
         $profile = \App\Models\Backend\Profile::whereIn('user_id', array_keys($request->all()))->first();
-        
+
         $profile->is_recommand = $profile->is_recommand==1?0:1;
+
+        /*
+        if($profile->is_recommand == 1) {
+            $count = \App\Models\Backend\Profile::where('is_recommand', 1)->count();
+            if($count > 20) 
+                return redirect()->back()->withFlashDanger('操作失败，不能推荐大于20个商户');
+        }
+         */
+
         $profile->save();
 
-        return redirect()->route('admin.access.user.index')->withFlashSuccess('操作成功');
+        return redirect()->back()->withFlashSuccess('操作成功');
     }
 }

@@ -3,7 +3,7 @@
 @section('content')
     <section class="content-header">
         <h1>
-            Order
+            订单详情
         </h1>
    </section>
    <div class="content">

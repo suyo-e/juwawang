@@ -155,16 +155,16 @@ class ProfileController extends AppBaseController
 
     public function verify(Request $request) 
     {
-        $id = array_keys($request->all())[0];
+        $profile_id = $request->input('profile_id');
 
-        $profile = \App\Models\Backend\Profile::find($id);
+        $profile = \App\Models\Backend\Profile::find($profile_id);
         if(!$profile) {
             Flash::error('该用户信息不存在');
             return redirect(route('admin.profiles.index'));
         }
-        $profile->is_identity = $profile->is_identity?0:1;
+        $profile->is_identity = $request->input('is_identity');
         $profile->save();
         Flash::success('审核成功');
-        return redirect(route('admin.profiles.index'));
+        return redirect(route('admin.profiles.index', ['is_identities'=>'1,3']));
     }
 }

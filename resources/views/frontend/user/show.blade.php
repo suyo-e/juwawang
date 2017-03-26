@@ -7,8 +7,25 @@
             <p><img src="{{ $profile->avatar }}" alt=""/></p>
         </div>
         <div class="nameEnterprise">
-            <p class="name">{{ $user->name }}</p>
-            <p class="Enterprise">{{ $user->industry_name }}</p>
+            <p class="name">
+                {{ $user->name }}  
+            </p>
+            <p class="Enterprise">
+                {{ $profile->industry_name }}
+                (<?php
+                    switch($profile->type) {
+                        case 1:
+                            echo '厂商';
+                            break;
+                        case 2:
+                            echo '代理商';
+                            break;
+                        case 3:
+                            echo '用户';
+                            break;
+                    } 
+                ?>)
+        </p>
         </div>
         <a href="{{ route('frontend.users.show') }}" class="editData">
             <img src="/image/bianji.png" alt=""/>
@@ -16,11 +33,18 @@
         </a>
     </div>
     <div class="Authentication borderAll">
-        <span>认证以后有更多的机会</span>
         @if ($profile->is_identity == 0)
+        <span> 认证以后有更多的机会</span>
         <a href="{{ route('frontend.profiles.create') }}">开始认证</a>
-        @else
-        <a href="{{ route('frontend.profiles.show') }}">查看认证</a>
+        @elseif ($profile->is_identity == 1)
+        <span> 认证以后有更多的机会</span>
+        <a href="{{ route('frontend.profiles.create') }}">审核中</a>
+        @elseif ($profile->is_identity == 2) 
+        <span style="color:black"> &nbsp;&nbsp;已认证</span>
+        <a style="color: black" href="{{ route('frontend.profiles.show') }}">查看认证</a>
+        @elseif ($profile->is_identity == 3) 
+        <span> 认证以后有更多的机会</span>
+        <a href="{{ route('frontend.profiles.create') }}" style="color:red">审核未通过</a>
         @endif
     </div>
     <div class="addressAll">

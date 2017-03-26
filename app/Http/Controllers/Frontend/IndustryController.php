@@ -26,6 +26,7 @@ class IndustryController extends Controller
 
         $display_name = $request->input('display_name');
         $category_id = $request->input('category_id');
+        $category_ids = $request->input('category_ids');
         $time = $request->input('time');
 
         $gb2260 = new \GB2260\GB2260();
@@ -35,6 +36,17 @@ class IndustryController extends Controller
         }
         if($category_id) {
             $user_ids = Profile::where('category_id', $category_id)->pluck('user_id');
+            $industries = $industries->whereIn('user_id', $user_ids);
+        }
+        elseif($category_ids) {
+            $category_ids = explode("|", $category_ids);
+
+            $profiles = Profile::select('user_id');
+            foreach($category_ids as $cid) {
+                $profiles = $profiles->orWhere('category_ids', 'LIKE', "%$cid|%");
+            }
+            $user_ids = $profiles->pluck('user_id');
+
             $industries = $industries->whereIn('user_id', $user_ids);
         }
         $industries = $industries->get();
@@ -69,12 +81,14 @@ class IndustryController extends Controller
             $industry->avatar = '/image/Sbj.png';
         }
         
+/*
         $city = $gb2260->get($industry->city_id); 
         $city = explode(" ", $city)[0];
         $province = $gb2260->get($industry->prov_id); 
+*/
         
-        $industry->province_city_name = "$province $city";
-        $industry->province_city = $industry->prov_id."," .$industry->city_id;
+        $industry->province_city_name = $gb2260->get($industry->area_id);
+        $industry->province_city = $industry->prov_id."," .$industry->city_id.",".$industry->area_id;
 
         $identity_urls = json_decode($industry->identity_urls);
         if(!isset($identity_urls[0])) {
@@ -111,15 +125,31 @@ class IndustryController extends Controller
         $profile = Profile::where('user_id', $user->id)->first();
 
         $industry->display_name = $profile->industry_name?$profile->industry_name: '';
-        $industry->avatar = $request->input('avatar');
+
+
+        if($request->input('avatar')) {
+            $industry->avatar = $request->input('avatar');
+        }
+
         if($request->input('province_city')) {
+            $province_city = province_city($request->input('province_city'));
+            $industry->prov_id = $province_city['prov_id'];
+            $industry->city_id = $province_city['city_id'];
+            $industry->area_id = $province_city['area_id'];
+            
+/*
             $province_city = explode(',', $request->input('province_city'));
             $industry->prov_id = $province_city[0];
             $industry->city_id = $province_city[1];
+*/
         }
         $industry->address = $request->input('address');
         $industry->service = $request->input('service');
         $industry->description = $request->input('description');
+
+        $industry->qq = $request->input('qq');
+        $industry->wechat = $request->input('wechat');
+        $industry->phone = $request->input('phone');
 
         $industry->pic_urls = '';
         $industry->identity_urls = json_encode(array($request->input('identity_url')));

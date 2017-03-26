@@ -31,7 +31,10 @@ class Industry extends Model
         'area_id',
         'address',
         'service',
-        'description'
+        'description',
+        'qq',
+        'wechat',
+        'phone'
     ];
 
     /**

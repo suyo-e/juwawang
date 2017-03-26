@@ -73,7 +73,7 @@ class ProductDataTable extends DataTable
     {
         return [
             '标题' => ['name' => 'title', 'data' => 'title'],
-            '描述' => ['name' => 'description', 'data' => 'description'],
+            #'描述' => ['name' => 'description', 'data' => 'description'],
             '用户id' => ['name' => 'user_id', 'data' => 'user_id'],
             '类型' => ['name' => 'type_name', 'data' => 'type_name'],
             //'category_id' => ['name' => 'category_id', 'data' => 'category_id'],

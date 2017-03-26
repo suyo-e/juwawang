@@ -49,7 +49,7 @@ class Banner extends Model
     public static $rules = [
         'display_name' => 'required|string',
         'url' => 'string',
-        'pic_url' => 'required|file',
+        'pic_url' => 'file',
         'type' => 'required|numeric',
         'description' => 'string'
     ];

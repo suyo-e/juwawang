@@ -27,7 +27,33 @@ class IndustryDataTable extends DataTable
      */
     public function query()
     {
-        $industries = Industry::query();
+        $type = request('type');
+
+        $industries = Industry::query()
+            ->select('industries.*', 'profiles.is_recommand')
+            ->orderBy('updated_at', 'desc')
+            ->leftJoin('profiles', 'profiles.user_id', '=', 'industries.user_id');
+
+        if($type == 'agent') {
+            $user_ids = \App\Models\Backend\Profile::where('type', \App\Models\Backend\Category::TYPE_AGENT)
+                ->select('user_id')
+                ->pluck('user_id');
+            $industries = $industries->whereIn('industries.user_id', $user_ids);
+        }
+        else if($type == 'manufacturer') {
+            $user_ids = \App\Models\Backend\Profile::where('type', \App\Models\Backend\Category::TYPE_MANUFACTURER)
+                ->select('user_id')
+                ->pluck('user_id');
+
+            $industries = $industries->whereIn('industries.user_id', $user_ids);
+        }
+        else if($type == 'user') {
+            $user_ids = \App\Models\Backend\Profile::where('type', \App\Models\Backend\Category::TYPE_USER)
+                ->select('user_id')
+                ->pluck('user_id');
+
+            $industries = $industries->whereIn('industries.user_id', $user_ids);
+        }
 
         return $this->applyScopes($industries);
     }
@@ -41,7 +67,7 @@ class IndustryDataTable extends DataTable
     {
         return $this->builder()
             ->columns($this->getColumns())
-            ->addAction(['width' => '10%'])
+            ->addAction(['width' => '20%'])
             ->ajax('')
             ->parameters([
                 'dom' => 'Bfrtip',
@@ -72,16 +98,20 @@ class IndustryDataTable extends DataTable
     private function getColumns()
     {
         return [
-            'display_name' => ['name' => 'display_name', 'data' => 'display_name'],
-            'user_id' => ['name' => 'user_id', 'data' => 'user_id'],
-            'avatar' => ['name' => 'avatar', 'data' => 'avatar'],
-            'pic_urls' => ['name' => 'pic_urls', 'data' => 'pic_urls'],
-            'identity_urls' => ['name' => 'identity_urls', 'data' => 'identity_urls'],
-            'prov_id' => ['name' => 'prov_id', 'data' => 'prov_id'],
-            'city_id' => ['name' => 'city_id', 'data' => 'city_id'],
-            'address' => ['name' => 'address', 'data' => 'address'],
-            'service' => ['name' => 'service', 'data' => 'service'],
-            'description' => ['name' => 'description', 'data' => 'description']
+            '商户名称' => ['name' => 'display_name', 'data' => 'display_name'],
+            '用户ID' => ['name' => 'user_id', 'data' => 'user_id'],
+            '商户图片' => ['name' => 'avatar', 'data' => 'avatar', 'render' => render_image()],
+            #'pic_urls' => ['name' => 'pic_urls', 'data' => 'pic_urls'],
+            #'identity_urls' => ['name' => 'identity_urls', 'data' => 'identity_urls'],
+            #'prov_id' => ['name' => 'prov_id', 'data' => 'prov_id'],
+            #'city_id' => ['name' => 'city_id', 'data' => 'city_id'],
+            '简介' => ['name' => 'description', 'data' => 'description'],
+            'QQ号码' => ['name' => 'qq', 'data' => 'qq'],
+            '微信号' => ['name' => 'wechat', 'data' => 'wechat'],
+            '联系方式' => ['name' => 'phone', 'data' => 'phone'],
+            '地址' => ['name' => 'address', 'data' => 'address'],
+            '主营业务' => ['name' => 'service', 'data' => 'service'],
+            '描述' => ['name' => 'description', 'data' => 'description']
         ];
     }
 

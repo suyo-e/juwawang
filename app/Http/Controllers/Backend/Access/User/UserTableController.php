@@ -37,6 +37,22 @@ class UserTableController extends Controller
             ->editColumn('confirmed', function ($user) {
                 return $user->confirmed_label;
             })
+            ->addColumn('type', function($user) {
+                $profile = \App\Models\Backend\Profile::where('user_id', $user->id)->first();
+                if(!$profile)
+                    return '';
+
+                switch($profile->type) {
+                case 1:
+                    return '厂商';
+                case 2:
+                    return '代理商';
+                case 3:
+                    return '普通用户';
+                default:
+                    return '';
+                }
+            })
             ->addColumn('roles', function ($user) {
                 return $user->roles->count() ?
                     implode('<br/>', $user->roles->pluck('name')->toArray()) :

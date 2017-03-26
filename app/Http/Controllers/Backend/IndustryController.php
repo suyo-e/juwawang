@@ -70,7 +70,14 @@ class IndustryController extends AppBaseController
     public function show($id)
     {
         $industry = $this->industryRepository->findWithoutFail($id);
+        $industry->updated_at = date("Y-m-d H:i:s");
+        $industry->save();
 
+        $profile = \App\Models\Backend\Profile::where('user_id', $industry->user_id)->first();
+        $profile->updated_at = date("Y-m-d H:i:s");
+        $profile->save();
+        return redirect(route('admin.industries.index'));
+/*
         if (empty($industry)) {
             Flash::error('Industry not found');
 
@@ -78,6 +85,7 @@ class IndustryController extends AppBaseController
         }
 
         return view('backend.industries.show')->with('industry', $industry);
+ */
     }
 
     /**

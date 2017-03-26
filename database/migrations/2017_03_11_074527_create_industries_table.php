@@ -25,6 +25,11 @@ class CreateIndustriesTable extends Migration
             $table->integer('area_id')->nullable()->default(0);
             $table->string('address', 255)->nullable()->default('');
             $table->string('service')->nullable()->default('');
+
+            $table->string('qq')->nullable()->default('');
+            $table->string('wechat')->nullable()->default('');
+            $table->string('phone')->nullable()->default('');
+
             $table->text('description')->nullable();
             $table->timestamps();
             $table->softDeletes();

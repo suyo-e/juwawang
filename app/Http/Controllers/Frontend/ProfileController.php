@@ -74,7 +74,7 @@ class ProfileController extends Controller
             $product->province_city = $product->prov_id."," .$product->city_id;           
         }
         
-        $categories = get_categories($profile->type);
+        $categories = get_product_categories($profile->type);
 
         $like = Collect::where('user_id', access()->user()->id)
             ->where('seller_id', $user_id)
@@ -120,6 +120,7 @@ class ProfileController extends Controller
         $profile->realname = $realname;
         $profile->identity_str = $identity_str;
         $profile->identity_urls = $identity_urls;
+        $profile->is_identity = 1;
 
         $profile->save();
         Flash::success('上传成功，请等待审核');

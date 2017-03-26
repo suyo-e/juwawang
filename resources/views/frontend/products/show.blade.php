@@ -20,7 +20,7 @@
 <section>
     <div class="Model">
             <p class="Modell">
-                <span>小松PC560-挖掘机</span>
+                <span>{{ $product->title }}</span>
                 <a href="{{ route('frontend.orders.create', ['product_id'=>$product->id]) }}">意向购买</a>
             </p>
             <div class="Model-cont">

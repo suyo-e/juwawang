@@ -72,11 +72,11 @@ class BannerDataTable extends DataTable
     private function getColumns()
     {
         return [
-            'display_name' => ['name' => 'display_name', 'data' => 'display_name'],
-            'url' => ['name' => 'url', 'data' => 'url'],
-            'pic_url' => ['name' => 'pic_url', 'data' => 'pic_url', 'render' => render_image()],
-            'type' => ['name' => 'type', 'data' => 'type'],
-            'description' => ['name' => 'description', 'data' => 'description']
+            '展示名称' => ['name' => 'display_name', 'data' => 'display_name'],
+            '外链地址' => ['name' => 'url', 'data' => 'url'],
+            '图片' => ['name' => 'pic_url', 'data' => 'pic_url', 'render' => render_image()],
+            '类型' => ['name' => 'type', 'data' => 'type'],
+            '描述' => ['name' => 'description', 'data' => 'description']
         ];
     }
 

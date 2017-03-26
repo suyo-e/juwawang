@@ -74,7 +74,8 @@ class InformationDataTable extends DataTable
         return [
             '标题' => ['name' => 'title', 'data' => 'title'],
             '子标题' => ['name' => 'subtitle', 'data' => 'subtitle'],
-            '图片' => ['name' => 'pic_url', 'data' => 'pic_url', 'render' => '"<img src=\""+data+"\" height=\"50\"/>"'],
+            #'图片' => ['name' => 'pic_url', 'data' => 'pic_url', 'render' => '"<img src=\""+data+"\" height=\"50\"/>"'],
+            '图片' => ['name' => 'pic_url', 'data' => 'pic_url', 'render' => render_image()],
             #'内容' => ['name' => 'content', 'data' => 'content']
         ];
     }

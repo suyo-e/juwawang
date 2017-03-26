@@ -53,9 +53,10 @@ class InformationController extends AppBaseController
     {
         $input = $request->all();
 
-        $path = upload($request, 'pic_url');
-        $input['pic_url'] = $path;
-        //$input['view_count'] = 0;
+        if($request->file('pic_url')) {
+            $path = upload($request, 'pic_url');
+            $input['pic_url'] = $path;
+        }
 
         $information = $this->informationRepository->create($input);
 

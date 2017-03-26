@@ -151,7 +151,6 @@ if(! function_exists('province_city')) {
     }
 }
 
-
 if(! function_exists('province_city_name')) {
     function province_city_name($obj){
         $gb2260 = new \GB2260\GB2260();
@@ -202,7 +201,40 @@ if(! function_exists('get_product_types')){
 
 if(!function_exists('get_categories')) {
 
-    function get_categories($type) 
+    function get_categories($type, $parent_id = 0) 
+    {
+        $categories = \App\Models\Backend\Category::select('display_name', 'id', 'pic_url');
+
+        if($parent_id) 
+            $categories = $categories->where('parent_id', $parent_id);
+        else
+            $categories = $categories->where('parent_id', 0);
+
+        switch($type) {
+        case \App\Models\Backend\Category::TYPE_USER:
+            $categories = $categories->where('type', \App\Models\Backend\Category::TYPE_AGENT);
+            break;
+        case \App\Models\Backend\Category::TYPE_AGENT:
+            $categories = $categories->whereIn('type', array(
+                \App\Models\Backend\Category::TYPE_AGENT,
+                \App\Models\Backend\Category::TYPE_MANUFACTURER
+            ));
+            break;
+        case \App\Models\Backend\Category::TYPE_MANUFACTURER:
+            $categories = $categories->where('type', \App\Models\Backend\Category::TYPE_MANUFACTURER);
+            break;
+        }
+
+        $categoryes = $categories->orderBy('updated_at', 'desc');
+        $categories = $categories->get();
+
+        return $categories;
+    }
+}
+
+if(!function_exists('get_product_categories')) {
+
+    function get_product_categories($type) 
     {
         $categories = \App\Models\Backend\Category::select('display_name', 'id')
             ->where('parent_id', 0);

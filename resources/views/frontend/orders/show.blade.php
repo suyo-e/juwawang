@@ -7,7 +7,7 @@
         <p class="fillln1">填写您的个人信息，商家会及时回复...</p>
 -->
         <div class="Product">
-            <p class="title">润田经销商</p>
+            <p class="title">{{ $order->contact_name }}</p>
             <a href="{{ route('frontend.products.show', ['product_id'=>$product->id])}}">
                 <div class="ProductCont">
                     <img src="/image/waji.png" alt="">

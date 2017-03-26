@@ -27,7 +27,23 @@ class CategoryDataTable extends DataTable
      */
     public function query()
     {
-        $categories = Category::query();
+        $categories = Category::query()
+            ->orderBy('updated_at', 'desc');
+
+        if(request('type') == 'product') {
+            $categories = $categories->whereIn('type', array(
+                \App\Models\Backend\Category::TYPE_USER_PRODUCT,
+                \App\Models\Backend\Category::TYPE_AGENT_PRODUCT,
+                \App\Models\Backend\Category::TYPE_MANUFACTURER_PRODUCT
+            ));
+        }
+        else if(request('type') == 'register') {
+            $categories = $categories->whereIn('type', array(
+                \App\Models\Backend\Category::TYPE_USER,
+                \App\Models\Backend\Category::TYPE_AGENT,
+                \App\Models\Backend\Category::TYPE_MANUFACTURER
+            ));
+        }
 
         return $this->applyScopes($categories);
     }
@@ -41,7 +57,7 @@ class CategoryDataTable extends DataTable
     {
         return $this->builder()
             ->columns($this->getColumns())
-            ->addAction(['width' => '10%'])
+            ->addAction(['width' => '15%'])
             ->ajax('')
             ->parameters([
                 'dom' => 'Bfrtip',
@@ -72,6 +88,7 @@ class CategoryDataTable extends DataTable
     private function getColumns()
     {
         return [
+            '目录编号' => ['name' => 'id', 'data' => 'id'],
             '显示名称' => ['name' => 'display_name', 'data' => 'display_name'],
             '上级id' => ['name' => 'parent_id', 'data' => 'parent_id'],
             '图片' => ['name' => 'pic_url', 'data' => 'pic_url', 'render' => render_image()],

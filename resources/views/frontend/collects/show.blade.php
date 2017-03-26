@@ -27,10 +27,12 @@
         <p class="deinro">详情介绍</p>
         <div class="DetailsCont">{{ $product->description }}</div>
     </div>
+<!--
     <div class="SeeMerchant">
         <span class="see1">品牌 : </span>
         <span>{{ $product->brand_name }}</span>
     </div>
+-->
     <div class="SeeMerchant">
         <span class="see1">联系人 : </span>
         <span>{{ $product->contact_name }}</span>

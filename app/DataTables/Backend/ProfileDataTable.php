@@ -28,6 +28,10 @@ class ProfileDataTable extends DataTable
     public function query()
     {
         $profiles = Profile::query();
+        $is_identities = explode(',', request('is_identities'));
+        if($is_identities) {
+            $profiles = $profiles->whereIn('is_identity', $is_identities);
+        }
 
         return $this->applyScopes($profiles);
     }

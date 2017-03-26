@@ -122,7 +122,13 @@ class BannerController extends AppBaseController
             return redirect(route('admin.banners.index'));
         }
 
-        $banner = $this->bannerRepository->update($request->all(), $id);
+        $input = $request->all();
+        if($request->file('pic_url')) {
+            $path = upload($request, 'pic_url');
+            $input['pic_url'] = $path;
+        }
+
+        $banner = $this->bannerRepository->update($input, $id);
 
         Flash::success('Banner updated successfully.');
 
