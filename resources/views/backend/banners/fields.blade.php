@@ -1,6 +1,6 @@
 <!-- Display Name Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('display_name', '战士名称:') !!}
+    {!! Form::label('display_name', '展示名称:') !!}
     {!! Form::text('display_name', null, ['class' => 'form-control']) !!}
 </div>
 

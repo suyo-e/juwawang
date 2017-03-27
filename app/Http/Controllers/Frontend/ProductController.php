@@ -65,6 +65,8 @@ class ProductController extends AppBaseController
             $category_values[] = "'".$category->display_name."'";
         }
 
+        $product = province_city_name($product);
+
         return view('frontend.products.edit', compact('product', 'user_id', 'collect', 'category_id', 'category', 'industry', 'categories', 'profile', 'category_values', 'category_ids'));
     }
 
@@ -88,8 +90,9 @@ class ProductController extends AppBaseController
         $collect = Collect::where('product_id', $product_id)
             ->where('user_id', $user_id)
             ->first();
+        $profile = Profile::where('user_id', $user_id)->first();
 
-        return view('frontend.products.show', compact('product', 'user_id', 'collect'));
+        return view('frontend.products.show', compact('product', 'user_id', 'collect', 'profile'));
     }
 
     public function intend(Request $request) 
@@ -158,6 +161,10 @@ class ProductController extends AppBaseController
         $input['area_id'] = $province_city['area_id'];
         $input['industry_id'] = 0;
 
+        if(is_null($input['brand_name'])) {
+            $input['brand_name'] = '';
+        }
+
         $product = Product::create($input);
         Flash::success('发布成功');
         return redirect(route('frontend.class'));
@@ -178,7 +185,6 @@ class ProductController extends AppBaseController
 
         $product->title = $request->input('title');
         $product->description = $request->input('description');
-        $product->brand_name = $request->input('brand_name');
         $product->price = $request->input('price');
         $product->address = $request->input('address');
         $product->qq = $request->input('qq');
@@ -199,9 +205,15 @@ class ProductController extends AppBaseController
         $product->area_id = $province_city['area_id'];
         $product->industry_id = 0;
 
+        $product->brand_name = $request->input('brand_name');
+        if(is_null($product->brand_name)) {
+            $product->brand_name = '';
+        }
+
         $product->save();
         Flash::success('更新成功');
-        return redirect()->back();
+        return redirect(route('frontend.user'));
+        //return redirect()->back();
     }
 
     public function delete(Request $request) {

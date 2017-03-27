@@ -116,6 +116,7 @@ class RegisterController extends Controller
             $profile = Profile::where('invite_code', $invite_code)->first();
             if($profile) {
                 $profile->invite_count ++;
+                $profile->recommand_count ++;
                 $profile->save();
             }
         }
@@ -209,7 +210,9 @@ class RegisterController extends Controller
             event(new UserRegistered(access()->user()));
 
             Flash::success('注册成功.');
-            //return redirect($this->redirectPath());
+            if($profile->type == 3) {
+                return redirect($this->redirectPath());
+            }
             return redirect(route('frontend.industries.edit'));
         }
     }

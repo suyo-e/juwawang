@@ -45,8 +45,8 @@
     
             <div class="name name4">
                 <span>地区 : </span>
-                <input id="city-picker" type="text" name="province_city_name" placeHolder="{{ $profile->province_city_name }}"/>
-                <input id="province_city" type="hidden" name="province_city" value="{{ $user->province_city }}"/>
+                <input id="city-picker" type="text" name="province_city_name" placeHolder="{{ $profile->province_city_name }}" data-code="{{ $profile->area_id }}" data-codes="{{ $profile->province_city }}"/>
+                <input id="province_city" type="hidden" name="province_city" value="{{ $profile->province_city }}"/>
             </div>
     </div>
 <!--

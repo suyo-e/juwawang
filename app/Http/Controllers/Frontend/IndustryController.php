@@ -27,7 +27,28 @@ class IndustryController extends Controller
         $display_name = $request->input('display_name');
         $category_id = $request->input('category_id');
         $category_ids = $request->input('category_ids');
+        $from = $request->input('from');
         $time = $request->input('time');
+
+
+        switch($from) {
+        case 'user':
+            $profile_type = Category::TYPE_USER;
+            $user_ids = Profile::where('type', Category::TYPE_USER)->pluck('user_id');
+            break;
+        case 'agent':
+            $profile_type = Category::TYPE_AGENT;
+            $user_ids = Profile::where('type', Category::TYPE_AGENT)->pluck('user_id');
+            break;
+        case 'manufacturer':
+            $profile_type = Category::TYPE_MANUFACTURER;
+            $user_ids = Profile::where('type', Category::TYPE_MANUFACTURER)->pluck('user_id');
+            break;
+        }
+        if(!isset($profile_type)) {
+            $profile = Profile::where('user_id', access()->user()->id)->first();
+            $profile_type = $profile->type;
+        }
 
         $gb2260 = new \GB2260\GB2260();
         $industries = new Industry;
@@ -64,8 +85,8 @@ class IndustryController extends Controller
         }
 
         $profile = Profile::where('user_id', access()->user()->id)->first();
-        $categories = get_categories($profile->type);
-        return view('frontend.industries.index', compact('industries', 'display_name', 'categories', 'time', 'category_id'));
+        $categories = get_categories($profile_type);
+        return view('frontend.industries.index', compact('industries', 'display_name', 'categories', 'time', 'category_id', 'profile_type', 'from'));
     }
 
     /**

@@ -62,3 +62,15 @@ Route::patch('admin/feedback/{feedback}', ['as'=> 'admin.feedback.update', 'uses
 Route::delete('admin/feedback/{feedback}', ['as'=> 'admin.feedback.destroy', 'uses' => 'Backend\FeedbackController@destroy']);
 Route::get('admin/feedback/{feedback}', ['as'=> 'admin.feedback.show', 'uses' => 'Backend\FeedbackController@show']);
 Route::get('admin/feedback/{feedback}/edit', ['as'=> 'admin.feedback.edit', 'uses' => 'Backend\FeedbackController@edit']);
+
+
+
+
+Route::get('admin/icons', ['as'=> 'admin.icons.index', 'uses' => 'Backend\IconController@index']);
+Route::post('admin/icons', ['as'=> 'admin.icons.store', 'uses' => 'Backend\IconController@store']);
+Route::get('admin/icons/create', ['as'=> 'admin.icons.create', 'uses' => 'Backend\IconController@create']);
+Route::put('admin/icons/{icons}', ['as'=> 'admin.icons.update', 'uses' => 'Backend\IconController@update']);
+Route::patch('admin/icons/{icons}', ['as'=> 'admin.icons.update', 'uses' => 'Backend\IconController@update']);
+Route::delete('admin/icons/{icons}', ['as'=> 'admin.icons.destroy', 'uses' => 'Backend\IconController@destroy']);
+Route::get('admin/icons/{icons}', ['as'=> 'admin.icons.show', 'uses' => 'Backend\IconController@show']);
+Route::get('admin/icons/{icons}/edit', ['as'=> 'admin.icons.edit', 'uses' => 'Backend\IconController@edit']);

@@ -10,7 +10,7 @@
             <p class="title">{{ $order->contact_name }}</p>
             <a href="{{ route('frontend.products.show', ['product_id'=>$product->id])}}">
                 <div class="ProductCont">
-                    <img src="/image/waji.png" alt="">
+                    <img src="{{ $product->pic_url }}" alt="">
                     <p class="info">
                         <span>{{ $product->title }}</span>
                         <span>联系人 : {{ $product->contact_name }}</span>
@@ -33,7 +33,7 @@
             </div>
             <div class="name">
                 <span>城市 : </span>
-                <span class="conts">{{ $order->address }}</span>
+                <span class="conts">{{ $order->province_city_name.$order->address }}</span>
             </div>
             <div class="name">
                 <span>数量 : </span>

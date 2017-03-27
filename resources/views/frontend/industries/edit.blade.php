@@ -16,7 +16,7 @@
 </div>
 <div class="main">
     <div class="SeeMerchant">
-        <a id="onzhao" class="onbutton" href=" ">
+        <a id="onzhao" class="onbutton" >
             证件照
             <label for="seeimg_file" class="seeimg_file"></label>
             <input type="file" id="seeimg_file">

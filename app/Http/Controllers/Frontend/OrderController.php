@@ -28,7 +28,7 @@ class OrderController extends AppBaseController
         $user_id = access()->user()->id;
 
         // 发出的
-        $purchase_orders = Order::where('user_id', $user_id)->get();
+        $purchase_orders = Order::where('user_id', $user_id)->orderBy('created_at', 'desc')->get();
         foreach($purchase_orders as $order) {
             $product = Product::withTrashed()->find($order->product_id);
 
@@ -36,7 +36,7 @@ class OrderController extends AppBaseController
                 $order->product = $product;
         }
 
-        $products = Product::where('user_id', $user_id)->get();
+        $products = Product::where('user_id', $user_id)->orderBy('created_at', 'desc')->get();
         $product_array = array();
         $product_ids = array();
         foreach($products as $product) {
@@ -44,7 +44,7 @@ class OrderController extends AppBaseController
             $product_array[$product->id] = $product;
         }
 
-        $sell_orders = Order::whereIn('product_id', $product_ids)->get();
+        $sell_orders = Order::whereIn('product_id', $product_ids)->orderBy('created_at', 'desc')->get();
         foreach($sell_orders as $order) {
             if(isset($product_array[$order->product_id])) {
                 $order->product = $product_array[$order->product_id];
@@ -67,6 +67,7 @@ class OrderController extends AppBaseController
             Flash::error('商品不存在');
             return redirect()->back();
         }
+        $order = province_city_name($order);
 
         return view('frontend.orders.show', compact('product', 'user', 'order'));
     }
@@ -118,7 +119,9 @@ class OrderController extends AppBaseController
 
         $order = Order::create($input);
         //Flash::success('发布成功');
-        return redirect(route('frontend.orders.success', ['product_id'=>$input['product_id']]));
+        //return redirect(route('frontend.orders.success', ['product_id'=>$input['product_id']]));
+        //return redirect(route('frontend.products.show', ['product_id'=>$input['product_id']]));
+        return redirect(route('frontend.user'));
     }
 
     public function success(Request $request) 

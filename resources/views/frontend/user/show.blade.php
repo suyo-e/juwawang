@@ -49,6 +49,11 @@
     </div>
     <div class="addressAll">
         <div class="address">
+            <p class="DetailedAdds">
+                <span class="name">邀请码: </span> {{ $profile->invite_code }}
+            </p>
+        </div>
+        <div class="address">
             <a href="{{ route('frontend.products.index') }}">
             <p class="namePhone">
                 <img src="/image/my-f.png" alt=""/>
@@ -63,7 +68,7 @@
             </a>
         </div>
         <div class="address">
-            @if ($user->type != 3)
+            @if ($profile->type != 3)
             <a href="{{ route('frontend.profiles.show') }}">
             <p class="namePhone">
                 <img src="/image/my-sp.png" alt=""/>

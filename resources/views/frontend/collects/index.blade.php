@@ -26,20 +26,46 @@
         @endforeach
       </ul>
     </div>
-    <div class="classContent hidden" id="seller">
+    <div class="content hidden" id="seller">
       <ul>
-        @foreach ($users as $user)
-          <a href="{{route('frontend.profiles.show', ['user_id'=>$user->id])}}">
-          <li>
-              <div class="classImg">
-                  <img src="{{ $user->avatar }}" alt="">
-              </div>
-              <div class="classcont">
-                  <p><b>{{ $user->name }}</b></p>
-                  <p>地址 : <span>{{ $user->address }}</span></p>
-              </div>
-          </li>
-          </a>
+            @foreach ($profiles as $profile)   
+            @if (!$profile) continue;
+            @endif
+            <li>
+            <a href="{{ route('frontend.profiles.show', ['user_id'=>$profile->user_id]) }}">
+                    <div class="listCont">
+                        <div class="iconbox">
+                            <img src="{{ $profile->avatar }}" alt=""/>
+                        </div>
+                        <div class="companyName">
+                        <p><b>{{ $profile->industry_name}}</b> （{{$profile->user->name}} - {{($profile->type == 1?'厂商':'经销商') }}）</p>
+                            <p>{{ $profile->province_city_name.' '.$profile->address }}</p>
+                        </div>
+                        <div class="Authentication">
+                            <?php
+                            switch($profile->is_identity) {
+                            case 0:
+                                echo '<span>未认证</span>';
+                                break;
+                            case 1:
+                                echo '<span>认证中</span>';
+                                break;
+                            case 2:
+                                echo '<span style="background-color:#F4BE46">已认证</span>';
+                                break;
+                            case 3:
+                            case 4:
+                                break;
+                            }
+                            ?>
+                        </div>
+                    </div>
+                    <p>
+                        <span class="TheMain">主营业务 : </span>
+                        <span class="span1">{{ $profile->service }}</span>
+                    </p>
+                </a>
+            </li>
         @endforeach
       </ul>
    </div>

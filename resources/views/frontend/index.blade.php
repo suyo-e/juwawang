@@ -17,11 +17,11 @@
     </div>
     <div class="nav">
         <ul>
-            @foreach ($categories as $category)
+            @foreach ($icons as $icon)
             <li>
-                <a href="{{route('frontend.industries.index', ['category_id'=>$category->id])}}">
-                    <img class="iocn-1" src="{{ $category->pic_url }}" alt=""/>
-                    <p>{{ $category->display_name }}</p>
+                <a href="{{route('frontend.industries.index', ['category_ids'=>$icon->category_ids])}}">
+                    <img class="iocn-1" src="{{ $icon->pic_url }}" alt=""/>
+                    <p>{{ $icon->title}}</p>
                 </a>
             </li>
             @endforeach
@@ -50,12 +50,27 @@
                             <p>{{ $profile->province_city_name.' '.$profile->address }}</p>
                         </div>
                         <div class="Authentication">
-                            {!! $profile->is_identity == 1 ?'<span style="background-color:#F4BE46">已认证</span>': '<span>未认证</span>' !!}
+                            <?php
+                            switch($profile->is_identity) {
+                            case 0:
+                                echo '<span>未认证</span>';
+                                break;
+                            case 1:
+                                echo '<span>认证中</span>';
+                                break;
+                            case 2:
+                                echo '<span style="background-color:#F4BE46">已认证</span>';
+                                break;
+                            case 3:
+                            case 4:
+                                break;
+                            }
+                            ?>
                         </div>
                     </div>
                     <p>
                         <span class="TheMain">主营业务 : </span>
-                        <span class="span1"> 二手挖掘机，破碎锤，大型翻斗车</span>
+                        <span class="span1">{{ $profile->service }}</span>
                     </p>
                 </a>
             </li>

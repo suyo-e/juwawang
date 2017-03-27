@@ -21,7 +21,7 @@
     <div class="userCont">
         <a href="{{ route('frontend.industries.show', ['user_id' => $user->id ]) }}">
         <p class="Villain">
-            <img src="/image/ren.png" alt="">
+            <img src="{{ $profile->avatar?$profile->avatar:'/image/ren.png' }}" alt="">
         </p>
         </a>
         <p class="userIntroduce">

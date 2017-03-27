@@ -51,6 +51,18 @@ class CollectController extends AppBaseController
         }
 
         $products = Product::whereIn('id', $product_ids)->get();
+
+        $profiles = Profile::whereIn('user_id', $user_ids)
+            ->where('type', Collect::TYPE_COLLECT)
+            ->orderBy('updated_at', 'desc')
+            ->limit(20)
+            ->get();
+        
+        foreach($profiles as $profile) {
+            province_city_name($profile);
+            $profile->user = User::find($profile->user_id);
+        }
+        /*
         $users = User::whereIn('id', $user_ids)->get();
 
         foreach($users as $user) {
@@ -60,9 +72,10 @@ class CollectController extends AppBaseController
                 $user->address = '地址';
             }
         }
+         */
 
 
-        return view('frontend.collects.index', compact('products', 'users'));
+        return view('frontend.collects.index', compact('products', 'profiles'));
     }
 
     public function show(Request $request) 
@@ -85,12 +98,15 @@ class CollectController extends AppBaseController
         $collect = Collect::where('product_id', $input['product_id'])
             ->where('user_id', $input['user_id'])
             ->first();
-        if(!$collect) 
+        if(!$collect)  {
             $this->collectRepository->create($input);
-        else 
+            Flash::success('收藏成功');
+        }
+        else {
             $this->collectRepository->delete($collect->id);
+            Flash::success('取消收藏');
+        }
 
-        Flash::success('收藏成功');
 
         return redirect()->back();
     }

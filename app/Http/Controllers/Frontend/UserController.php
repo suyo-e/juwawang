@@ -43,15 +43,10 @@ class UserController extends Controller
         $user = User::find($user_id);
 
         $profile = Profile::where('user_id', $user->id)->first();
+
+        $profile = province_city_name($profile);
         
         try {
-            $gb2260 = new \GB2260\GB2260();
-            $city = $gb2260->get($profile->city_id); 
-            $city = explode(" ", $city)[0];
-            $province = $gb2260->get($profile->prov_id); 
-            
-            $profile->province_city_name = "$province $city";
-            $profile->province_city = $profile->prov_id."," .$profile->city_id;
             $profile->category_name = Category::find($profile->category_id)->display_name;
         } catch (\Exception $e) {
         }

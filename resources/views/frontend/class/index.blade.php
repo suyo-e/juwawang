@@ -66,8 +66,8 @@
                   <p><b>{{ $product->title }}</b></p>
                   <p>价格: <span class="price">{{ $product->price }} </span>&nbsp;&nbsp;</p>
                     <!--<p>品牌:<span>{{ $product->brand_name }}</span></p> -->
-                  <p>经销商 : <span>{{ substr($product->created_at, 0, 10) }}</span></p>
-                  <p>地址 : <span>{{ $product->address }}</span></p>
+                  <p>发布时间: <span>{{ substr($product->created_at, 0, 10) }}</span></p>
+                  <p>地址 : <span>{{ $product->province_city_name.' '.$product->address }}</span></p>
               </div>
           </li>
           </a>

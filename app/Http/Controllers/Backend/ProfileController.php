@@ -78,6 +78,7 @@ class ProfileController extends AppBaseController
             return redirect(route('admin.profiles.index'));
         }
 
+        $profile = province_city_name($profile);
         return view('backend.profiles.show')->with('profile', $profile);
     }
 
@@ -164,7 +165,7 @@ class ProfileController extends AppBaseController
         }
         $profile->is_identity = $request->input('is_identity');
         $profile->save();
-        Flash::success('审核成功');
+        Flash::success('操作成功');
         return redirect(route('admin.profiles.index', ['is_identities'=>'1,3']));
     }
 }

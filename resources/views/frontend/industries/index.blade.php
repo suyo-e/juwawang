@@ -12,40 +12,45 @@
     {!! Form::close() !!}
 </div>
 -->
-<div class="xiala">
-    <div class="scring">
+    <div class="screening">
         <ul>
+            <li class="source">
+                来源
+            </li>
             <li class="clasStion">
                 分类
-                <img src="/image/on_bottom.png" alt="">
             </li>
             <li class="ReleaseTime">
                 时间
-                <img src="/image/on_bottom.png" alt="">
             </li>
         </ul>
     </div>
-    <div class="grade">
-        <ul class="grade-w ejectAll" style="display: none;">
+    <div class="grade-eject">
+        <ul class="grade-y ejectAll">
+            <li class="from" data="user"> 
+                用户 
+                {!! $profile_type==3?'<img src="/image/right.pic" style="width:1.5rem">':'' !!}
+            </li>
+            <li class="from" data="agent"> 
+                经销商
+                {!! $profile_type==2?'<img src="/image/right.pic" style="width:1.5rem">':'' !!}
+            </li>
+            <li class="from" data="manufacturer"> 
+                厂商
+                {!! $profile_type==1?'<img src="/image/right.pic" style="width:1.5rem">':'' !!}
+            </li>
+        </ul>
+        <ul class="grade-w ejectAll">
         @foreach ($categories as $category) 
-            <a href="{{route('frontend.industries.index', ['category_id'=>$category->id, 'display_name'=>$display_name, 'time'=>$time])}}">
-            <li data="{{ $category->id }}">{{ $category->display_name }}</li>
-            </a>
+            <li class="category_id" data="{{ $category->id }}">{{ $category->display_name }}</li>
         @endforeach
         </ul>
-        <ul class="grade-s ejectAll" style="">
-            <a href="{{route('frontend.industries.index', ['category_id'=>$category_id, 'display_name'=>$display_name])}}">
+        <ul class="grade-s ejectAll">
             <li data="">全部</li>
-            </a>
-            <a href="{{route('frontend.industries.index', ['category_id'=>$category_id, 'display_name'=>$display_name, 'time'=>'week'])}}">
             <li data="week">一个星期内</li>
-            </a>
-            <a href="{{route('frontend.industries.index', ['category_id'=>$category_id, 'display_name'=>$display_name, 'time'=>'month'])}}">
             <li data="month">一个月内</li>
-            </a>
         </ul>
     </div>
-</div>
 <br>
 <div class="content">
     <ul>
@@ -77,4 +82,19 @@
 
 @section('script')
 <script src="/js/public.js"></script>
+<script>
+    var url = '{!!route("frontend.industries.index", ["category_id"=>$category_id, "time"=>$time, "from"=>$from])!!}';
+
+    $('.grade-eject li.category_id').click(function() {
+        location.href = url + '&category_id=' + $(this).attr('data');
+    });
+
+    $('.grade-eject li.time').click(function() {
+        location.href = url + '&time=' + $(this).attr('data');
+    });
+
+    $('.grade-eject li.from').click(function() {
+        location.href = url + '&from=' + $(this).attr('data');
+    });
+</script>
 @endsection

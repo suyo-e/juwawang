@@ -84,15 +84,19 @@ class ClassController extends Controller
         if($product_name) {
             $products = $products->where('title', 'LIKE', "%$product_name%");
         }
-
-        $products = $products->get();
-
+        
         if(!isset($profile_type)) {
             $profile_type = $profile->type;
         }
 
         $categories = get_product_categories($profile_type);
 
+        $products = $products->get();
+        foreach($products as $product) {
+            $product->province_city_name = province_city_name ($product)->province_city_name;
+        }
+
+        //dd($products[0]->province_city_name);
         return view('frontend.class.index', compact('categories', 'products', 'category_id', 'time', 'from', 'province_city_code', 'product_name', 'profile_type'));
     }
 

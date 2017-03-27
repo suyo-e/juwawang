@@ -90,7 +90,7 @@ $banner_urls = json_decode($product->banner_urls);
     </div>
     <div class="list1 borderAll">
         <span>地区</span>
-        <input id="city-picker" type="text" name="province_city_name" value="{{ $product->province_city_name }}" placeholder="请输入省市区地址"/>
+        <input id="city-picker" type="text" name="province_city_name" value="" placeholder="{{ $product->province_city_name }}" data-code="{{ $product->area_id }}" data-codes="{{ $product->province_city }}"/>
         <input id="province_city" type="hidden" name="province_city" value="{{ $product->province_city }}"/>
     </div>
     <div class="list1 borderAll">
@@ -99,7 +99,7 @@ $banner_urls = json_decode($product->banner_urls);
     </div>
 </div>
 <footer>
-    <button id="submit" class="fabu" type="submit">发布</button>
+    <button id="submit" class="fabu" type="submit">更新</button>
 </footer>
 {!! Form::close() !!}
 @endsection
@@ -160,10 +160,12 @@ $(function() {
             alert("请填写类别");
             return false;
         }
+        /*
         if($("input[name='brand_name']").val() == "") {
             alert("请填写品牌");
             return false;
         }
+         */
         if($("input[name='price']").val() == "") {
             alert("请填写价格");
             return false;

@@ -7,7 +7,21 @@
 <!-- Type Field -->
 <div class="form-group">
     {!! Form::label('type', '类型:') !!}
-    <p>{!! $profile->type !!}</p>
+    <p>
+<?php 
+switch($profile->type) {
+case 1:
+    echo '厂商';
+    break;
+case 2:
+    echo '代理商';
+    break;
+case 3:
+    echo '普通用户';
+    break;
+}
+?>
+    </p>
 </div>
 
 <!-- User Id Field -->
@@ -20,6 +34,12 @@
 <div class="form-group">
     {!! Form::label('prov_id', '省份/城市/区域:') !!}
     <p>{!! $profile->prov_id !!}, {!! $profile->city_id !!}, {!! $profile->area_id !!}</p>
+    <p>{!! $profile->province_city_name  !!}</p>
+</div>
+
+<div class="form-group">
+    {!! Form::label('identity_str', '身份证号码/营业执照:') !!}
+    <p>{!! $profile->identity_str !!}</p>
 </div>
 
 <!-- Industry Name Field -->
@@ -41,7 +61,7 @@
     <?php $urls = json_decode($profile->identity_urls) ?>
     @if ($urls)
     @foreach ($urls as $url) 
-        <img src="{{$url}}" height="100"/>
+        <a target="_blank" href="{{ $url }}"><img src="{{$url}}" height="100"/></a>
     @endforeach
     @endif
 </div>

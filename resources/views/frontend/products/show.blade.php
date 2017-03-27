@@ -55,9 +55,11 @@
         <span class="see1">详细地址 :</span>
         <span>{{ $product->address }}</span>
     </div>
+    @if ($profile->type != 3)
     <div class="SeeMerchant SeeMe">
         <a href="{{ route('frontend.profiles.show', ['user_id' => $product->user_id ]) }}">查看商家<img src="/image/on_right.png" alt=""/></a>
     </div>
+    @endif
 </section>
 <footer>
     <ul class="foterNav">

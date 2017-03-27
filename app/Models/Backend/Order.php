@@ -29,6 +29,7 @@ class Order extends Model
         'phone',
         'prov_id',
         'city_id',
+        'area_id',
         'quantity',
         'remark',
         'price',
@@ -47,6 +48,7 @@ class Order extends Model
         'phone' => 'string',
         'prov_id' => 'integer',
         'city_id' => 'integer',
+        'area_id' => 'integer',
         'quantity' => 'integer',
         'remark' => 'string',
         'status' => 'integer'

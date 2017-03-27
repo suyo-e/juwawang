@@ -88,7 +88,7 @@ class Product extends Model
         'industry_id' => 'numeric',
         'prov_id' => 'numeric',
         'city_id' => 'numeric',
-        'brand_name' => 'string',
+        //'brand_name' => 'string',
         //'pic_url' => 'string',
         'address' => 'string',
         'contact_name' => 'string',

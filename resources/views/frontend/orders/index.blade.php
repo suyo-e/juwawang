@@ -12,7 +12,7 @@
     <div class="listClas show">
         <ul class="IntentList">
         @foreach ($purchase_orders as $order) 
-            @if (is_null($order->product->deleted_at))
+            @if ($order->product && is_null($order->product->deleted_at))
             <a href="{{ route('frontend.orders.show', ['order_id'=>$order->id]) }}">
             @else
             <a>
@@ -25,7 +25,10 @@
                 <div class="classcont">
                     <p><b>{{ $order->product->title }}</b></p>
                     <p class="txt">价格 : <span class="price">{{ $order->price }} </span></p>
-                    <p class="txt">预购数量 : <span>{{ $order->quantity }}</span></p>
+                    <p class="txt">预购数量 : <span>{{ $order->quantity }}</span>
+                    @if (!$order->product || !is_null($order->product->deleted_at))
+                        <span class="shixiao">已失效</span>
+                    @endif</p>
                 </div>
             </li>
             </a>

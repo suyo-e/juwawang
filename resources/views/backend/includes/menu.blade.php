@@ -46,6 +46,14 @@
                 <i class="fa fa-circle-o"></i><span>资讯文章</span>
             </a>
         </li>
+        <li class="{{ Request::is('feedback*') ? 'active' : '' }}">
+            <a href="{!! route('admin.feedback.index') !!}"><i class="fa fa-circle-o"></i><span>反馈</span></a>
+        </li>
+
+        <li class="{{ Request::is('icons*') ? 'active' : '' }}">
+            <a href="{!! route('admin.icons.index') !!}"><i class="fa fa-circle-o"></i><span>首页Icon配置</span></a>
+        </li>
+
     </ul>
 </li>
 <li class="active treeview">
@@ -81,8 +89,5 @@
     <a href="{!! route('admin.profiles.index', ['is_identities'=>'1,3']) !!}">
         <i class="fa fa-circle-o"></i><span>审核及资料修改</span>
     </a>
-</li>
-<li class="{{ Request::is('feedback*') ? 'active' : '' }}">
-    <a href="{!! route('admin.feedback.index') !!}"><i class="fa fa-circle-o"></i><span>反馈</span></a>
 </li>
 

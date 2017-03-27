@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\AppBaseController;
 
+use App\Models\Backend\Icon;
 use App\Models\Backend\Banner;
 use App\Models\Backend\Category;
 use App\Models\Backend\Profile;
@@ -22,6 +23,11 @@ class FrontendController extends AppBaseController
         $banners = Banner::get();
 
         $profile = Profile::where('user_id', access()->user()->id)->first();
+
+        $icons = Icon::where('type', $profile->type)
+            ->orderBy('rank', 'desc')
+            ->orderBy('updated_at', 'desc')
+            ->get();
         
         switch($profile->type) {
         //用户只看经销商
@@ -36,6 +42,7 @@ class FrontendController extends AppBaseController
                 \App\Models\Backend\Category::TYPE_MANUFACTURER
             );
         case \App\Models\Backend\Category::TYPE_MANUFACTURER:
+        //厂商看厂商
             $type = array(\App\Models\Backend\Category::TYPE_MANUFACTURER);
         default:
             $type = array(
@@ -47,6 +54,7 @@ class FrontendController extends AppBaseController
         $profiles = Profile::where('is_recommand', 1)
             ->whereIn('type', $type)
             ->orderBy('updated_at', 'desc')
+            ->orderBy('recommand_count', 'desc')
             ->limit(20)
             ->get();
         
@@ -56,9 +64,9 @@ class FrontendController extends AppBaseController
             $profile->user = User::find($profile->user_id);
         }
 
-        $categories = get_categories($profile->type)->slice(0, 7);
+        //$categories = get_categories($profile->type)->slice(0, 7);
 
-        return view('frontend.index', compact('banners', 'profiles', 'categories'));
+        return view('frontend.index', compact('banners', 'profiles', 'icons'));
     }
 
     /**

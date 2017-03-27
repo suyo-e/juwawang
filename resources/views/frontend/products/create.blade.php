@@ -152,10 +152,12 @@ $(function() {
             alert("请填写类别");
             return false;
         }
+        /*
         if($("input[name='brand_name']").val() == "") {
             alert("请填写品牌");
             return false;
         }
+         */
         if($("input[name='price']").val() == "") {
             alert("请填写价格");
             return false;

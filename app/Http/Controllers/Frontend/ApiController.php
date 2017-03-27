@@ -72,7 +72,6 @@ class ApiController extends AppBaseController
         ];
         $code = rand(100000, 999999);
 
-
         $client = new Client(new App($config));
         $req    = new AlibabaAliqinFcSmsNumSend;
 
@@ -94,8 +93,10 @@ class ApiController extends AppBaseController
         //stdClass Object ( [code] => 15 [msg] => Remote service error [sub_code] => isv.SMS_TEMPLATE_ILLEGAL [sub_msg] => 短信模板不合法 [request_id] => 43edahozfdt0 )
         session(['verify_code' => $code, 'verify_time' => time(), 'phone' => $phone]);
 
-        //print_r($resp);
-        //print_r($resp->result->model);
+        \Log::info('sendMessage', array(
+            'session'=>session(),
+            'resp'=>$resp
+        ));
         return $this->sendResponse(array(), 'send success');
     }
 
