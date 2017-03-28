@@ -122,6 +122,11 @@ $(function() {
     $('#upload-avatar').fileupload({
         url: '/upload',
         dataType: 'json',
+        add: function(e, data) {
+            $("body").append('<div class="flashMessage chenggong ok" style="display: none;"><br><br><br><span>上传中...</span></div>');
+            $(".flashmessage").show();
+            data.submit();
+        },
         done: function (e, data) {
             var path = data.result.data.path;
             //$("#upload-avatar-input").val(path);
@@ -130,6 +135,7 @@ $(function() {
             if( $('.weui_uploader_files li').length == 0 )   {
                 $('#upload-avatar-input').val(path);
             }
+            $(".flashmessage").fadeOut();
             var $preview = $('<li class="weui_uploader_file" style="background-image:url('+path+')"><input type="hidden" value="'+path+'" name="banner_urls[]"/></li>');
             $('.weui_uploader_files').append($preview);
         }

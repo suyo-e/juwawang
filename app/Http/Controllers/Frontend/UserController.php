@@ -64,6 +64,12 @@ class UserController extends Controller
         $user = User::find($user_id);
         $old_password = $request->input('old_password');
         $new_password = $request->input('new_password');
+        $rep_password = $request->input('rep_password');
+
+        if($new_password != $rep_password) {
+            Flash::error('重复输入密码错误');
+            return redirect()->back();
+        }
 
         if($old_password && $new_password) {
             if(Hash::check($old_password, $user->password)) {
@@ -117,6 +123,48 @@ class UserController extends Controller
     public function register() 
     {
         return view('frontend.user.register');
+    }
+
+    public function resetPassword(Request $request) 
+    {
+        $phone = $request->input('phone');
+
+        $user = User::where('phone', $phone)->first();
+        if(!$user) {
+            Flash::error('用户不存在');
+            return redirect()->back()->withInput()->with('error', '用户不存在');
+        }
+
+        $old_password = $request->input('old_password');
+        $new_password = $request->input('new_password');
+        $rep_password = $request->input('rep_password');
+
+        $verify_time = session('verify_time');
+        $verify_code = session('verify_code');
+
+        if(!$verify_time) {
+            Flash::error('请先获取短信');
+            return redirect()->back()->withInput()->with('error', '验证码错误');
+        }
+        if($verify_time && time() - $verify_time > 30000) {
+            Flash::error('短信验证超时.');
+            return redirect()->back()->withInput()->with('error', '验证码错误');
+        }
+        if($verify_code != $request->input('verify_code')) {
+            Flash::error('验证码错误.');
+            return redirect()->back()->withInput()->with('error', '验证码错误');
+        }
+
+        if($new_password != $rep_password) {
+            Flash::error('重复输入密码错误');
+            return redirect()->back();
+        }
+
+        $user->password = bcrypt($new_password);
+        $user->save();
+        Flash::success('密码修改成功');
+
+        return redirect('/');
     }
 
     public function postLogin() 

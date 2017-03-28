@@ -29,28 +29,23 @@
 
     <div class="grade-eject">
         <ul class="grade-y ejectAll">
-            <li class="from" data="user"> 
-                用户 
-                {!! $profile_type==3?'<img src="/image/right.pic" style="width:1.5rem">':'' !!}
-            </li>
-            <li class="from" data="agent"> 
-                经销商
-                {!! $profile_type==2?'<img src="/image/right.pic" style="width:1.5rem">':'' !!}
-            </li>
-            <li class="from" data="manufacturer"> 
-                厂商
-                {!! $profile_type==1?'<img src="/image/right.pic" style="width:1.5rem">':'' !!}
-            </li>
+            {!! li_filter_render('from', '', '全部') !!}
+            {!! li_filter_render('from', 'user', '用户') !!}
+            {!! li_filter_render('from', 'agent', '代理商') !!}
+            {!! li_filter_render('from', 'manufacturer', '厂商') !!}
         </ul>
         <ul class="grade-w ejectAll">
-        @foreach ($categories as $category) 
-            <li class="category_id" data="{{$category->id}}">{{ $category->display_name }}</li>
-        @endforeach
+            {!! li_filter_render('category_id', '', '全部') !!}
+            @if ($from != '')
+                @foreach ($categories as $category) 
+                {!! li_filter_render('category_id', $category->id, $category->display_name) !!}
+                @endforeach
+            @endif
         </ul>
         <ul class="grade-s ejectAll">
-            <li class="time" data="0">全部</li>
-            <li class="time" data="week">一个星期内</li>
-            <li class="time" data="month">一个月内</li>
+            {!! li_filter_render('time', '', '全部') !!}
+            {!! li_filter_render('time', 'week', '一星期内') !!}
+            {!! li_filter_render('time', 'month', '一个月内') !!}
         </ul>
     </div>
 
@@ -63,7 +58,7 @@
                   <img src="{{ $product->pic_url }}" alt="">
               </div>
               <div class="classcont">
-                  <p><b>{{ $product->title }}</b></p>
+                  <p><b>{{ $product->title }} - {{ get_profile_type_name($product->profile->type) }}</b></p>
                   <p>价格: <span class="price">{{ $product->price }} </span>&nbsp;&nbsp;</p>
                     <!--<p>品牌:<span>{{ $product->brand_name }}</span></p> -->
                   <p>发布时间: <span>{{ substr($product->created_at, 0, 10) }}</span></p>
@@ -86,18 +81,6 @@
 $(function(){
     var url = '{!!route("frontend.class", ["category_id"=>$category_id, "time"=>$time, "from"=>$from, "province_city_code"=>$province_city_code])!!}';
 
-    $('.grade-eject li.category_id').click(function() {
-        location.href = url + '&category_id=' + $(this).attr('data');
-    });
-
-    $('.grade-eject li.time').click(function() {
-        location.href = url + '&time=' + $(this).attr('data');
-    });
-
-    $('.grade-eject li.from').click(function() {
-        location.href = url + '&from=' + $(this).attr('data');
-    });
-    
     $('.clasRegion').click(function(){
         $('.ejectAll').hide();
         $("#city-picker").cityPicker({
@@ -109,35 +92,6 @@ $(function(){
                 console.log(values, displayValues);
             },
         });
-    });
-
-    //点击出现弹框 查看图片
-    $('#onzhao').on('click',function(){
-        $("#onblock").show();
-        $('#removee').on('click','img',function(){
-            $("#onblock").hide();
-        })
-    });
-    $('#onyier').on('click',function(){
-        $("#onkuai").show();
-        $('#remove').on('click','img',function(){
-            $("#onkuai").hide();
-        })
-    });
-    $('.onbutton').on('click',function(){
-        $(".motai").show();
-        $('.removee').on('click','img',function(){
-            $(".motai").hide();
-        })
-    });
-
-    //点击查看联系方式弹框
-    $('.chakanbtn').on('click','button',function(){
-        $('#tankuang').show();
-        $('#quxiao').click(function(){
-            $('#tankuang').hide();
-        })
-
     });
 
     $('.clasStion').click(function(){

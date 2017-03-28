@@ -86,11 +86,10 @@ class ProductController extends AppBaseController
 
         $user_id = access()->user()->id;
 
-
         $collect = Collect::where('product_id', $product_id)
             ->where('user_id', $user_id)
             ->first();
-        $profile = Profile::where('user_id', $user_id)->first();
+        $profile = Profile::where('user_id', $product->user_id)->first();
 
         return view('frontend.products.show', compact('product', 'user_id', 'collect', 'profile'));
     }

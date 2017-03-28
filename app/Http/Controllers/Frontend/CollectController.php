@@ -8,6 +8,7 @@ use App\Http\Requests\Backend\UpdateCollectRequest;
 use App\Repositories\Backend\CollectRepository;
 
 use App\Models\Backend\Category;
+use App\Models\Backend\Industry;
 use App\Models\Backend\Collect;
 use App\Models\Backend\Product;
 use Illuminate\Http\Request;
@@ -61,6 +62,8 @@ class CollectController extends AppBaseController
         foreach($profiles as $profile) {
             province_city_name($profile);
             $profile->user = User::find($profile->user_id);
+
+            $profile->industry_service = Industry::select('service')->where('user_id', $profile->user_id)->first()->service;
         }
         /*
         $users = User::whereIn('id', $user_ids)->get();

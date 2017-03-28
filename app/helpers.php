@@ -174,6 +174,29 @@ if(! function_exists('province_city_name')) {
     }
 }
 
+if(!function_exists('get_profile_types')) {
+
+    function get_profile_types($type) {
+        switch($type) {
+        case \App\Models\Backend\Category::TYPE_USER:
+            return array(
+                \App\Models\Backend\Category::TYPE_AGENT
+            );
+        case \App\Models\Backend\Category::TYPE_AGENT:
+            return array(
+                \App\Models\Backend\Category::TYPE_AGENT,
+                \App\Models\Backend\Category::TYPE_MANUFACTURER
+            );
+        case \App\Models\Backend\Category::TYPE_MANUFACTURER:
+            return array(
+                \App\Models\Backend\Category::TYPE_MANUFACTURER
+            );
+        }
+    }
+}
+
+
+
 if(! function_exists('get_product_types')){ 
     function get_product_types( $profile_type ) {
 
@@ -256,5 +279,106 @@ if(!function_exists('get_product_categories')) {
         $categories = $categories->get();
 
         return $categories;
+    }
+}
+
+if(!function_exists('get_profile_type_name')) {
+
+    function get_profile_type_name($type) {
+        switch($type) {
+        case \App\Models\Backend\Category::TYPE_USER:
+            return '用户';
+            break;
+        case \App\Models\Backend\Category::TYPE_AGENT:
+            return '代理商';
+            break;
+        case \App\Models\Backend\Category::TYPE_MANUFACTURER:
+            return '厂商';
+            break;
+        }
+    }
+}
+
+if(!function_exists('is_profile_type_permission')) {
+
+    function is_profile_type_permission($type, $profile_type) {
+        switch($type) {
+        case \App\Models\Backend\Category::TYPE_USER:
+            return in_array($profile_type, array(
+                \App\Models\Backend\Category::TYPE_AGENT
+            ));
+        case \App\Models\Backend\Category::TYPE_AGENT:
+            return in_array($profile_type, array(
+                \App\Models\Backend\Category::TYPE_AGENT,
+                \App\Models\Backend\Category::TYPE_MANUFACTURER
+            ));
+        case \App\Models\Backend\Category::TYPE_MANUFACTURER:
+            return in_array($profile_type, array(
+                \App\Models\Backend\Category::TYPE_MANUFACTURER
+            ));
+        }
+    }
+}
+
+if(!function_exists('is_product_type_permission')) {
+
+    function is_product_type_permission($type, $profile_type) {
+        switch($type) {
+        case \App\Models\Backend\Category::TYPE_USER:
+            return in_array($profile_type, array(
+                \App\Models\Backend\Category::TYPE_AGENT
+            ));
+        case \App\Models\Backend\Category::TYPE_AGENT:
+            return in_array($profile_type, array(
+                \App\Models\Backend\Category::TYPE_AGENT,
+                \App\Models\Backend\Category::TYPE_MANUFACTURER
+            ));
+        case \App\Models\Backend\Category::TYPE_MANUFACTURER:
+            return in_array($profile_type, array(
+                \App\Models\Backend\Category::TYPE_MANUFACTURER
+            ));
+        }
+    }
+}
+
+if(!function_exists('is_profile_identity')) {
+    function is_profile_identity($is_identity) {
+        switch($is_identity) {
+        case 0:
+            return '<span>未认证</span>';
+            break;
+        case 1:
+            return '<span>认证中</span>';
+            break;
+        case 2:
+            return '<span style="background-color:#F4BE46">已认证</span>';
+            break;
+        case 3:
+        case 4:
+            break;
+        }
+    }
+}
+
+if(!function_exists('is_li_select')) {
+    function is_li_select($val1, $val2) {
+        return $val1==$val2?'<img src="/image/right.pic" style="width:1.5rem">':'';
+    }
+}
+
+if(!function_exists('li_filter_render')) {
+    function li_filter_render($name, $value, $display_name) {
+        $params = request()->all();
+        $current_value = request()->input($name);
+        $params[$name] = $value;
+        $filter_url = url()->current().'?'.http_build_query($params);
+
+        $is_selected = $current_value == $value ? '<img src="/image/right.pic" style="width:1.5rem">':'';
+
+        return "
+            <li onclick='javascript:location.href=\"$filter_url\"'> 
+                $display_name $is_selected
+            </li>
+        ";
     }
 }

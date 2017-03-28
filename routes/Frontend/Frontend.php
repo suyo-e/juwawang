@@ -15,6 +15,7 @@ Route::post('/upload', 'FrontendController@upload')->name('upload')->middleware(
 Route::get('/users/edit', 'UserController@edit')->name('users.show')->middleware('auth');
 Route::post('/users/update', 'UserController@update')->name('users.update')->middleware('auth');
 Route::get('/users/password', 'UserController@password')->name('users.password')->middleware('auth');
+Route::post('/users/resetPassword', 'UserController@resetPassword')->name('users.resetPassword');
 
 Route::get('/products/categories', 'ProductController@categories')->name('products.categories')->middleware('auth');
 Route::get('/products/create', 'ProductController@create')->name('products.create')->middleware('auth');
@@ -58,6 +59,7 @@ Route::get('/verify', 'ApiController@verify')->name('api.verify');
 Route::get('/api/feedback', 'ApiController@feedback')->name('api.feedback');
 
 Route::get('macros', 'FrontendController@macros')->name('macros');
+Route::get('forget', 'FrontendController@forget')->name('forget');
 Route::get('setting', 'FrontendController@setting')->name('setting')->middleware('auth');
 Route::get('about', 'FrontendController@about')->name('about')->middleware('auth');
 Route::get('feedback', 'FrontendController@feedback')->name('feedback')->middleware('auth');

@@ -19,7 +19,7 @@
         <ul>
             @foreach ($icons as $icon)
             <li>
-                <a href="{{route('frontend.industries.index', ['category_ids'=>$icon->category_ids])}}">
+                <a href="{{route('frontend.industries.index', ['category_ids'=>$icon->category_ids, 'from'=>''])}}">
                     <img class="iocn-1" src="{{ $icon->pic_url }}" alt=""/>
                     <p>{{ $icon->title}}</p>
                 </a>
@@ -46,31 +46,16 @@
                             <img src="{{ $profile->avatar }}" alt=""/>
                         </div>
                         <div class="companyName">
-                        <p><b>{{ $profile->industry_name}}</b> （{{$profile->user->name}} - {{($profile->type == 1?'厂商':'经销商') }}）</p>
+                        <p><b>{{ $profile->industry_name}}</b> （{{$profile->user->name}} - {{ get_profile_type_name($profile->type) }}）</p>
                             <p>{{ $profile->province_city_name.' '.$profile->address }}</p>
                         </div>
                         <div class="Authentication">
-                            <?php
-                            switch($profile->is_identity) {
-                            case 0:
-                                echo '<span>未认证</span>';
-                                break;
-                            case 1:
-                                echo '<span>认证中</span>';
-                                break;
-                            case 2:
-                                echo '<span style="background-color:#F4BE46">已认证</span>';
-                                break;
-                            case 3:
-                            case 4:
-                                break;
-                            }
-                            ?>
+                            {!! is_profile_identity($profile->is_identity) !!}
                         </div>
                     </div>
                     <p>
                         <span class="TheMain">主营业务 : </span>
-                        <span class="span1">{{ $profile->service }}</span>
+                        <span class="span1">{{ $profile->industry_service }}</span>
                     </p>
                 </a>
             </li>

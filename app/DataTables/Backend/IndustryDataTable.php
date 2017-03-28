@@ -111,7 +111,7 @@ class IndustryDataTable extends DataTable
             '联系方式' => ['name' => 'phone', 'data' => 'phone'],
             '地址' => ['name' => 'address', 'data' => 'address'],
             '主营业务' => ['name' => 'service', 'data' => 'service'],
-            '描述' => ['name' => 'description', 'data' => 'description']
+            #'描述' => ['name' => 'description', 'data' => 'description']
         ];
     }
 

@@ -62,7 +62,7 @@
                     </div>
                     <p>
                         <span class="TheMain">主营业务 : </span>
-                        <span class="span1">{{ $profile->service }}</span>
+                        <span class="span1">{{ $profile->industry_service }}</span>
                     </p>
                 </a>
             </li>
@@ -79,7 +79,7 @@ $(".BrandNew").click(function() {
     $(this).addClass('active');
 
     var dataId = $(this).attr('data-id');
-    $(".classContent").hide();
+    $(".classContent, .content").hide();
     $("#" + dataId).show();
 });
 </script>

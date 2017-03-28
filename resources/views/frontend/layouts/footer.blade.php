@@ -3,7 +3,7 @@
     <ul>
         <li>
             <a href="/home">
-                <img src="/image/{{ Active::checkUriPattern('home')?'foter-nav-h': 'foter-nav-hui' }}.png" alt="" data-active="foter-nav-h"/>
+                <img src="/image/{{ Active::checkUriPattern('home')||Active::checkUriPattern('/')?'foter-nav-h': 'foter-nav-hui' }}.png" alt="" data-active="foter-nav-h"/>
                 <p>首页</p>
             </a>
         </li>

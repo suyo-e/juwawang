@@ -94,6 +94,7 @@ class ClassController extends Controller
         $products = $products->get();
         foreach($products as $product) {
             $product->province_city_name = province_city_name ($product)->province_city_name;
+            $product->profile = Profile::where('user_id', $product->user_id)->first();
         }
 
         //dd($products[0]->province_city_name);

@@ -7,6 +7,7 @@ use App\Http\Controllers\AppBaseController;
 use App\Models\Backend\Icon;
 use App\Models\Backend\Banner;
 use App\Models\Backend\Category;
+use App\Models\Backend\Industry;
 use App\Models\Backend\Profile;
 use App\Models\Access\User\User;
 use Illuminate\Http\Request;
@@ -35,21 +36,25 @@ class FrontendController extends AppBaseController
             $type = array(
                 \App\Models\Backend\Category::TYPE_AGENT
             );
+            break;
         //经销商看经销商，厂商
         case \App\Models\Backend\Category::TYPE_AGENT:
             $type = array(
                 \App\Models\Backend\Category::TYPE_AGENT,
                 \App\Models\Backend\Category::TYPE_MANUFACTURER
             );
+            break;
         case \App\Models\Backend\Category::TYPE_MANUFACTURER:
         //厂商看厂商
             $type = array(\App\Models\Backend\Category::TYPE_MANUFACTURER);
+            break;
         default:
             $type = array(
                 \App\Models\Backend\Category::TYPE_USER,
                 \App\Models\Backend\Category::TYPE_AGENT,
                 \App\Models\Backend\Category::TYPE_MANUFACTURER
             );
+            break;
         }
         $profiles = Profile::where('is_recommand', 1)
             ->whereIn('type', $type)
@@ -62,6 +67,7 @@ class FrontendController extends AppBaseController
         foreach($profiles as $profile) {
             province_city_name($profile);
             $profile->user = User::find($profile->user_id);
+            $profile->industry_service = Industry::select('service')->where('user_id', $profile->user_id)->first()->service;
         }
 
         //$categories = get_categories($profile->type)->slice(0, 7);
@@ -99,5 +105,11 @@ class FrontendController extends AppBaseController
     public function feedback() 
     {
         return view('frontend.feedback');
+    }
+
+    public function forget(Request $request) 
+    {
+        $step = $request->input('step', 1);
+        return view('frontend.forget', compact('step'));
     }
 }

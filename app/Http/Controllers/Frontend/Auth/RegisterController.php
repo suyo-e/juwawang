@@ -192,6 +192,9 @@ class RegisterController extends Controller
             );
             $profile = Profile::create($profile_data);
 
+            $profile->invite_code  = $profile->id + 100000;
+            $profile->save();
+
             $industry_data = array(
                 'display_name' => $request->input('industry_name'),
                 'avatar' => '/image/avatar.png',

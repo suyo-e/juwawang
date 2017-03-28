@@ -1048,9 +1048,19 @@ input[type=file] {
   width: 5rem;
   height: 5rem;
 }
+.classContent > ul li .clasHeight img{
+  width: 6rem;
+  height: 6rem;
+}
+.classContent > ul li .classcont{
+  width: 68%;
+  overflow: hidden;
+}
 .classContent > ul li .classcont p {
+  height: 1.3rem;
   line-height: 1.3rem;
   font-size: 0.8rem;
+  overflow: hidden;
 }
 .classContent > ul li .classcont p b {
   font-size: 0.9rem;
@@ -1187,6 +1197,10 @@ input[type=file] {
   width: 16px;
   margin: 1rem 1rem 0 0;
 }
+.SeeMerchant span input{
+  border: 0;
+  font-size: 1.1rem;
+}
 .foterNav {
   width: 100%;
   position: fixed;
@@ -1280,7 +1294,6 @@ input[type=file] {
   padding: 0.6rem;
   background: #fff;
   box-sizing: border-box;
-  background-size: 26px;
 }
 .intention .Product .title {
   margin-bottom: 0.4rem;
@@ -1292,11 +1305,13 @@ input[type=file] {
 }
 .intention .Product .ProductCont > img {
   width: 6rem;
+  height: 6rem;
   float: left;
   margin-right: 0.8rem;
 }
 .intention .Product .ProductCont .info {
   float: left;
+  width: 60%;
 }
 .intention .Product .ProductCont .info span {
   display: block;
@@ -1474,7 +1489,7 @@ section {
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
-  margin-top: 0.2rem;
+  margin-top: 0.2rem;
 }
 .myBox .personalData .editData {
   display: inline-block;
@@ -1547,7 +1562,7 @@ section {
 }
 .edit .PersonalInf .name > span {
   display: inline-block;
-  width: 12%;
+  width: 18%;
   color: #5f5f5f;
   text-align: left;
 }
@@ -1841,6 +1856,7 @@ section {
   width: 100%;
   height: 11rem;
   position: relative;
+  overflow: hidden;
 }
 .bjMap img {
   width: 100%;
@@ -1983,18 +1999,18 @@ section {
   height: 4.6rem;
 }
 .purchaseCont .listClas .IntentList li .classcont {
-    width: 70%;
+  width: 70%;
 }
 .purchaseCont .listClas .IntentList li .classcont .shixiao{
-    float: right;
-    display: inline-block;
-    width: 3.5rem;
-    height: 1.6rem;
-    line-height: 1.6rem;
-    text-align: center;
-    background: red;
-    border-radius: 0.2rem;
-    color: #fff;
+  float: right;
+  display: inline-block;
+  width: 3.5rem;
+  height: 1.6rem;
+  line-height: 1.6rem;
+  text-align: center;
+  background: red;
+  border-radius: 0.2rem;
+  color: #fff;
 }
 .purchaseCont .listClas .IntentList li .classcont p {
   line-height: 1.6rem;
@@ -2198,14 +2214,14 @@ section {
   font-size: 1.3rem;
 }
 .onbutton input{
-       
-        display:none;
+
+  display:none;
 }
 .onbutton .seeimg_file{
-    float:right;
-    background:url(/image/zhaopian.png) no-repeat center center;
-    width:2em;
-    height:1.6rem;
-    margin-top:0.35rem;
-    background-size:1.6rem 1.35rem;
+  float:right;
+  background:url(/image/zhaopian.png) no-repeat right center;
+  width:10em;
+  height:1.6rem;
+  margin-top:0.35rem;
+  background-size:1.6rem 1.35rem;
 }

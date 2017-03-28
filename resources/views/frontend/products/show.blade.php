@@ -60,6 +60,12 @@
         <a href="{{ route('frontend.profiles.show', ['user_id' => $product->user_id ]) }}">查看商家<img src="/image/on_right.png" alt=""/></a>
     </div>
     @endif
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
 </section>
 <footer>
     <ul class="foterNav">

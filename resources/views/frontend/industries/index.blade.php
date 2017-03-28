@@ -14,41 +14,41 @@
 -->
     <div class="screening">
         <ul>
-            <li class="source">
+            <li class="source" style="width: 33.3%">
                 来源
             </li>
-            <li class="clasStion">
+            <li class="clasStion" style="width: 33.3%">
                 分类
             </li>
-            <li class="ReleaseTime">
+            <li class="ReleaseTime" style="width: 33.3%">
                 时间
             </li>
         </ul>
     </div>
     <div class="grade-eject">
         <ul class="grade-y ejectAll">
+<!--
             <li class="from" data="user"> 
                 用户 
                 {!! $profile_type==3?'<img src="/image/right.pic" style="width:1.5rem">':'' !!}
             </li>
-            <li class="from" data="agent"> 
-                经销商
-                {!! $profile_type==2?'<img src="/image/right.pic" style="width:1.5rem">':'' !!}
-            </li>
-            <li class="from" data="manufacturer"> 
-                厂商
-                {!! $profile_type==1?'<img src="/image/right.pic" style="width:1.5rem">':'' !!}
-            </li>
+-->
+            {!! li_filter_render('from', '', '全部') !!}
+            {!! li_filter_render('from', 'agent', '代理商') !!}
+            {!! li_filter_render('from', 'manufacturer', '厂商') !!}
         </ul>
         <ul class="grade-w ejectAll">
-        @foreach ($categories as $category) 
-            <li class="category_id" data="{{ $category->id }}">{{ $category->display_name }}</li>
-        @endforeach
+            {!! li_filter_render('category_id', '', '全部') !!}
+        @if ($from != '')
+            @foreach ($categories as $category) 
+            {!! li_filter_render('category_id', $category->id, $category->display_name) !!}
+            @endforeach
+        @endif
         </ul>
         <ul class="grade-s ejectAll">
-            <li data="">全部</li>
-            <li data="week">一个星期内</li>
-            <li data="month">一个月内</li>
+            {!! li_filter_render('time', '', '全部') !!}
+            {!! li_filter_render('time', 'week', '一星期内') !!}
+            {!! li_filter_render('time', 'month', '一个月内') !!}
         </ul>
     </div>
 <br>
@@ -59,14 +59,14 @@
             <a href="{{ route('frontend.profiles.show', ['user_id'=>$industry->user_id]) }}">
                 <div class="listCont">
                     <div class="iconbox">
-                        <img src="{{$industry->avatar}}" alt="">
+                        <img src="{{$industry->profile->avatar}}" alt="">
                     </div>
                     <div class="companyName">
-                        <p><b>{{ $industry->display_name}}</b> （{{$industry->user->name}}）</p>
-                        <p>{{ $industry->province_city_name }}</p>
+                        <p><b>{{ $industry->display_name}}</b> （{{$industry->user->name}} - {{ get_profile_type_name($industry->profile->type)}}）</p>
+                            <p>{{ $industry->profile->province_city_name.' '.$industry->profile->address }}</p>
                     </div>
                     <div class="Authentication">
-                        <span>{{$industry->profile->is_identity==1?'已认证':'未认证'}}</span>
+                    {!! is_profile_identity($industry->profile->is_identity) !!}
                     </div>
                 </div>
                 <p>
@@ -83,7 +83,7 @@
 @section('script')
 <script src="/js/public.js"></script>
 <script>
-    var url = '{!!route("frontend.industries.index", ["category_id"=>$category_id, "time"=>$time, "from"=>$from])!!}';
+    var url = '{!!route("frontend.industries.index", ["category_id"=>$category_id, "time"=>$time, "from"=>$from, "category_ids"=>$category_ids])!!}';
 
     $('.grade-eject li.category_id').click(function() {
         location.href = url + '&category_id=' + $(this).attr('data');

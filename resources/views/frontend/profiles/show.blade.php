@@ -81,7 +81,7 @@
         @foreach ($products as $product)
         <a href="{{ route('frontend.products.show', ['product_id' => $product->id]) }}">
         <li>
-            <div class="classImg">
+            <div class="classImg clasHeight">
                 <img src="{{ $product->pic_url }}" alt="">
             </div>
             <div class="classcont">
