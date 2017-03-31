@@ -37,6 +37,21 @@ class UserTableController extends Controller
             ->editColumn('confirmed', function ($user) {
                 return $user->confirmed_label;
             })
+            ->addColumn('province_city_name', function($user) {
+                $profile = \App\Models\Backend\Profile::where('user_id', $user->id)->first();
+                if($profile) {
+                    $profile = province_city_name($profile);
+                    return $profile->province_city_name;
+                }
+                     
+                return '';
+            })
+            ->addColumn('avatar', function($user) {
+                $profile = \App\Models\Backend\Profile::where('user_id', $user->id)->first();
+                if($profile)
+                    return '<img src="'.$profile->avatar.'" height="50" />';
+                return '';
+            })
             ->addColumn('type', function($user) {
                 $profile = \App\Models\Backend\Profile::where('user_id', $user->id)->first();
                 if(!$profile)

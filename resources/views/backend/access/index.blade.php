@@ -27,6 +27,9 @@
                         <tr>
                             <th>用户id</th>
                             <th>用户名</th>
+                            <th>手机号码</th>
+                            <th>用户头像</th>
+                            <th>地区</th>
                             <th>是否激活</th>
                             <th>角色</th>
                             <th>类型</th>
@@ -72,6 +75,9 @@
                 columns: [
                     {data: 'id', name: '{{config('access.users_table')}}.id'},
                     {data: 'name', name: '{{config('access.users_table')}}.name'},
+                    {data: 'phone', name: 'phone'},
+                    {data: 'avatar', name: 'avatar', sortable: false},
+                    {data: 'province_city_name', name: 'province_city_name', sortable: false},
                     //{data: 'email', name: '{{config('access.users_table')}}.email'},
                     {data: 'confirmed', name: '{{config('access.users_table')}}.confirmed'},
                     {data: 'roles', name: '{{config('access.roles_table')}}.name', sortable: false},

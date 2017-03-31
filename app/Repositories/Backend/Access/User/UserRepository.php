@@ -92,6 +92,7 @@ class UserRepository extends BaseRepository
             ->select([
                 config('access.users_table').'.id',
                 config('access.users_table').'.name',
+                'phone',
                 config('access.users_table').'.email',
                 config('access.users_table').'.status',
                 config('access.users_table').'.confirmed',
