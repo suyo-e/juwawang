@@ -46,7 +46,7 @@ class UserTableController extends Controller
                 case 1:
                     return '厂商';
                 case 2:
-                    return '代理商';
+                    return '经销商';
                 case 3:
                     return '普通用户';
                 default:

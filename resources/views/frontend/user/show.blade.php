@@ -18,7 +18,7 @@
                             echo '厂商';
                             break;
                         case 2:
-                            echo '代理商';
+                            echo '经销商';
                             break;
                         case 3:
                             echo '用户';

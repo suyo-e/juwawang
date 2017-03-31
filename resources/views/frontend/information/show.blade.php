@@ -11,7 +11,7 @@
                     <span class="time">{{ $information->subtitle }}</span>
                 </p>
             </li>
-            <li>{{$information->content}}</li>
+            <li>{!! $information->content !!}</li>
         </ul>
     </div>
 </div>

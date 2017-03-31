@@ -24,6 +24,7 @@ class FrontendController extends AppBaseController
         $banners = Banner::get();
 
         $profile = Profile::where('user_id', access()->user()->id)->first();
+        $from = '';
 
         $icons = Icon::where('type', $profile->type)
             ->orderBy('rank', 'desc')
@@ -36,6 +37,7 @@ class FrontendController extends AppBaseController
             $type = array(
                 \App\Models\Backend\Category::TYPE_AGENT
             );
+            $from = 'agent';
             break;
         //经销商看经销商，厂商
         case \App\Models\Backend\Category::TYPE_AGENT:
@@ -47,6 +49,7 @@ class FrontendController extends AppBaseController
         case \App\Models\Backend\Category::TYPE_MANUFACTURER:
         //厂商看厂商
             $type = array(\App\Models\Backend\Category::TYPE_MANUFACTURER);
+            $from = 'manufacturer';
             break;
         default:
             $type = array(
@@ -72,7 +75,7 @@ class FrontendController extends AppBaseController
 
         //$categories = get_categories($profile->type)->slice(0, 7);
 
-        return view('frontend.index', compact('banners', 'profiles', 'icons'));
+        return view('frontend.index', compact('banners', 'profiles', 'icons', 'from'));
     }
 
     /**

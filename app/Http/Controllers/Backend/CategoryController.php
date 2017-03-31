@@ -55,7 +55,7 @@ class CategoryController extends AppBaseController
                 $data['普通用户'][$category['id']] = $category['display_name'];
                 break;
             case Category::TYPE_AGENT:
-                $data['代理商'][$category['id']] = $category['display_name'];
+                $data['经销商'][$category['id']] = $category['display_name'];
                 break;
             case Category::TYPE_MANUFACTURER:
                 $data['厂商'][$category['id']] = $category['display_name'];
@@ -155,7 +155,7 @@ class CategoryController extends AppBaseController
                 $data['普通用户'][$row['id']] = $row['display_name'];
                 break;
             case Category::TYPE_AGENT:
-                $data['代理商'][$row['id']] = $row['display_name'];
+                $data['经销商'][$row['id']] = $row['display_name'];
                 break;
             case Category::TYPE_MANUFACTURER:
                 $data['厂商'][$row['id']] = $row['display_name'];

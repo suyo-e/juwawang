@@ -24,7 +24,7 @@
 <!-- Type Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('type', '目录类型:') !!}
-    {!! Form::select('type', ['0' => 'All', '1' => '厂商注册', '2' => '代理商注册', '3' => '用户注册', '4' => '厂商发布商品', '5' => '代理商发布商品', '6' => '用户发布商品'], null, ['class' => 'form-control']) !!}
+    {!! Form::select('type', ['0' => 'All', '1' => '厂商注册', '2' => '经销商注册', '3' => '用户注册', '4' => '厂商发布商品', '5' => '经销商发布商品', '6' => '用户发布商品'], null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Url Field -->

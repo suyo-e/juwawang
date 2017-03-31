@@ -95,7 +95,7 @@ $(function() {
         cols: [
             {
                 textAlign: 'center',
-                values: ['用户', '代理商', '厂商']
+                values: ['用户', '经销商', '厂商']
             }
         ]
     });

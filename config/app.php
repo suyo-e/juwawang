@@ -12,7 +12,7 @@ return [
     | any other location as required by the application or its packages.
     */
 
-    'name' => 'Pires Admin',
+    'name' => '聚挖网',
 
     /*
     |--------------------------------------------------------------------------
@@ -208,6 +208,8 @@ return [
         App\Providers\HistoryServiceProvider::class,
         App\Providers\MacroServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+
+        Stevenyangecho\UEditor\UEditorServiceProvider::class
 
     ],
 

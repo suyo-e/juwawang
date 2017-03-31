@@ -4,7 +4,7 @@
         <th>logo 图片</th>
         <th>目录id</th>
         <th>比重</th>
-        <th colspan="3">Action</th>
+        <th colspan="3">操作</th>
     </thead>
     <tbody>
     @foreach($icons as $icon)

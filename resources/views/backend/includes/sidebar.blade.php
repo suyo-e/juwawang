@@ -14,6 +14,7 @@
             </div><!--pull-left-->
         </div><!--user-panel-->
 
+        @permissions(['manage-roles'])
         <!-- search form (Optional) -->
         {{ Form::open(['route' => 'admin.search.index', 'method' => 'get', 'class' => 'sidebar-form']) }}
         <div class="input-group">
@@ -23,7 +24,8 @@
                     <button type='submit' id='search-btn' class="btn btn-flat"><i class="fa fa-search"></i></button>
                   </span><!--input-group-btn-->
         </div><!--input-group-->
-    {{ Form::close() }}
+        {{ Form::close() }}
+        @endauth
     <!-- /.search form -->
 
         <!-- Sidebar Menu -->
@@ -38,7 +40,7 @@
             </li>
             @endauth
 
-            <li class="header">{{ trans('menus.backend.sidebar.system') }}</li>
+            <li class="header">管理系统</li>
 
             @permissions(['manage-users'])
             @include('backend.includes.menu')
@@ -69,6 +71,7 @@
             </li>
             @endauth
 
+            @permissions(['manage-roles'])
             <li class="{{ active_class(Active::checkUriPattern('admin/log-viewer*')) }} treeview">
                 <a href="#">
                     <i class="fa fa-list"></i>
@@ -91,6 +94,7 @@
                     </li>
                 </ul>
             </li>
+            @endauth
 
         </ul><!-- /.sidebar-menu -->
     </section><!-- /.sidebar -->

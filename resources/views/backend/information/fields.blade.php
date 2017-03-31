@@ -1,3 +1,4 @@
+@include('UEditor::head')
 <!-- Title Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('title', '标题:') !!}
@@ -20,7 +21,17 @@
 <!-- Content Field -->
 <div class="form-group col-sm-12 col-lg-12">
     {!! Form::label('content', '内容:') !!}
-    {!! Form::textarea('content', null, ['class' => 'form-control']) !!}
+
+    <!-- 加载编辑器的容器 -->
+    <script id="container" name="content" style="height:300px" type="text/plain">{!! $information->content !!}</script>
+
+    <!-- 实例化编辑器 -->
+    <script type="text/javascript">
+        var ue = UE.getEditor('container');
+        ue.ready(function() {
+            ue.execCommand('serverparam', '_token', '{{ csrf_token() }}');//此处为支持laravel5 csrf ,根据实际情况修改,目的就是设置 _token 值.    
+        });
+    </script>
 </div>
 
 <!-- Submit Field -->
@@ -28,3 +39,4 @@
     {!! Form::submit('Save', ['class' => 'btn btn-primary']) !!}
     <a href="{!! route('admin.information.index') !!}" class="btn btn-default">Cancel</a>
 </div>
+

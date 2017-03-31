@@ -60,6 +60,7 @@ class ClassController extends Controller
             $profile_type = Category::TYPE_USER;
             $user_ids = Profile::where('type', Category::TYPE_USER)->pluck('user_id');
             $products = $products->whereIn('user_id', $user_ids);
+            $from = 'agent';
             break;
         case 'agent':
             $profile_type = Category::TYPE_AGENT;
@@ -70,6 +71,7 @@ class ClassController extends Controller
             $profile_type = Category::TYPE_MANUFACTURER;
             $user_ids = Profile::where('type', Category::TYPE_MANUFACTURER)->pluck('user_id');
             $products = $products->whereIn('user_id', $user_ids);
+            $from = 'manufacturer';
             break;
         }
 
@@ -98,7 +100,7 @@ class ClassController extends Controller
         }
 
         //dd($products[0]->province_city_name);
-        return view('frontend.class.index', compact('categories', 'products', 'category_id', 'time', 'from', 'province_city_code', 'product_name', 'profile_type'));
+        return view('frontend.class.index', compact('categories', 'products', 'category_id', 'time', 'from', 'province_city_code', 'product_name', 'profile_type', 'profile', 'from'));
     }
 
     /**

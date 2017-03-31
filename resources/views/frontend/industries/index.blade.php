@@ -33,9 +33,15 @@
                 {!! $profile_type==3?'<img src="/image/right.pic" style="width:1.5rem">':'' !!}
             </li>
 -->
+            @if ($profile->type != 3 || $profile->type == 1)
             {!! li_filter_render('from', '', '全部') !!}
-            {!! li_filter_render('from', 'agent', '代理商') !!}
+            @endif
+            @if ($profile->type != 1)
+            {!! li_filter_render('from', 'agent', '经销商') !!}
+            @endif
+            @if ($profile->type != 3)
             {!! li_filter_render('from', 'manufacturer', '厂商') !!}
+            @endif
         </ul>
         <ul class="grade-w ejectAll">
             {!! li_filter_render('category_id', '', '全部') !!}

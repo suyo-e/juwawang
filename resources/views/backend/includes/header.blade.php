@@ -20,6 +20,7 @@
         <div class="navbar-custom-menu">
             <ul class="nav navbar-nav">
 
+                @permissions(['manage-roles'])
                 @if (config('locale.status') && count(config('locale.languages')) > 1)
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -71,6 +72,8 @@
                     </ul>
                 </li><!-- /.tasks-menu -->
 
+                @endauth
+    
                 <li class="dropdown user user-menu">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <img src="{{ access()->user()->picture }}" class="user-image" alt="User Avatar"/>

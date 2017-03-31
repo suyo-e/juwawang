@@ -30,6 +30,7 @@ class IndustryController extends Controller
         $time = $request->input('time');
 
         $profile = Profile::where('user_id', access()->user()->id)->first();
+
         switch($from) {
         case 'user':
             $profile_type = Category::TYPE_USER;
@@ -111,7 +112,7 @@ class IndustryController extends Controller
             province_city_name($industry->profile);
         }
 
-        return view('frontend.industries.index', compact('industries', 'display_name', 'categories', 'time', 'category_id', 'profile_type', 'from', 'category_ids'));
+        return view('frontend.industries.index', compact('industries', 'display_name', 'categories', 'time', 'category_id', 'profile_type', 'from', 'category_ids', 'profile'));
     }
 
     /**

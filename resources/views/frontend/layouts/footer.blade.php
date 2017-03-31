@@ -16,7 +16,7 @@
         <li>
             <a href="/information">
                 <img class="foter-nav-z" src="/image/{{ Active::checkUriPattern('information')?'foter-nav-z-active': 'foter-nav-z' }}.png" alt=""/>
-                <p>咨询</p>
+                <p>资讯</p>
             </a>
         </li>
         <li>

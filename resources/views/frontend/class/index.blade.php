@@ -30,9 +30,13 @@
     <div class="grade-eject">
         <ul class="grade-y ejectAll">
             {!! li_filter_render('from', '', '全部') !!}
+            @if ($profile->type != 1)
             {!! li_filter_render('from', 'user', '用户') !!}
-            {!! li_filter_render('from', 'agent', '代理商') !!}
+            {!! li_filter_render('from', 'agent', '经销商') !!}
+            @endif
+            @if ($profile->type != 3)
             {!! li_filter_render('from', 'manufacturer', '厂商') !!}
+            @endif
         </ul>
         <ul class="grade-w ejectAll">
             {!! li_filter_render('category_id', '', '全部') !!}

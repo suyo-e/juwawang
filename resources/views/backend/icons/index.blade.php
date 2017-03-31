@@ -4,7 +4,7 @@
     <section class="content-header">
         <h1 class="pull-left">
            <a class="btn btn-primary" style="margin-top: -10px;margin-bottom: 5px" href="{!! route('admin.icons.index', ['type'=>3]) !!}">普通用户</a>
-           <a class="btn btn-primary" style="margin-top: -10px;margin-bottom: 5px" href="{!! route('admin.icons.index', ['type'=>2]) !!}">代理商</a>
+           <a class="btn btn-primary" style="margin-top: -10px;margin-bottom: 5px" href="{!! route('admin.icons.index', ['type'=>2]) !!}">经销商</a>
            <a class="btn btn-primary" style="margin-top: -10px;margin-bottom: 5px" href="{!! route('admin.icons.index', ['type'=>1]) !!}">厂商</a>
         </h1>
         <h1 class="pull-right">

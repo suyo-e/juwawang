@@ -123,13 +123,13 @@ if (! function_exists('render_category_type')) {
             case '.\App\Models\Backend\Category::TYPE_USER.':
                 return "用户注册";
             case '.\App\Models\Backend\Category::TYPE_AGENT.':
-                return "代理商注册";
+                return "经销商注册";
             case '.\App\Models\Backend\Category::TYPE_MANUFACTURER.':
                 return "厂商注册";
             case '.\App\Models\Backend\Category::TYPE_USER_PRODUCT.':
                 return "用户商品发布";
             case '.\App\Models\Backend\Category::TYPE_AGENT_PRODUCT.':
-                return "代理商商品发布";
+                return "经销商商品发布";
             case '.\App\Models\Backend\Category::TYPE_MANUFACTURER_PRODUCT.':
                 return "厂商商品发布";
             default:
@@ -290,7 +290,7 @@ if(!function_exists('get_profile_type_name')) {
             return '用户';
             break;
         case \App\Models\Backend\Category::TYPE_AGENT:
-            return '代理商';
+            return '经销商';
             break;
         case \App\Models\Backend\Category::TYPE_MANUFACTURER:
             return '厂商';
