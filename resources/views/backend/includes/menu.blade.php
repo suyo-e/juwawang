@@ -1,9 +1,11 @@
+@permissions(['manage-roles'])
 <li class="active treeview">
     <a href="#">
         <i class="fa fa-list"></i>
         <span>用户管理</span>
         <i class="fa fa-angle-left pull-right"></i>
     </a>
+
     <ul class="treeview-menu"> 
         <li class="{{ Request::is('users*') ? 'active' : '' }}">
             <a href="{{ route('admin.access.user.index') }}">
@@ -90,4 +92,65 @@
         <i class="fa fa-circle-o"></i><span>审核及资料修改</span>
     </a>
 </li>
+@endauth
+@permissions(['manage-basic'])
+<li class="active treeview">
+    <a href="#">
+        <i class="fa fa-list"></i>
+        <span>信息管理</span>
+        <i class="fa fa-angle-left pull-right"></i>
+    </a>
 
+    <ul class="treeview-menu"> 
+        <li class="{{ Request::is('users*') ? 'active' : '' }}">
+            <a href="{{ route('admin.profile') }}">
+                <i class="fa fa-circle-o"></i><span>个人信息管理</span>
+            </a>
+        </li>
+        <li class="{{ Request::is('users*') ? 'active' : '' }}">
+            <a href="{{ route('admin.industry') }}">
+                <i class="fa fa-circle-o"></i><span>商户信息管理</span>
+            </a>
+        </li>
+    </ul>
+</li>
+<li class="active treeview">
+    <a href="#">
+        <i class="fa fa-list"></i>
+        <span>商品管理</span>
+        <i class="fa fa-angle-left pull-right"></i>
+    </a>
+
+    <ul class="treeview-menu"> 
+        <li class="{{ Request::is('users*') ? 'active' : '' }}">
+            <a href="{!! route('admin.products.index') !!}">
+                <i class="fa fa-circle-o"></i><span>我的商品</span>
+            </a>
+        </li>
+    </ul>
+</li>
+<li class="active treeview">
+    <a href="#">
+        <i class="fa fa-list"></i>
+        <span>我的意向订单</span>
+        <i class="fa fa-angle-left pull-right"></i>
+    </a>
+
+    <ul class="treeview-menu"> 
+        <li class="{{ Request::is('users*') ? 'active' : '' }}">
+            <a href="{!! route('admin.orders.index', ['type'=>'recieve']) !!}">
+                <i class="fa fa-circle-o"></i><span>我收到的</span>
+            </a>
+        </li>
+    </ul>
+    <ul class="treeview-menu"> 
+        <li class="{{ Request::is('users*') ? 'active' : '' }}">
+            <a href="{!! route('admin.orders.index', ['type'=>'send']) !!}">
+                <i class="fa fa-circle-o"></i><span>我发出的</span>
+            </a>
+        </li>
+    </ul>
+</li>
+
+
+@endauth

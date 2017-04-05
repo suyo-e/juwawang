@@ -42,7 +42,7 @@
 
             <li class="header">管理系统</li>
 
-            @permissions(['manage-users'])
+            @permissions(['view-backend'])
             @include('backend.includes.menu')
             @endauth
 

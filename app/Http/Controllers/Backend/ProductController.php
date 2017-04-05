@@ -41,7 +41,10 @@ class ProductController extends AppBaseController
     {
         $profile = \App\Models\Backend\Profile::where('user_id', access()->user()->id)->first();
         if($profile) {
-            $categories = get_product_categories($profile->type);
+            $manu_categories = get_product_categories($profile->type);
+            foreach($manu_categories as $row) {
+                $categories[$row->id] = $row->display_name;
+            }
         }
         else {
             $agent_categories = get_product_categories(\App\Models\Backend\Category::TYPE_AGENT);
@@ -128,7 +131,10 @@ class ProductController extends AppBaseController
         
         $profile = \App\Models\Backend\Profile::where('user_id', access()->user()->id)->first();
         if($profile) {
-            $categories = get_product_categories($profile->type);
+            $manu_categories = get_product_categories($profile->type);
+            foreach($manu_categories as $row) {
+                $categories[$row->id] = $row->display_name;
+            }
         }
         else {
             $agent_categories = get_product_categories(\App\Models\Backend\Category::TYPE_AGENT);

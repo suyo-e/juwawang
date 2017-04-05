@@ -67,6 +67,8 @@
                     </div><!--col-lg-10-->
                 </div><!--form control-->
 
+                
+                @permissions(['manage-roles'])
                 @if ($user->id != 1)
                     <div class="form-group">
                         {{ Form::label('status', trans('validation.attributes.backend.access.users.active'), ['class' => 'col-lg-2 control-label']) }}
@@ -121,6 +123,7 @@
                         </div><!--col-lg-3-->
                     </div><!--form control-->
                 @endif
+                @endauth
             </div><!-- /.box-body -->
         </div><!--box-->
 

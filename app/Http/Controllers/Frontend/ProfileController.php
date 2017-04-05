@@ -64,14 +64,8 @@ class ProfileController extends Controller
 
         $products = $products->get();
 
-        $gb2260 = new \GB2260\GB2260();
         foreach($products as $product) {
-            $city = $gb2260->get($product->city_id); 
-            $city = explode(" ", $city)[0];
-            $province = $gb2260->get($product->prov_id); 
-            
-            $product->province_city_name = "$province $city";
-            $product->province_city = $product->prov_id."," .$product->city_id;           
+            $product = province_city_name($product);
         }
         
         $categories = get_product_categories($profile->type);

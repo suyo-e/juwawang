@@ -28,6 +28,10 @@ class ProductDataTable extends DataTable
     public function query()
     {
         $products = Product::query();
+        $profile = \App\Models\Backend\Profile::where('user_id', access()->user()->id)->first();
+        if($profile) {
+            $products = $products->where('user_id', access()->user()->id); 
+        }
 
         return $this->applyScopes($products);
     }

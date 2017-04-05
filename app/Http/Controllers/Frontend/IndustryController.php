@@ -70,7 +70,6 @@ class IndustryController extends Controller
         }
          */
 
-        $gb2260 = new \GB2260\GB2260();
         $industries = new Industry;
         if($display_name) {
             $industries = $industries->where('display_name', 'LIKE', "%$display_name%");
@@ -100,12 +99,6 @@ class IndustryController extends Controller
 
         foreach($industries as $industry) {
             $industry->user = User::find($industry->user_id);
-            $city = $gb2260->get($industry->city_id); 
-            $city = explode(" ", $city)[0];
-            $province = $gb2260->get($industry->prov_id); 
-            
-            $industry->province_city_name = "$province $city";
-            $industry->province_city = $industry->prov_id."," .$industry->city_id;
             province_city_name($industry);
 
             $industry->profile = Profile::where('user_id', $industry->user_id)->first();
@@ -120,7 +113,6 @@ class IndustryController extends Controller
      */
     public function edit()
     {
-        $gb2260 = new \GB2260\GB2260();
         $user = access()->user();
         $industry = Industry::where('user_id', $user->id)->first();
         if(!$industry) {
@@ -128,14 +120,7 @@ class IndustryController extends Controller
             $industry->avatar = '/image/Sbj.png';
         }
         
-/*
-        $city = $gb2260->get($industry->city_id); 
-        $city = explode(" ", $city)[0];
-        $province = $gb2260->get($industry->prov_id); 
-*/
-        
-        $industry->province_city_name = $gb2260->get($industry->area_id);
-        $industry->province_city = $industry->prov_id."," .$industry->city_id.",".$industry->area_id;
+        $industry = province_city_name($industry);
 
         $identity_urls = json_decode($industry->identity_urls);
         if(!isset($identity_urls[0])) {
@@ -147,7 +132,6 @@ class IndustryController extends Controller
 
     public function show(Request $request) 
     {
-        $gb2260 = new \GB2260\GB2260();
         $user_id = $request->input('user_id');
         if(!$user_id) {
             $user_id = access()->user()->id;
@@ -156,12 +140,7 @@ class IndustryController extends Controller
         $profile = Profile::where('user_id', $user_id)->first();
         $user = User::find($user_id);
         
-        $city = $gb2260->get($industry->city_id); 
-        $city = explode(" ", $city)[0];
-        $province = $gb2260->get($industry->prov_id); 
-        
-        $industry->province_city_name = "$province $city";
-        $industry->province_city = $industry->prov_id."," .$industry->city_id;
+        $industry = province_city_name($industry);
 
         return view('frontend.industries.show', compact('industry', 'user', 'profile'));
     }

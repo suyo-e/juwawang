@@ -60,6 +60,15 @@ class PermissionTableSeeder extends Seeder
         $manageRoles->updated_at = Carbon::now();
         $manageRoles->save();
 
+        $permission_model = config('access.permission');
+        $manageRoles = new $permission_model();
+        $manageRoles->name = 'manage-basic';
+        $manageRoles->display_name = 'Manage Basic';
+        $manageRoles->sort = 4;
+        $manageRoles->created_at = Carbon::now();
+        $manageRoles->updated_at = Carbon::now();
+        $manageRoles->save();
+
         $this->enableForeignKeys();
     }
 }

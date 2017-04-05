@@ -43,8 +43,13 @@ Route::group(['namespace' => 'Backend', 'prefix' => 'admin', 'as' => 'admin.', '
     Route::resource('banners', 'BannerController');
     Route::resource('profiles', 'ProfileController');
     Route::resource('information', 'InformationController');
+    Route::resource('feedback', 'FeedbackController');
+    Route::resource('icons', 'IconController');
 
     Route::get('profile/verify', 'ProfileController@verify')->name('profile.verify');
+
+    Route::get('profile', 'Access\User\UserController@profile')->name('profile');
+    Route::get('industry', 'Access\User\UserController@industry')->name('industry');
 });
 
 $router->get( '/_debugbar/assets/stylesheets', '\Barryvdh\Debugbar\Controllers\AssetController@css' );
@@ -52,25 +57,3 @@ $router->get( '/_debugbar/assets/javascript', '\Barryvdh\Debugbar\Controllers\As
 
 #Route::get('login', 'Frontend\UserController@login');
 #Route::get('register', 'Frontend\UserController@register');
-
-
-Route::get('admin/feedback', ['as'=> 'admin.feedback.index', 'uses' => 'Backend\FeedbackController@index']);
-Route::post('admin/feedback', ['as'=> 'admin.feedback.store', 'uses' => 'Backend\FeedbackController@store']);
-Route::get('admin/feedback/create', ['as'=> 'admin.feedback.create', 'uses' => 'Backend\FeedbackController@create']);
-Route::put('admin/feedback/{feedback}', ['as'=> 'admin.feedback.update', 'uses' => 'Backend\FeedbackController@update']);
-Route::patch('admin/feedback/{feedback}', ['as'=> 'admin.feedback.update', 'uses' => 'Backend\FeedbackController@update']);
-Route::delete('admin/feedback/{feedback}', ['as'=> 'admin.feedback.destroy', 'uses' => 'Backend\FeedbackController@destroy']);
-Route::get('admin/feedback/{feedback}', ['as'=> 'admin.feedback.show', 'uses' => 'Backend\FeedbackController@show']);
-Route::get('admin/feedback/{feedback}/edit', ['as'=> 'admin.feedback.edit', 'uses' => 'Backend\FeedbackController@edit']);
-
-
-
-
-Route::get('admin/icons', ['as'=> 'admin.icons.index', 'uses' => 'Backend\IconController@index']);
-Route::post('admin/icons', ['as'=> 'admin.icons.store', 'uses' => 'Backend\IconController@store']);
-Route::get('admin/icons/create', ['as'=> 'admin.icons.create', 'uses' => 'Backend\IconController@create']);
-Route::put('admin/icons/{icons}', ['as'=> 'admin.icons.update', 'uses' => 'Backend\IconController@update']);
-Route::patch('admin/icons/{icons}', ['as'=> 'admin.icons.update', 'uses' => 'Backend\IconController@update']);
-Route::delete('admin/icons/{icons}', ['as'=> 'admin.icons.destroy', 'uses' => 'Backend\IconController@destroy']);
-Route::get('admin/icons/{icons}', ['as'=> 'admin.icons.show', 'uses' => 'Backend\IconController@show']);
-Route::get('admin/icons/{icons}/edit', ['as'=> 'admin.icons.edit', 'uses' => 'Backend\IconController@edit']);

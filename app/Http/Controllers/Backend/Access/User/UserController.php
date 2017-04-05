@@ -121,4 +121,25 @@ class UserController extends Controller
 
         return redirect()->route('admin.access.user.deleted')->withFlashSuccess(trans('alerts.backend.users.deleted'));
     }
+
+    public function profile() {
+        $user = access()->user();
+        $profile=\App\Models\Backend\Profile::where('user_id', $user->id)->first();
+        return view('backend.access.edit')
+            ->withUser($user)
+            ->withProfile($profile);
+    }
+
+    public function industry() {
+        $industry = \App\Models\Backend\Industry::where('user_id', access()->user()->id)->first();
+
+        if (empty($industry)) {
+            Flash::error('Industry not found');
+
+            return redirect(route('admin.industries.index'));
+        }
+        $industry = province_city_name($industry);
+
+        return view('backend.industries.edit')->with('industry', $industry);
+    }
 }
