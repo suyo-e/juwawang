@@ -88,8 +88,10 @@ class UserController extends Controller
      */
     public function edit(User $user, ManageUserRequest $request)
     {
+        $profile=\App\Models\Backend\Profile::where('user_id', $user->id)->first();
         return view('backend.access.edit')
             ->withUser($user)
+            ->withProfile($profile)
             ->withUserRoles($user->roles->pluck('id')->all())
             ->withRoles($this->roles->getAll());
     }

@@ -31,10 +31,9 @@
                             <th>用户头像</th>
                             <th>地区</th>
                             <th>是否激活</th>
-                            <th>角色</th>
                             <th>类型</th>
+                            <th>邀请码</th>
                             <th>创建时间</th>
-                            <th>更新时间</th>
                             <th>{{ trans('labels.general.actions') }}</th>
                         </tr>
                     </thead>
@@ -80,10 +79,11 @@
                     {data: 'province_city_name', name: 'province_city_name', sortable: false},
                     //{data: 'email', name: '{{config('access.users_table')}}.email'},
                     {data: 'confirmed', name: '{{config('access.users_table')}}.confirmed'},
-                    {data: 'roles', name: '{{config('access.roles_table')}}.name', sortable: false},
+                    //{data: 'roles', name: '{{config('access.roles_table')}}.name', sortable: false},
                     {data: 'type', name: 'type', sortable: false},
+                    {data: 'invite_code', name: '邀请码', sortable: false},
                     {data: 'created_at', name: '{{config('access.users_table')}}.created_at'},
-                    {data: 'updated_at', name: '{{config('access.users_table')}}.updated_at'},
+                    //{data: 'updated_at', name: '{{config('access.users_table')}}.updated_at'},
                     {data: 'actions', name: 'actions', searchable: false, sortable: false}
                 ],
                 order: [[0, "asc"]],

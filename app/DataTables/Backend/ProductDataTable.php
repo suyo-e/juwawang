@@ -72,22 +72,23 @@ class ProductDataTable extends DataTable
     private function getColumns()
     {
         return [
-            '标题' => ['name' => 'title', 'data' => 'title'],
+            '商品名称' => ['name' => 'title', 'data' => 'title'],
+            '商品id' => ['name' => 'id', 'data' => 'id'],
             #'描述' => ['name' => 'description', 'data' => 'description'],
-            '用户id' => ['name' => 'user_id', 'data' => 'user_id'],
+            '品牌' => ['name' => 'brand_name', 'data' => 'brand_name'],
+            '价格' => ['name' => 'price', 'data' => 'price'],
+            '地址' => ['name' => 'address', 'data' => 'address'],
+            'wechat' => ['name' => 'wechat', 'data' => 'wechat'],
+            'QQ' => ['name' => 'qq', 'data' => 'qq'],
+            '手机号码' => ['name' => 'phone', 'data' => 'phone'],
+            //'用户id' => ['name' => 'user_id', 'data' => 'user_id'],
             '类型' => ['name' => 'type_name', 'data' => 'type_name'],
             //'category_id' => ['name' => 'category_id', 'data' => 'category_id'],
             //'industry_id' => ['name' => 'industry_id', 'data' => 'industry_id'],
             //'prov_id' => ['name' => 'prov_id', 'data' => 'prov_id'],
             //'city_id' => ['name' => 'city_id', 'data' => 'city_id'],
-            '品牌' => ['name' => 'brand_name', 'data' => 'brand_name'],
-            '价格' => ['name' => 'price', 'data' => 'price'],
-            //'address' => ['name' => 'address', 'data' => 'address'],
             /*
             'contact_name' => ['name' => 'contact_name', 'data' => 'contact_name'],
-            'wechat' => ['name' => 'wechat', 'data' => 'wechat'],
-            'qq' => ['name' => 'qq', 'data' => 'qq'],
-            'phone' => ['name' => 'phone', 'data' => 'phone'],
              */
             '访问数量' => ['name' => 'view_count', 'data' => 'view_count'],
             //'收藏数量' => ['name' => 'collect_count', 'data' => 'collect_count'],

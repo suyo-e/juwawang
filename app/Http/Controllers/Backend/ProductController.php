@@ -39,7 +39,22 @@ class ProductController extends AppBaseController
      */
     public function create()
     {
-        return view('backend.products.create');
+        $profile = \App\Models\Backend\Profile::where('user_id', access()->user()->id)->first();
+        if($profile) {
+            $categories = get_product_categories($profile->type);
+        }
+        else {
+            $agent_categories = get_product_categories(\App\Models\Backend\Category::TYPE_AGENT);
+            $manu_categories = get_product_categories(\App\Models\Backend\Category::TYPE_MANUFACTURER);
+
+            foreach($manu_categories as $row) {
+                $categories['厂商'][$row->id] = $row->display_name;
+            }
+            foreach($agent_categories as $row) {
+                $categories['代理商'][$row->id] = $row->display_name;
+            }
+        }
+        return view('backend.products.create', compact('categories'));
     }
 
     /**
@@ -52,9 +67,18 @@ class ProductController extends AppBaseController
     public function store(CreateProductRequest $request)
     {
         $input = $request->all();
+        $input['user_id'] = access()->user()->id;
 
-        $path = upload($request, 'pic_url');
-        $input['pic_url'] = $path;
+        $profile = \App\Models\Backend\Profile::where('user_id', $input['user_id'])->first();
+        if(!$profile) {
+            Flash::error('商品发布失败，商户不存在');
+            return redirect()->back();
+        }
+
+        if(isset($input['banner_urls'])) {
+            $input['pic_url'] = $input['banner_urls'][0];
+            $input['banner_urls'] = json_encode($input['banner_urls']);
+        }
 
         $product = $this->productRepository->create($input);
 
@@ -99,8 +123,25 @@ class ProductController extends AppBaseController
 
             return redirect(route('admin.products.index'));
         }
+        $product = province_city_name($product);
 
-        return view('backend.products.edit')->with('product', $product);
+        
+        $profile = \App\Models\Backend\Profile::where('user_id', access()->user()->id)->first();
+        if($profile) {
+            $categories = get_product_categories($profile->type);
+        }
+        else {
+            $agent_categories = get_product_categories(\App\Models\Backend\Category::TYPE_AGENT);
+            $manu_categories = get_product_categories(\App\Models\Backend\Category::TYPE_MANUFACTURER);
+
+            foreach($manu_categories as $row) {
+                $categories['厂商'][$row->id] = $row->display_name;
+            }
+            foreach($agent_categories as $row) {
+                $categories['代理商'][$row->id] = $row->display_name;
+            }
+        }
+        return view('backend.products.edit', compact('categories', 'product'));
     }
 
     /**
@@ -122,6 +163,11 @@ class ProductController extends AppBaseController
         }
 
         $input = $request->all();
+        if(isset($input['banner_urls'])) {
+            $input['pic_url'] = $input['banner_urls'][0];
+            $input['banner_urls'] = json_encode($input['banner_urls']);
+        }
+        /*
         if($request->file('pic_url')) {
             $path = upload($request, 'pic_url');
             $input['pic_url'] = $path;
@@ -129,6 +175,7 @@ class ProductController extends AppBaseController
         else {
             unset($input['pic_url']);
         }
+         */
 
         $product = $this->productRepository->update($input, $id);
 

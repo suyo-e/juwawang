@@ -11,6 +11,7 @@ Route::get('/information', 'InformationController@index')->name('information')->
 Route::get('/information/show', 'InformationController@show')->name('information.show')->middleware('auth');
 Route::get('/user', 'UserController@show')->name('user')->middleware('auth');
 Route::post('/upload', 'FrontendController@upload')->name('upload')->middleware('auth');
+Route::patch('/upload', 'FrontendController@upload')->name('upload')->middleware('auth');
 
 Route::get('/users/edit', 'UserController@edit')->name('users.show')->middleware('auth');
 Route::post('/users/update', 'UserController@update')->name('users.update')->middleware('auth');

@@ -15,10 +15,6 @@
         <div class="box box-success">
             <div class="box-header with-border">
                 <h3 class="box-title">{{ trans('labels.backend.access.users.edit') }}</h3>
-
-                <div class="box-tools pull-right">
-                    @include('backend.access.includes.partials.user-header-buttons')
-                </div><!--box-tools pull-right-->
             </div><!-- /.box-header -->
 
             <div class="box-body">
@@ -29,6 +25,39 @@
                         {{ Form::text('name', null, ['class' => 'form-control', 'placeholder' => trans('validation.attributes.backend.access.users.name')]) }}
                     </div><!--col-lg-10-->
                 </div><!--form control-->
+
+                @if ($profile) 
+                <div class="form-group">
+                    {{ Form::label('avatar', '用户头像', ['class' => 'col-lg-2 control-label']) }}
+
+                    <div class="col-lg-10">
+                        <input id="upload-file" type="file" name="avatar_file" class="upload-file" />
+                        <img id="avatar_img" src="{{ $profile->avatar }}" height="100"/>
+                        {!! Form::text('avatar', $profile->avatar, ['class'=>'hidden', 'id'=>'avatar_input' ]) !!}
+                    </div><!--col-lg-10-->
+                </div>
+                <div class="form-group">
+                    {{ Form::label('type', '用户类型', ['class' => 'col-lg-2 control-label']) }}
+
+                    <div class="col-lg-10">
+                        {!! Form::select('type', ['1' => '厂商', '2' => '经销商', '3' => '用户'], $profile->type, ['class' => 'form-control']) !!}
+                    </div><!--col-lg-10-->
+                </div>
+                <div class="form-group">
+                    {{ Form::label('phone', '手机号码', ['class' => 'col-lg-2 control-label']) }}
+
+                    <div class="col-lg-10">
+                        {!! Form::text('phone', null, ['class'=>'form-control']) !!}
+                    </div><!--col-lg-10-->
+                </div>
+                <div class="form-group">
+                    {{ Form::label('invite_code', '邀请码', ['class' => 'col-lg-2 control-label']) }}
+
+                    <div class="col-lg-10">
+                        {!! Form::text('invite_code', $profile->invite_code, ['class'=>'form-control']) !!}
+                    </div><!--col-lg-10-->
+                </div>
+                @endif
 
                 <div class="form-group">
                     {{ Form::label('email', trans('validation.attributes.backend.access.users.email'), ['class' => 'col-lg-2 control-label']) }}

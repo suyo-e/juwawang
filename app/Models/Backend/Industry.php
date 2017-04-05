@@ -67,6 +67,7 @@ class Industry extends Model
         'avatar' => 'required|string',
         'prov_id' => 'numeric',
         'city_id' => 'numeric',
+        'area_id' => 'numeric',
         'address' => 'string',
         'service' => 'string',
         'description' => 'string'

@@ -73,6 +73,12 @@ class UserTableController extends Controller
                     implode('<br/>', $user->roles->pluck('name')->toArray()) :
                     trans('labels.general.none');
             })
+            ->addColumn('invite_code', function($user) {
+                $profile = \App\Models\Backend\Profile::where('user_id', $user->id)->first();
+                if($profile)
+                    return $profile->invite_code;
+                return '';
+            })
             ->addColumn('actions', function ($user) {
                 return $user->action_buttons;
             })

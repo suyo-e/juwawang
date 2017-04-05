@@ -16,6 +16,10 @@ class IndustryDataTable extends DataTable
     {
         return $this->datatables
             ->eloquent($this->query())
+            ->editColumn('province_city_name', function($industry) {
+                $industry = province_city_name($industry);
+                return $industry->province_city_name;
+            })
             ->addColumn('action', 'backend.industries.datatables_actions')
             ->make(true);
     }
@@ -101,16 +105,17 @@ class IndustryDataTable extends DataTable
             '商户名称' => ['name' => 'display_name', 'data' => 'display_name'],
             '用户ID' => ['name' => 'user_id', 'data' => 'user_id'],
             '商户图片' => ['name' => 'avatar', 'data' => 'avatar', 'render' => render_image()],
+            '地区位置' => ['name' => 'province_city_name', 'data' => 'province_city_name'],
+            '地址' => ['name' => 'address', 'data' => 'address'],
             #'pic_urls' => ['name' => 'pic_urls', 'data' => 'pic_urls'],
             #'identity_urls' => ['name' => 'identity_urls', 'data' => 'identity_urls'],
             #'prov_id' => ['name' => 'prov_id', 'data' => 'prov_id'],
             #'city_id' => ['name' => 'city_id', 'data' => 'city_id'],
-            '简介' => ['name' => 'description', 'data' => 'description'],
+            #'简介' => ['name' => 'description', 'data' => 'description'],
             'QQ号码' => ['name' => 'qq', 'data' => 'qq'],
             '微信号' => ['name' => 'wechat', 'data' => 'wechat'],
             '联系方式' => ['name' => 'phone', 'data' => 'phone'],
-            '地址' => ['name' => 'address', 'data' => 'address'],
-            '主营业务' => ['name' => 'service', 'data' => 'service'],
+            #'主营业务' => ['name' => 'service', 'data' => 'service'],
             #'描述' => ['name' => 'description', 'data' => 'description']
         ];
     }

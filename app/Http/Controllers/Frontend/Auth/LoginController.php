@@ -71,6 +71,11 @@ class LoginController extends Controller
 
         event(new UserLoggedIn($user));
 
+        $profile = \App\Models\Backend\Profile::where('user_id', $user->id)->first();
+        if(!$profile) {
+            return redirect()->route('admin.dashboard');
+        }
+
         return redirect()->intended($this->redirectPath());
     }
 

@@ -257,7 +257,7 @@ if(!function_exists('get_categories')) {
 
 if(!function_exists('get_product_categories')) {
 
-    function get_product_categories($type) 
+    function get_product_categories($type = 0) 
     {
         $categories = \App\Models\Backend\Category::select('display_name', 'id')
             ->where('parent_id', 0);
@@ -271,6 +271,8 @@ if(!function_exists('get_product_categories')) {
             break;
         case \App\Models\Backend\Category::TYPE_MANUFACTURER:
             $type = \App\Models\Backend\Category::TYPE_MANUFACTURER_PRODUCT;
+            break;
+        default: 
             break;
         }
         if($type) {

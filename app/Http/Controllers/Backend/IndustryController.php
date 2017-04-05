@@ -104,6 +104,7 @@ class IndustryController extends AppBaseController
 
             return redirect(route('admin.industries.index'));
         }
+        $industry = province_city_name($industry);
 
         return view('backend.industries.edit')->with('industry', $industry);
     }
@@ -126,9 +127,23 @@ class IndustryController extends AppBaseController
             return redirect(route('admin.industries.index'));
         }
 
+        //dd($request->all());
         $industry = $this->industryRepository->update($request->all(), $id);
+        //dd($industry->toArray());
 
         Flash::success('Industry updated successfully.');
+
+        $profile = \App\Models\Backend\Profile::where('user_id', $industry->user_id)->first();
+
+        if($profile->type == \App\Models\Backend\Category::TYPE_USER) {
+            return redirect(route('admin.industries.index', ['type'=>'user']));
+        }
+        else if($profile->type == \App\Models\Backend\Category::TYPE_AGENT) {
+            return redirect(route('admin.industries.index', ['type'=>'agent']));
+        }
+        else if($profile->type == \App\Models\Backend\Category::TYPE_MANUFACTURER) {
+            return redirect(route('admin.industries.index', ['type'=>'manufacturer']));
+        }
 
         return redirect(route('admin.industries.index'));
     }

@@ -4,16 +4,42 @@
     {!! Form::text('display_name', null, ['class' => 'form-control']) !!}
 </div>
 
+<div class="form-group col-sm-6">
+    {!! Form::label('province_city_name', '地区:') !!}
+    {!! Form::text('province_city_name', null, ['class' => 'form-control']) !!}
+    {!! Form::text('province_city_code', null, ['class' => 'form-control hidden', 'id'=>'province_city_code']) !!}
+</div>
+
 <!-- User Id Field -->
 <div class="form-group col-sm-6 hidden">
     {!! Form::label('user_id', 'User Id:') !!}
     {!! Form::text('user_id', null, ['class' => 'form-control']) !!}
 </div>
 
-<!-- Avatar Field -->
+<!-- QQ Field -->
 <div class="form-group col-sm-6 hidden">
-    {!! Form::label('avatar', 'Avatar:') !!}
-    {!! Form::file('avatar') !!}
+    {!! Form::label('qq', 'QQ:') !!}
+    {!! Form::text('qq', null, ['class' => 'form-control']) !!}
+</div>
+
+<!-- wechat Field -->
+<div class="form-group col-sm-6 hidden">
+    {!! Form::label('wechat', 'Wechat:') !!}
+    {!! Form::text('wechat', null, ['class' => 'form-control']) !!}
+</div>
+
+<!-- wechat Field -->
+<div class="form-group col-sm-6 hidden">
+    {!! Form::label('phone', '电话:') !!}
+    {!! Form::text('phone', null, ['class' => 'form-control']) !!}
+</div>
+
+<!-- Avatar Field -->
+<div class="form-group col-sm-6">
+    {!! Form::label('avatar', '商户图片:') !!}
+    <input id="upload-file" type="file" name="avatar_file" class="upload-file" />
+    <img id="avatar_img" src="{{ $industry->avatar }}" height="100"/>
+    {!! Form::text('avatar', null, ['class'=>'hidden', 'id'=>'avatar_input']) !!}
 </div>
 <div class="clearfix"></div>
 
@@ -34,25 +60,31 @@
 <!-- Prov Id Field -->
 <div class="form-group col-sm-6 hidden">
     {!! Form::label('prov_id', 'Prov Id:') !!}
-    {!! Form::select('prov_id', ['0' => 'All'], null, ['class' => 'form-control']) !!}
+    {!! Form::text('prov_id', null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- City Id Field -->
 <div class="form-group col-sm-6 hidden">
     {!! Form::label('city_id', 'City Id:') !!}
-    {!! Form::select('city_id', ['0' => 'All'], null, ['class' => 'form-control']) !!}
+    {!! Form::text('city_id', null, ['class' => 'form-control']) !!}
+</div>
+
+<!-- Area Id Field -->
+<div class="form-group col-sm-6 hidden">
+    {!! Form::label('area_id', 'City Id:') !!}
+    {!! Form::text('area_id', null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Address Field -->
 <div class="form-group col-sm-12 col-lg-12">
     {!! Form::label('address', '地址:') !!}
-    {!! Form::textarea('address', null, ['class' => 'form-control']) !!}
+    {!! Form::text('address', null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Service Field -->
 <div class="form-group col-sm-12 col-lg-12">
     {!! Form::label('service', '主营业务:') !!}
-    {!! Form::textarea('service', null, ['class' => 'form-control']) !!}
+    {!! Form::text('service', null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Description Field -->
@@ -66,3 +98,4 @@
     {!! Form::submit('Save', ['class' => 'btn btn-primary']) !!}
     <a href="{!! route('admin.industries.index') !!}" class="btn btn-default">Cancel</a>
 </div>
+

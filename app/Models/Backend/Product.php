@@ -82,8 +82,8 @@ class Product extends Model
     public static $rules = [
         'title' => 'required|string',
         'description' => 'required|string',
-        'user_id' => 'numeric',
-        'type_name' => 'string',
+        //'user_id' => 'numeric',
+        //'type_name' => 'string',
         'category_id' => 'numeric',
         'industry_id' => 'numeric',
         'prov_id' => 'numeric',
@@ -95,8 +95,8 @@ class Product extends Model
         'wechat' => 'string',
         'qq' => 'string',
         'phone' => 'string',
-        'view_count' => 'numeric',
-        'collect_count' => 'numeric',
+        //'view_count' => 'numeric',
+        //'collect_count' => 'numeric',
         'status' => 'numeric'
     ];
 

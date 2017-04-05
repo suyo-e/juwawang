@@ -231,7 +231,7 @@ trait UserAttribute
         }
 
         return $this->getLoginAsButtonAttribute().
-            $this->getShowButtonAttribute().
+            //$this->getShowButtonAttribute().
             $this->getEditButtonAttribute().
             $this->getChangePasswordButtonAttribute().
             $this->getStatusButtonAttribute().
