@@ -105,8 +105,12 @@ class UserController extends Controller
     public function update(User $user, UpdateUserRequest $request)
     {
         $this->users->update($user, ['data' => $request->except('assignees_roles'), 'roles' => $request->only('assignees_roles')]);
+        $profile=\App\Models\Backend\Profile::where('user_id', $user->id)->first();
+        $profile->avatar = request('avatar');
+        $profile->save();
 
-        return redirect()->route('admin.access.user.index')->withFlashSuccess(trans('alerts.backend.users.updated'));
+        return redirect()->back();
+        //return redirect()->route('admin.access.user.index')->withFlashSuccess(trans('alerts.backend.users.updated'));
     }
 
     /**
@@ -127,16 +131,16 @@ class UserController extends Controller
         $profile=\App\Models\Backend\Profile::where('user_id', $user->id)->first();
         return view('backend.access.edit')
             ->withUser($user)
-            ->withProfile($profile);
+            ->withProfile($profile)
+            ->withUserRoles($user->roles->pluck('id')->all())
+            ->withRoles($this->roles->getAll());
     }
 
     public function industry() {
         $industry = \App\Models\Backend\Industry::where('user_id', access()->user()->id)->first();
 
         if (empty($industry)) {
-            Flash::error('Industry not found');
-
-            return redirect(route('admin.industries.index'));
+            return redirect()->route('admin.industries.index')->withFlashError('商户不存在');
         }
         $industry = province_city_name($industry);
 

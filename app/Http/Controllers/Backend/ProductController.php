@@ -82,6 +82,14 @@ class ProductController extends AppBaseController
             $input['pic_url'] = $input['banner_urls'][0];
             $input['banner_urls'] = json_encode($input['banner_urls']);
         }
+        else {
+            Flash::error('商品发布失败，图片不存在');
+            return redirect()->back();
+        }
+        $input['type_name'] = $input['category_name']?$input['category_name']:'';
+        $input['brand_name'] = $input['brand_name']?$input['brand_name']:'';
+        $input['view_count'] = 0;
+        $input['collect_count'] = 0;
 
         $product = $this->productRepository->create($input);
 
@@ -128,7 +136,6 @@ class ProductController extends AppBaseController
         }
         $product = province_city_name($product);
 
-        
         $profile = \App\Models\Backend\Profile::where('user_id', access()->user()->id)->first();
         if($profile) {
             $manu_categories = get_product_categories($profile->type);
@@ -173,6 +180,8 @@ class ProductController extends AppBaseController
             $input['pic_url'] = $input['banner_urls'][0];
             $input['banner_urls'] = json_encode($input['banner_urls']);
         }
+        $input['brand_name'] = $input['brand_name']?$input['brand_name']:'';
+        $input['type_name'] = $input['category_name']?$input['category_name']:'';
         /*
         if($request->file('pic_url')) {
             $path = upload($request, 'pic_url');

@@ -14,8 +14,8 @@ return [
     */
 
     'general' => [
-        'home'   => 'Home',
-        'logout' => 'Logout',
+        'home'   => '主页',
+        'logout' => '注销',
     ],
 
     'frontend' => [

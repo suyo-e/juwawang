@@ -135,6 +135,11 @@ class IndustryController extends AppBaseController
 
         $profile = \App\Models\Backend\Profile::where('user_id', $industry->user_id)->first();
 
+        $is_admin = \App\Models\Backend\Profile::where('user_id', access()->user()->id)->first();
+        if($is_admin) {
+            return redirect()->back()->withFlashError('更新成功');
+        }
+
         if($profile->type == \App\Models\Backend\Category::TYPE_USER) {
             return redirect(route('admin.industries.index', ['type'=>'user']));
         }

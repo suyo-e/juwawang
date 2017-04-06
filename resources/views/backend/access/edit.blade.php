@@ -54,12 +54,12 @@
                     {{ Form::label('invite_code', '邀请码', ['class' => 'col-lg-2 control-label']) }}
 
                     <div class="col-lg-10">
-                        {!! Form::text('invite_code', $profile->invite_code, ['class'=>'form-control']) !!}
+                        {!! Form::text('invite_code', $profile->invite_code, ['class'=>'form-control', 'disabled'=>true]) !!}
                     </div><!--col-lg-10-->
                 </div>
                 @endif
 
-                <div class="form-group">
+                <div class="form-group hidden">
                     {{ Form::label('email', trans('validation.attributes.backend.access.users.email'), ['class' => 'col-lg-2 control-label']) }}
 
                     <div class="col-lg-10">
@@ -68,9 +68,8 @@
                 </div><!--form control-->
 
                 
-                @permissions(['manage-roles'])
                 @if ($user->id != 1)
-                    <div class="form-group">
+                    <div class="form-group hidden">
                         {{ Form::label('status', trans('validation.attributes.backend.access.users.active'), ['class' => 'col-lg-2 control-label']) }}
 
                         <div class="col-lg-1">
@@ -78,7 +77,7 @@
                         </div><!--col-lg-1-->
                     </div><!--form control-->
 
-                    <div class="form-group">
+                    <div class="form-group hidden">
                         {{ Form::label('confirmed', trans('validation.attributes.backend.access.users.confirmed'), ['class' => 'col-lg-2 control-label']) }}
 
                         <div class="col-lg-1">
@@ -86,7 +85,7 @@
                         </div><!--col-lg-1-->
                     </div><!--form control-->
 
-                    <div class="form-group">
+                    <div class="form-group hidden">
                         {{ Form::label('status', trans('validation.attributes.backend.access.users.associated_roles'), ['class' => 'col-lg-2 control-label']) }}
 
                         <div class="col-lg-3">
@@ -123,7 +122,6 @@
                         </div><!--col-lg-3-->
                     </div><!--form control-->
                 @endif
-                @endauth
             </div><!-- /.box-body -->
         </div><!--box-->
 
@@ -153,3 +151,27 @@
 @section('after-scripts')
     {{ Html::script('js/backend/access/users/script.js') }}
 @endsection
+
+@section('scripts')
+<script src="//cdn.bootcss.com/jquery-weui/1.0.1/js/jquery-weui.min.js"></script>
+<script type="text/javascript" src="/js/city-picker.min.js" charset="utf-8"></script>
+<script src="/js/jquery.ui.widget.js"></script>
+<script src="/js/jquery.iframe-transport.js"></script>
+<script src="/js/jquery.fileupload.js"></script>
+<script>
+$(function() {
+    $('#upload-file').fileupload({
+        url: '/upload',
+        dataType: 'json',
+        done: function (e, data) {
+            var path = data.result.data.path;
+            $("#avatar_input").val(path);
+            $("#avatar_img").attr('src', path);
+        }
+    });
+});
+
+</script>
+@endsection
+
+

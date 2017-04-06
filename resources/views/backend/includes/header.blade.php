@@ -20,6 +20,7 @@
         <div class="navbar-custom-menu">
             <ul class="nav navbar-nav">
 
+                @if (false)
                 @permissions(['manage-roles'])
                 @if (config('locale.status') && count(config('locale.languages')) > 1)
                     <li class="dropdown">
@@ -73,6 +74,7 @@
                 </li><!-- /.tasks-menu -->
 
                 @endauth
+                @endif
     
                 <li class="dropdown user user-menu">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -87,18 +89,6 @@
                                 {{-- access()->user()->name }} - {{ implode(", ", access()->user()->roles->lists('name')->toArray()) --}}
                                 <small>{{ trans('strings.backend.general.member_since') }} {{ access()->user()->created_at->format("m/d/Y") }}</small>
                             </p>
-                        </li>
-
-                        <li class="user-body">
-                            <div class="col-xs-4 text-center">
-                                {{ link_to('#', 'Link') }}
-                            </div>
-                            <div class="col-xs-4 text-center">
-                                {{ link_to('#', 'Link') }}
-                            </div>
-                            <div class="col-xs-4 text-center">
-                                {{ link_to('#', 'Link') }}
-                            </div>
                         </li>
 
                         <li class="user-footer">

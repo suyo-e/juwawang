@@ -58,6 +58,7 @@
 <div class="form-group col-sm-6">
     {!! Form::label('category_id', '类别:') !!}
     {!! Form::select('category_id', $categories, null, ['class' => 'form-control']) !!}
+    {!! Form::text('category_name', null, ['class' => 'hidden', 'id'=>'category_name']) !!}
 </div>
 
 <div class="clearfix"></div>

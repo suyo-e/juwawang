@@ -56,7 +56,7 @@ class ProductDataTable extends DataTable
                     'reload',
                     [
                          'extend'  => 'collection',
-                         'text'    => '<i class="fa fa-download"></i> Export',
+                         'text'    => '<i class="fa fa-download"></i> 导出',
                          'buttons' => [
                              'csv',
                              'excel',

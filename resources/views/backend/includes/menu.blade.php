@@ -1,4 +1,9 @@
-@permissions(['manage-roles'])
+@role('Administrator')
+<li class="{{ Request::is('profiles*') ? 'active' : '' }}">
+    <a href="{!! route('admin.profiles.index', ['is_identities'=>'1,3']) !!}">
+        <i class="fa fa-circle-o"></i><span>审核及资料修改</span>
+    </a>
+</li>
 <li class="active treeview">
     <a href="#">
         <i class="fa fa-list"></i>
@@ -58,6 +63,7 @@
 
     </ul>
 </li>
+<li class="header">商户管理</li>
 <li class="active treeview">
     <a href="#">
         <i class="fa fa-list"></i>
@@ -87,13 +93,9 @@
         </li>
     </ul>
 </li>
-<li class="{{ Request::is('profiles*') ? 'active' : '' }}">
-    <a href="{!! route('admin.profiles.index', ['is_identities'=>'1,3']) !!}">
-        <i class="fa fa-circle-o"></i><span>审核及资料修改</span>
-    </a>
-</li>
 @endauth
-@permissions(['manage-basic'])
+
+@if( access()->user()->phone != '19000000001')
 <li class="active treeview">
     <a href="#">
         <i class="fa fa-list"></i>
@@ -151,6 +153,5 @@
         </li>
     </ul>
 </li>
+@endif
 
-
-@endauth

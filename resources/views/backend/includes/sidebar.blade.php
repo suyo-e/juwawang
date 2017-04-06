@@ -14,6 +14,7 @@
             </div><!--pull-left-->
         </div><!--user-panel-->
 
+        @if (false)
         @permissions(['manage-roles'])
         <!-- search form (Optional) -->
         {{ Form::open(['route' => 'admin.search.index', 'method' => 'get', 'class' => 'sidebar-form']) }}
@@ -26,10 +27,12 @@
         </div><!--input-group-->
         {{ Form::close() }}
         @endauth
+        @endif
     <!-- /.search form -->
 
         <!-- Sidebar Menu -->
         <ul class="sidebar-menu">
+            @if (false)
             @permissions(['manage-roles'])
             <li class="header">{{ trans('menus.backend.sidebar.general') }}</li>
             <li class="{{ active_class(Active::checkUriPattern('admin/dashboard')) }}">
@@ -39,6 +42,7 @@
                 </a>
             </li>
             @endauth
+            @endif
 
             <li class="header">管理系统</li>
 
@@ -46,6 +50,7 @@
             @include('backend.includes.menu')
             @endauth
 
+            @if (false)
             @permissions(['manage-roles'])
             <li class="{{ active_class(Active::checkUriPattern('admin/access/*')) }} treeview">
                 <a href="#">
@@ -94,7 +99,8 @@
                     </li>
                 </ul>
             </li>
-            @endauth
+            @endauth    
+            @endif
 
         </ul><!-- /.sidebar-menu -->
     </section><!-- /.sidebar -->

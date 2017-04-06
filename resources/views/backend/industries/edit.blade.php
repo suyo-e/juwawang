@@ -30,6 +30,16 @@
 <script src="/js/jquery.fileupload.js"></script>
 <script>
 $(function() {
+    
+    $('#upload-file').fileupload({
+        url: '/upload',
+        dataType: 'json',
+        done: function (e, data) {
+            var path = data.result.data.path;
+            $("#avatar_input").val(path);
+            $("#avatar_img").attr('src', path);
+        }
+    });
     jQuery("#province_city_name").cityPicker({
         title: "请选择收货地址",
         onClose: function(data) {
@@ -39,16 +49,6 @@ $(function() {
                 $("#city_id").val(arr[1]);
                 $("#area_id").val(arr[2]);
             }
-        }
-    });
-
-    $('#upload-file').fileupload({
-        url: '/upload',
-        dataType: 'json',
-        done: function (e, data) {
-            var path = data.result.data.path;
-            $("#avatar_input").val(path);
-            $("#avatar_img").attr('src', path);
         }
     });
 });

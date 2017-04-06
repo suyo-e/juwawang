@@ -51,6 +51,11 @@ $(function() {
             $("#banner-container").append('<img class="banner-image" src="'+path+'" height="100" /><input name="banner_urls[]" value="'+path+'" type="hidden"/>');
         }
     });
+    
+    $("#category_id").change(function() {
+        $("#category_name").val($("#category_id option:selected").text());
+    });
+
 });
 
 </script>

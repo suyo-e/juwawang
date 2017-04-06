@@ -97,10 +97,9 @@ class UserRepository extends BaseRepository
 
         DB::transaction(function () use ($user) {
             if ($user->save()) {
-                /*
-                 * Add the default site role to the new user
-                 */
+        /*
                 $user->attachRole($this->role->getDefaultUserRole());
+         */
             }
         });
 

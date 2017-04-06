@@ -28,7 +28,7 @@
         className: 'buttons-export',
 
         text: function (dt) {
-            return '<i class="fa fa-download"></i> ' + dt.i18n('buttons.export', 'Export') + '&nbsp;<span class="caret"/>';
+            return '<i class="fa fa-download"></i> ' + dt.i18n('buttons.export', '导出') + '&nbsp;<span class="caret"/>';
         },
 
         buttons: ['csv', 'excel', 'pdf']
@@ -64,7 +64,7 @@
         className: 'buttons-print',
 
         text: function (dt) {
-            return  '<i class="fa fa-print"></i> ' + dt.i18n('buttons.print', 'Print');
+            return  '<i class="fa fa-print"></i> ' + dt.i18n('buttons.print', '打印');
         },
 
         action: function (e, dt, button, config) {
@@ -77,7 +77,7 @@
         className: 'buttons-reset',
 
         text: function (dt) {
-            return '<i class="fa fa-undo"></i> ' + dt.i18n('buttons.reset', 'Reset');
+            return '<i class="fa fa-undo"></i> ' + dt.i18n('buttons.reset', '重置');
         },
 
         action: function (e, dt, button, config) {
@@ -89,7 +89,7 @@
         className: 'buttons-reload',
 
         text: function (dt) {
-            return '<i class="fa fa-refresh"></i> ' + dt.i18n('buttons.reload', 'Reload');
+            return '<i class="fa fa-refresh"></i> ' + dt.i18n('buttons.reload', '刷新');
         },
 
         action: function (e, dt, button, config) {

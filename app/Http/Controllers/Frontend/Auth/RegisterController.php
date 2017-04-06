@@ -8,7 +8,9 @@ use Illuminate\Foundation\Auth\RegistersUsers;
 use App\Http\Requests\Frontend\Auth\RegisterRequest;
 use App\Repositories\Frontend\Access\User\UserRepository;
 
+use Illuminate\Support\Facades\DB;
 use App\Models\Access\User\User;
+use App\Models\Access\Role\Role;
 use App\Models\Backend\Category;
 use App\Models\Backend\Profile;
 use App\Models\Backend\Industry;
@@ -208,13 +210,19 @@ class RegisterController extends Controller
             );
             $industry_data['display_name'] = $industry_data['display_name']?$industry_data['display_name']: ' ';
             $industry = Industry::create($industry_data);
-
+            
             access()->login($user);
             event(new UserRegistered(access()->user()));
 
             Flash::success('注册成功.');
             if($profile->type == 3) {
+                $role = Role::find(3);
+                $user->attachRole($role);
                 return redirect($this->redirectPath());
+            }
+            else {
+                $role = Role::find(2);
+                $user->attachRole($role);
             }
             return redirect(route('frontend.industries.edit'));
         }

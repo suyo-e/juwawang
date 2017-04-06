@@ -32,7 +32,7 @@ return [
             'are_you_sure'        => 'Are you sure?',
             'boilerplate_link'    => 'Laravel 5 Boilerplate',
             'continue'            => 'Continue',
-            'member_since'        => 'Member since',
+            'member_since'        => '注册时间',
             'minutes'             => ' minutes',
             'search_placeholder'  => 'Search...',
             'timeout'             => 'You were automatically logged out for security reasons since you had no activity in ',

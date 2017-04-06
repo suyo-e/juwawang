@@ -42,6 +42,7 @@
         </div><!-- /.box-body -->
     </div><!--box-->
 
+    @if (false)
     @permissions(['manage-roles'])
     <div class="box box-info">
         <div class="box-header with-border">
@@ -55,6 +56,7 @@
         </div><!-- /.box-body -->
     </div><!--box box-success-->
     @endauth
+    @endif
 @endsection
 
 @section('after-scripts')
