@@ -8,7 +8,7 @@
            <a class="btn btn-primary" style="margin-top: -10px;margin-bottom: 5px" href="{!! route('admin.icons.index', ['type'=>1]) !!}">厂商</a>
         </h1>
         <h1 class="pull-right">
-           <a class="btn btn-primary pull-right" style="margin-top: -10px;margin-bottom: 5px" href="{!! route('admin.icons.create') !!}">Add New</a>
+           <a class="btn btn-primary pull-right" style="margin-top: -10px;margin-bottom: 5px" href="{!! route('admin.icons.create') !!}">添加icon</a>
         </h1>
     </section>
     <div class="content">

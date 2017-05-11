@@ -63,7 +63,7 @@ class ProductDataTable extends DataTable
                              'pdf',
                          ],
                     ],
-                    'colvis'
+                    //'colvis'
                 ]
             ]);
     }

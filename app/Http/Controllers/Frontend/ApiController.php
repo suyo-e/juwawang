@@ -67,8 +67,8 @@ class ApiController extends AppBaseController
         }
 
         $config = [
-            'app_key'    => '23284770',
-            'app_secret' => '296c321bce75550d1e64aa52f9519275'
+            'app_key'    => '23740532',
+            'app_secret' => 'b79c3abbd305e6805f512d8caed5841b'
         ];
         $code = rand(100000, 999999);
 
@@ -76,10 +76,10 @@ class ApiController extends AppBaseController
         $req    = new AlibabaAliqinFcSmsNumSend;
 
         //$req->setSmsType("normal");
-        $req->setSmsFreeSignName("注册验证");
-        $req->setSmsParam("{\"code\":\"".$code."\",\"product\":\"朵唯俱乐部\"}");
+        $req->setSmsFreeSignName("球战");
+        $req->setSmsParam("{\"code\":\"".$code."\"}");
         $req->setRecNum($phone);
-        $req->setSmsTemplateCode("SMS_3100548");
+        $req->setSmsTemplateCode("SMS_60330344");
 /*
         $req->setRecNum($phone)
             ->setSmsParam([ 
@@ -90,9 +90,19 @@ class ApiController extends AppBaseController
  */
         $resp = $client->execute($req);
 
+        /*
+        if($resp && $resp->code != 0) {
+            return $this->sendError('');
+        }
+         */
+
         //stdClass Object ( [code] => 15 [msg] => Remote service error [sub_code] => isv.SMS_TEMPLATE_ILLEGAL [sub_msg] => 短信模板不合法 [request_id] => 43edahozfdt0 )
         session(['verify_code' => $code, 'verify_time' => time(), 'phone' => $phone]);
-
+/*`
+        echo "<pre>";
+        print_r($resp);
+        exit();
+ */
         \Log::info('sendMessage', array(
             'session'=>session(),
             'resp'=>$resp

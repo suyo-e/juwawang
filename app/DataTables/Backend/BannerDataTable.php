@@ -59,7 +59,7 @@ class BannerDataTable extends DataTable
                              'pdf',
                          ],
                     ],
-                    'colvis'
+                    //'colvis'
                 ]
             ]);
     }

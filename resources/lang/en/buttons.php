@@ -35,17 +35,17 @@ return [
     ],
 
     'general' => [
-        'cancel' => 'Cancel',
+        'cancel' => '取消',
 
         'crud' => [
-            'create' => 'Create',
-            'delete' => 'Delete',
-            'edit'   => 'Edit',
-            'update' => 'Update',
-            'view'   => 'View',
+            'create' => '创建',
+            'delete' => '删除',
+            'edit'   => '编辑',
+            'update' => '更新',
+            'view'   => '查看',
         ],
 
-        'save' => 'Save',
-        'view' => 'View',
+        'save' => '保存',
+        'view' => '查看',
     ],
 ];

@@ -63,7 +63,7 @@ class ProfileDataTable extends DataTable
                              'pdf',
                          ],
                     ],
-                    'colvis'
+                    //'colvis'
                 ]
             ]);
     }

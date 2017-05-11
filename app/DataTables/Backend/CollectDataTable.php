@@ -59,7 +59,7 @@ class CollectDataTable extends DataTable
                              'pdf',
                          ],
                     ],
-                    'colvis'
+                    //'colvis'
                 ]
             ]);
     }

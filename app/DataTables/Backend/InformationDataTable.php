@@ -59,7 +59,7 @@ class InformationDataTable extends DataTable
                              'pdf',
                          ],
                     ],
-                    'colvis'
+                    //'colvis'
                 ]
             ]);
     }

@@ -58,11 +58,14 @@ class RegisterController extends Controller
         $step = $request->input('step');
         $phone = $request->input('phone');
         if($step == 2) {
+            /*
             $verify_phone = session('phone');
+            session(['verify_code' => null, 'verify_time' => null]);
             if($verify_phone != $phone) {
                 Flash::error('验证码错误');
                 return redirect()->back()->withInput()->with('error', '验证码错误');
             }
+             */
             if(!$verify_time) {
                 Flash::error('请先获取短信');
                 return redirect()->back()->withInput()->with('error', '验证码错误');

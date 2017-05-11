@@ -23,7 +23,7 @@
     {!! Form::label('content', '内容:') !!}
 
     <!-- 加载编辑器的容器 -->
-    <script id="container" name="content" style="height:300px" type="text/plain">{!! $information->content !!}</script>
+    <script id="container" name="content" style="height:300px" type="text/plain">{!! isset($information)?$information->content:'' !!}</script>
 
     <!-- 实例化编辑器 -->
     <script type="text/javascript">
@@ -36,7 +36,7 @@
 
 <!-- Submit Field -->
 <div class="form-group col-sm-12">
-    {!! Form::submit('Save', ['class' => 'btn btn-primary']) !!}
-    <a href="{!! route('admin.information.index') !!}" class="btn btn-default">Cancel</a>
+    {!! Form::submit('保存', ['class' => 'btn btn-primary']) !!}
+    <a href="{!! route('admin.information.index') !!}" class="btn btn-default">取消</a>
 </div>
 
