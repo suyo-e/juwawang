@@ -117,6 +117,11 @@ class FrontendController extends AppBaseController
         return view('frontend.feedback');
     }
 
+    public function success() 
+    {
+        return view('frontend.success');
+    }
+
     public function forget(Request $request) 
     {
         $step = $request->input('step', 1);

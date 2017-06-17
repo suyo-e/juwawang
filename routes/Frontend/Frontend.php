@@ -70,6 +70,7 @@ Route::get('/user/score', 'UserController@score')->name('score')->middleware('au
 Route::get('/user/scoreList', 'UserController@scoreList')->name('scoreList')->middleware('auth');
 
 Route::get('shareRegister', 'FrontendController@shareRegister')->name('shareRegister');
+Route::get('success', 'FrontendController@success')->name('success');
 
 /*
  * These frontend controllers require the user to be logged in

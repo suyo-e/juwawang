@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\DB;
 use App\Models\Access\User\User;
 use App\Models\Access\Role\Role;
 use App\Models\Backend\Category;
+use App\Models\Backend\Score;
 use App\Models\Backend\Profile;
 use App\Models\Backend\Industry;
 use Illuminate\Http\Request;
@@ -218,10 +219,28 @@ class RegisterController extends Controller
             event(new UserRegistered(access()->user()));
 
             Flash::success('注册成功.');
+            //添加积分
+            $invite_profile = Profile::where('invite_code', $request->input('invite_code'))->first();
+            if($invite_profile) {
+                $invite_profile->current_amount += 5;
+                $invite_profile->total_amount += 5;
+                $scoreData = [
+                    'user_id' => $profile->user_id,
+                    'amount' => 5, //todo
+                    'current_amount' => $invite_profile->current_amount,
+                    'total_amount' => $invite_profile->total_amount,
+                    'typename' => '邀请好友',
+                    'description' => '好友ID:'.$user->id
+                ];
+                $score = Score::create($scoreData);
+                $invite_profile->save();
+            }
+
             if($profile->type == 3) {
                 $role = Role::find(3);
                 $user->attachRole($role);
-                return redirect($this->redirectPath());
+                return redirect(route('frontend.success'));
+                //return redirect($this->redirectPath());
             }
             else {
                 $role = Role::find(2);
