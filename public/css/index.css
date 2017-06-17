@@ -47,7 +47,7 @@ h6 {
   -webkit-text-size-adjust: none;
 }
 html {
-  font-size: 14px!important;
+  font-size: 14px;
 }
 body {
   font-family: PingFang-SC-Regular, 'MicrosoftYaHei', arial, sans-serif;
@@ -277,17 +277,16 @@ input[type=file] {
 .screening ul li {
   width: 25%;
   display: inline-block;
-  font-size: 0.9rem;
+  font-size: 0.8rem;
   text-align: center;
   line-height: 3rem;
   border-bottom: 1px solid #e6e6e6;
   box-sizing: border-box;
   padding-right: 26px;
-  background: #ffffff url("../../image/on_bottom.png") no-repeat center right 10px;
-  background-size: 12px;
+  background: #ffffff url("../../image/on_bottom.png") no-repeat center right 12px;
 }
 .screening ul li img {
-  width: 0.4rem;
+  width: 0.6rem;
   vertical-align: middle;
   margin-left: 0.2rem;
 }
@@ -310,7 +309,7 @@ input[type=file] {
   margin-top: 0.1rem;
 }
 .ejectAll > li {
-  line-height: 3rem;
+  line-height: 2.2rem;
   padding-left: 1.2rem ;
   border-bottom: 1px solid #e6e6e6;
   font-size: 0.8rem;
@@ -323,7 +322,7 @@ input[type=file] {
 }
 .headTop {
   width: 100%;
-  height: 3.5rem;
+  height: 3.1rem;
   background: #04b7e3;
   overflow: hidden;
 }
@@ -331,7 +330,7 @@ input[type=file] {
   width: 65%;
   margin-left: 17.5%;
   position: relative;
-  line-height: 3.5rem;
+  line-height: 3.1rem;
 }
 .headTop .search p {
   position: absolute;
@@ -343,15 +342,14 @@ input[type=file] {
 }
 .headTop .search input {
   width: 100%;
-  height: 2.2rem;
+  height: 2rem;
   border-radius: 1.5rem;
   padding-left: 2rem;
   border: 0;
-  font-size: 1rem;
 }
 .headTop .Release {
   width: 17.5%;
-  line-height: 3.5rem;
+  line-height: 3.1rem;
 }
 .headTop .Release a {
   color: #fff;
@@ -374,7 +372,7 @@ input[type=file] {
   height: 100%;
 }
 .nav {
-  height: 10rem;
+  height: 15rem;
   background: #fff;
   overflow: hidden;
   border-bottom: 1px solid #e6e6e6;
@@ -399,9 +397,35 @@ input[type=file] {
 .nav ul li a .iocn-1 {
   margin-top: 0.8rem;
 }
+
+
+.content1 ul li .weui-cell .lt{
+  float: left;
+}
+.content1 ul li .weui-cell .weui-cell__bd{
+  width: 20%;
+  text-align: center;
+  padding: 6px 0;
+  vertical-align: middle;
+}
+.content1 ul li .weui-cell .weui-cell__ft{
+  width: 80%;
+  padding: 6px 0;
+
+}
+.content1 ul li .weui-cell .weui-cell__ft p{
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+.content1 ul li .weui-cell .weui-cell__bd img{
+  width: 80%;
+  height: 80%;
+  border-radius:50% ;
+  vertical-align: middle;
+}
 .content {
   width: 100%;
-  margin-bottom: 4.2rem;
 }
 .content .hot {
   width: 100%;
@@ -551,9 +575,6 @@ input[type=file] {
   border: 0;
   font-size: 1rem;
 }
-.inforlist {
-  margin-bottom: 4rem;
-}
 .inforlist .list1 {
   background: #fff;
   line-height: 3rem;
@@ -578,9 +599,6 @@ input[type=file] {
 }
 /*发布详情*/
 .fabu {
-  position: fixed;
-  bottom: 0;
-  left: 0;
   width: 100%;
   height: 3rem;
   line-height: 3rem;
@@ -877,7 +895,7 @@ input[type=file] {
 .listManufa ul li img {
   float: right;
   margin: 1.2rem 1rem 0 0;
-  width: 1rem;
+  width: 0.4rem;
 }
 /*ѡ�񳧼�*/
 .erjicai {
@@ -1027,9 +1045,6 @@ input[type=file] {
 .classContent {
   width: 100%;
 }
-.classContent > ul{
-  margin-bottom: 4rem;
-}
 .classContent > ul li {
   padding: 0.4rem 0.8rem;
   background: #fff;
@@ -1048,29 +1063,15 @@ input[type=file] {
   width: 5rem;
   height: 5rem;
 }
-.classContent > ul li .clasHeight img{
-  width: 6rem;
-  height: 6rem;
-}
-.classContent > ul li .classcont{
-  width: 68%;
-  overflow: hidden;
-}
 .classContent > ul li .classcont p {
-  height: 1.3rem;
   line-height: 1.3rem;
   font-size: 0.8rem;
-  overflow: hidden;
 }
 .classContent > ul li .classcont p b {
   font-size: 0.9rem;
 }
 .classContent > ul li .classcont p .price {
   color: #e62129;
-}
-.classContent > ul li .classcont p .ssq-cont {
-  display: inline-block;
-  width: 50%;
 }
 .classContent > ul li .classcont .dizi {
   display: inline-block;
@@ -1194,12 +1195,7 @@ input[type=file] {
 }
 .SeeMerchant a img {
   float: right;
-  width: 16px;
   margin: 1rem 1rem 0 0;
-}
-.SeeMerchant span input{
-  border: 0;
-  font-size: 1.1rem;
 }
 .foterNav {
   width: 100%;
@@ -1305,13 +1301,11 @@ input[type=file] {
 }
 .intention .Product .ProductCont > img {
   width: 6rem;
-  height: 6rem;
   float: left;
   margin-right: 0.8rem;
 }
 .intention .Product .ProductCont .info {
   float: left;
-  width: 60%;
 }
 .intention .Product .ProductCont .info span {
   display: block;
@@ -1401,21 +1395,22 @@ input[type=file] {
   margin-left: 2rem;
   font-size: 1.2rem;
 }
+.addressAll{
+  margin-bottom: 4rem;
+}
 .addressAll .address {
   width: 100%;
   background: #fff;
-  padding: 0.6rem 1.6rem;
   margin: 0.4rem 0;
   font-size: 1rem;
   border-top: 1px solid #e6e6e6;
-  border-bottom: 1px solid #e6e6e6;
   box-sizing: border-box;
 }
 .addressAll .address .namePhone {
-  height: 2.8rem;
-  line-height: 2.8rem;
+  height: 3.4rem;
+  line-height: 3.4rem;
   border-bottom: 1px solid #ebebec;
-  margin-bottom: 0.4rem;
+  padding-left: 18px;
 }
 .addressAll .address .namePhone .default {
   float: right;
@@ -1468,12 +1463,9 @@ section {
   height: 3.5rem;
   border-radius: 50%;
   margin: 0 auto;
-  background-size: 30px;
 }
 .myBox .personalData .Head p img {
-  width:3.5rem;
-  height:3.5rem;
-  border-radius:50%;
+  width: 3.5rem;
 }
 .myBox .personalData .nameEnterprise {
   width: 46%;
@@ -1483,13 +1475,12 @@ section {
 .myBox .personalData .nameEnterprise .name {
   color: #333;
   margin-top: 0.4rem ;
-  height: 1.1rem;
+  height: 1.2rem;
 }
 .myBox .personalData .nameEnterprise .Enterprise {
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
-  margin-top: 0.2rem;
 }
 .myBox .personalData .editData {
   display: inline-block;
@@ -1511,8 +1502,6 @@ section {
 .myBox .Authentication span {
   color: red;
   line-height: 2.8rem;
-  background: url("../../image/V.png")no-repeat;
-  padding-left: 1.5rem;
 }
 .myBox .Authentication a {
   float: right;
@@ -1562,19 +1551,9 @@ section {
 }
 .edit .PersonalInf .name > span {
   display: inline-block;
-  width: 18%;
+  width: 12%;
   color: #5f5f5f;
   text-align: left;
-}
-.edit .PersonalInf .name > select{
-  width: 3rem;
-  height: 2rem;
-  border: solid 1px #000;
-  appearance:none;
-  -moz-appearance:none;
-  -webkit-appearance:none;
-  background: url("../../image/arrow.png") no-repeat scroll right center transparent;
-  padding-right: 14px;
 }
 .edit .PersonalInf .name input {
   color: #333;
@@ -1616,9 +1595,6 @@ section {
   font-size: 1rem;
 }
 .main .chakanbtn button {
-  position: fixed;
-  bottom:0;
-  left:0;
   width: 100%;
   height: 3rem;
   line-height: 3rem;
@@ -1856,7 +1832,6 @@ section {
   width: 100%;
   height: 11rem;
   position: relative;
-  overflow: hidden;
 }
 .bjMap img {
   width: 100%;
@@ -1896,9 +1871,7 @@ section {
   font-size: 0.9rem;
   color: #fff;
   margin-top: -5rem;
-
-  text-align: center;
-  margin-left: -50%;
+  margin-left: -3rem;
 }
 .main .SeeMerchant .inputa {
   width: 60%;
@@ -1907,7 +1880,7 @@ section {
   font-size: 1rem;
 }
 .main .DetailsIntro {
-  margin-bottom: 4rem;
+  margin-bottom: 2rem;
 }
 .main .DetailsIntro .DetailsCont {
   width: 100%;
@@ -1964,7 +1937,7 @@ section {
   padding: 0 0.6rem;
   box-sizing: border-box;
   border-bottom: 1px solid #e6e6e6;
-  #border-top: 1px solid #e6e6e6;
+  border-top: 1px solid #e6e6e6;
 }
 .purchaseCont .listClas .name span {
   display: inline-block;
@@ -1972,10 +1945,8 @@ section {
 }
 .purchaseCont .listClas .name span img {
   width: 3rem;
-  height: 3rem;
   vertical-align: middle;
   margin-right: 0.4rem;
-  border-radius: 50%;
 }
 .purchaseCont .listClas .name .time {
   float: right;
@@ -1996,21 +1967,6 @@ section {
 }
 .purchaseCont .listClas .IntentList li .classImg img {
   width: 6rem;
-  height: 4.6rem;
-}
-.purchaseCont .listClas .IntentList li .classcont {
-  width: 70%;
-}
-.purchaseCont .listClas .IntentList li .classcont .shixiao{
-  float: right;
-  display: inline-block;
-  width: 3.5rem;
-  height: 1.6rem;
-  line-height: 1.6rem;
-  text-align: center;
-  background: red;
-  border-radius: 0.2rem;
-  color: #fff;
 }
 .purchaseCont .listClas .IntentList li .classcont p {
   line-height: 1.6rem;
@@ -2212,16 +2168,4 @@ section {
   color: #fff;
   margin: 0.4rem 0 1rem;
   font-size: 1.3rem;
-}
-.onbutton input{
-
-  display:none;
-}
-.onbutton .seeimg_file{
-  float:right;
-  background:url(/image/zhaopian.png) no-repeat right center;
-  width:10em;
-  height:1.6rem;
-  margin-top:0.35rem;
-  background-size:1.6rem 1.35rem;
 }

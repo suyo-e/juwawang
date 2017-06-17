@@ -6,6 +6,7 @@ use App\Http\Controllers\AppBaseController;
 
 use App\Models\Backend\Icon;
 use App\Models\Backend\Banner;
+use App\Models\Backend\Product;
 use App\Models\Backend\Category;
 use App\Models\Backend\Industry;
 use App\Models\Backend\Profile;
@@ -66,6 +67,11 @@ class FrontendController extends AppBaseController
             ->limit(20)
             ->get();
         
+        $products = Product::where('is_recommand', 1)
+            ->orderBy('updated_at', 'desc')
+            ->limit(6)
+            ->get();
+        
         $gb2260 = new \GB2260\GB2260();
         foreach($profiles as $profile) {
             province_city_name($profile);
@@ -75,7 +81,7 @@ class FrontendController extends AppBaseController
 
         //$categories = get_categories($profile->type)->slice(0, 7);
 
-        return view('frontend.index', compact('banners', 'profiles', 'icons', 'from'));
+        return view('frontend.index', compact('banners', 'profiles', 'icons', 'from', 'products'));
     }
 
     /**
@@ -114,5 +120,19 @@ class FrontendController extends AppBaseController
     {
         $step = $request->input('step', 1);
         return view('frontend.forget', compact('step'));
+    }
+
+    public function share(Request $request) {
+        $profile = Profile::where('user_id', access()->user()->id)->first();
+        if(!$profile) {
+            return redirect()->back();
+        }
+        $invite_code = $profile->invite_code;
+        return view('frontend.share', compact('invite_code'));
+    }
+
+    public function shareRegister(Request $request) {
+        $banners = Banner::get();
+        return view('frontend.share-register', compact('banners'));
     }
 }

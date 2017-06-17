@@ -33,6 +33,28 @@
             </li>
         </ul>
     </div>
+    <div class="content content1">
+        <p class="hot">推荐商品</p>
+        <ul>
+        @foreach ($products as $product)   
+            @if (!$product) continue;
+            @endif
+            <li>
+                <div class="weui-cell">
+                    <div class="weui-cell__bd lt">
+                        <img src="{{ $product->pic_url }}" alt="">
+                    </div>
+                    <div class="weui-cell__ft lt">
+                        <p><b>{{ $product->title }}</b></p>
+                        <p>价格 : <span style="color: red">{{ $product->price }}</span></p>
+                        <p>类别 : {{ $product->type_name }}</p>
+                        <p>地址 : {{ $product->address }}</p>
+                    </div>
+                </div>
+            </li>
+        @endforeach
+        </ul>
+    </div>
     <div class="content">
         <p class="hot">热门商家推荐</p>
         <ul>

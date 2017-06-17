@@ -1,0 +1,44 @@
+
+/*******************≥‰÷µ*/
+.recharge{
+    /*text-align: center;*/
+}
+.recharge .title{
+    padding-top: 100px;
+    padding-left: 18%;
+    font-size: 18px;
+}
+.recharge .shuru{
+    text-align: center;
+    padding: 10px 0;
+}
+.recharge .shuru input{
+    width: 60%;
+    height: 32px;
+    padding-left: 12px;
+}
+.recharge .zhu{
+
+    padding-left:18%;
+}
+.btn{
+    width: 80%;
+    height: 36px;
+    border: 0;
+    border-radius: 6px;
+    background: #00a3cc;
+    color: #fff;
+    margin: 40px 0 0 10%;
+}
+
+
+
+
+
+
+
+
+
+
+
+

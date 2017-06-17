@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Backend;
 
 use App\DataTables\Backend\ProductDataTable;
 use App\Http\Requests\Backend;
+use Illuminate\Http\Request;
 use App\Http\Requests\Backend\CreateProductRequest;
 use App\Http\Requests\Backend\UpdateProductRequest;
 use App\Repositories\Backend\ProductRepository;
@@ -219,6 +220,26 @@ class ProductController extends AppBaseController
         $this->productRepository->delete($id);
 
         Flash::success('Product deleted successfully.');
+
+        return redirect(route('admin.products.index'));
+    }
+
+    public function recommand(Request $request) {
+        $product_id = $request->input('product_id');
+        if(!is_numeric($product_id)) {
+            Flash::error('商品ID不存在');
+            return redirect()->back();
+        }
+        $product = \App\Models\Backend\Product::find($product_id);
+        if(!$product) {
+            Flash::error('商品ID不存在');
+            return redirect()->back();
+        }
+
+        $product->is_recommand = $product->is_recommand==0?1:0;
+        $product->save();
+
+        Flash::success('商品推荐成功.');
 
         return redirect(route('admin.products.index'));
     }

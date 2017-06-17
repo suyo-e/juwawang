@@ -13,5 +13,10 @@
         'class' => 'btn btn-danger btn-xs',
         'onclick' => "return confirm('Are you sure?')"
     ]) !!}
+    @if ($is_recommand == 1)
+    <a href="{{ route('admin.products.recommand', ['product_id' => $id ]) }}" class="btn btn-xs btn-success">取消推荐</a> 
+    @else
+    <a href="{{ route('admin.products.recommand', ['product_id' => $id ]) }}" class="btn btn-xs btn-success">推荐</a>
+    @endif
 </div>
 {!! Form::close() !!}
