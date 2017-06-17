@@ -134,7 +134,14 @@ class FrontendController extends AppBaseController
 
     public function shareRegister(Request $request) {
         $banners = Banner::get();
-        return view('frontend.share-register', compact('banners'));
+
+        $invite_code = $request->input('invite_code');
+        if(!$invite_code) {
+            //todo
+        }
+        $profile = Profile::where('invite_code', $invite_code)->first();
+
+        return view('frontend.share-register', compact('banners', 'invite_code'));
     }
 
 }

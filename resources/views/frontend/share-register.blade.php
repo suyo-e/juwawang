@@ -90,7 +90,7 @@
     </div>
     <div class="yaoqing">
         <p>您正在使用*******的邀请码</p>
-        <p><b>邀请码 : 5d45d23132d</b></p>
+        <p><b>邀请码 : {{ $invite_code }}</b></p>
     </div>
     <div class="jianjie">
         <div class="cont">
@@ -106,23 +106,24 @@
             </div>
         </div>
     </div>
-    <div class="xuanz">
+    <form class="xuanz" method="get" action="/register">
+        <input type="hidden" name="invite_code" value="{{ $invite_code }}" />
         <div class="danxuan">
             <p>
-                <input id="name1" name="0" type="radio" checked/>
+                <input id="name1" name="type" type="radio" value="3"  checked/>
                 <label for="name1">用户</label>
             </p>
             <p>
-                <input id="name2" name="0" type="radio"/>
+                <input id="name2" name="type" type="radio" value="2"/>
                 <label for="name2">经销商</label>
             </p>
             <p>
-                <input id="name3" name="0" type="radio"/>
-                <label for="name3">生产商</label>
+                <input id="name3" name="type" type="radio" value="1"/>
+                <label for="name3">厂家</label>
             </p>
         </div>
-        <button class="btn" type="button">下一步</button>
-    </div>
+        <button class="btn" type="submit">下一步</button>
+    </form>
 <script src="/js/jquery-1.9.1.min.js"></script>
 <script src="//cdn.bootcss.com/jquery-weui/1.0.1/js/jquery-weui.min.js"></script>
 <script src="/js/swiper.min.js"></script>

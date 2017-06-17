@@ -65,10 +65,11 @@ Route::get('setting', 'FrontendController@setting')->name('setting')->middleware
 Route::get('about', 'FrontendController@about')->name('about')->middleware('auth');
 Route::get('feedback', 'FrontendController@feedback')->name('feedback')->middleware('auth');
 Route::get('share', 'FrontendController@share')->name('share')->middleware('auth');
-Route::get('shareRegister', 'FrontendController@shareRegister')->name('shareRegister')->middleware('auth');
 
 Route::get('/user/score', 'UserController@score')->name('score')->middleware('auth');
 Route::get('/user/scoreList', 'UserController@scoreList')->name('scoreList')->middleware('auth');
+
+Route::get('shareRegister', 'FrontendController@shareRegister')->name('shareRegister');
 
 /*
  * These frontend controllers require the user to be logged in
