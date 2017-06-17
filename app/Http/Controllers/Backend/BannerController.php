@@ -7,6 +7,7 @@ use App\Http\Requests\Backend;
 use App\Http\Requests\Backend\CreateBannerRequest;
 use App\Http\Requests\Backend\UpdateBannerRequest;
 use App\Repositories\Backend\BannerRepository;
+use App\Models\Backend\Profile;
 use Flash;
 use App\Http\Controllers\AppBaseController;
 use Response;
@@ -29,7 +30,8 @@ class BannerController extends AppBaseController
      */
     public function index(BannerDataTable $bannerDataTable)
     {
-        return $bannerDataTable->render('backend.banners.index');
+        $category_ids = _get('category_ids');
+        return $bannerDataTable->render('backend.banners.index', compact('category_ids'));
     }
 
     /**
@@ -39,7 +41,14 @@ class BannerController extends AppBaseController
      */
     public function create()
     {
-        return view('backend.banners.create');
+        $category_ids = _get('category_ids');
+
+        if($category_ids != '') {
+
+            return view('backend.banners.create-recommand', compact('category_ids'));
+        }
+
+        return view('backend.banners.create', compact('category_ids'));
     }
 
     /**
@@ -57,10 +66,19 @@ class BannerController extends AppBaseController
             $input['pic_url'] = $path;
         }
 
+
         $banner = $this->bannerRepository->create($input);
 
         Flash::success('Banner saved successfully.');
 
+        if(!_is_banner_recommand($banner->type)) {
+            $profile= Profile::find($banner->url);
+            if(!$profile) {
+                Flash::error('用户不存在');
+                return redirect()->back();
+            }
+            return redirect(route('admin.banners.index', ['category_ids' => $banner->display_name]));
+        }
         return redirect(route('admin.banners.index'));
     }
 
@@ -101,7 +119,12 @@ class BannerController extends AppBaseController
             return redirect(route('admin.banners.index'));
         }
 
-        return view('backend.banners.edit')->with('banner', $banner);
+        if(_is_banner_recommand($banner->type)) {
+            return view('backend.banners.edit')->with('banner', $banner);
+        }
+        else {
+            return view('backend.banners.edit-recommand')->with('banner', $banner)->with('category_ids', $banner->display_name);
+        }
     }
 
     /**
@@ -132,6 +155,14 @@ class BannerController extends AppBaseController
 
         Flash::success('Banner updated successfully.');
 
+        if(!_is_banner_recommand($banner->type)) {
+            $profile= Profile::where('user_id', $banner->url)->first();
+            if(!$profile) {
+                Flash::error('用户不存在');
+                return redirect()->back();
+            }
+            return redirect(route('admin.banners.index', ['category_ids' => $banner->display_name]));
+        }
         return redirect(route('admin.banners.index'));
     }
 

@@ -110,6 +110,18 @@ if (! function_exists('upload')) {
     }
 }
 
+if (! function_exists('_get')) {
+    function _get($key, $val = '') {
+        return isset($_GET[$key])?$_GET[$key]: $val;
+    }
+}
+
+if (! function_exists('_is_banner_recommand')) {
+    function _is_banner_recommand($type) {
+        return in_array($type, array(0,1,2));
+    }
+}
+
 if (! function_exists('render_image')) {
     function render_image(){
         return 'data!=""?"<img src=\""+data+"\" height=\"50\"/>":"暂无图片"';

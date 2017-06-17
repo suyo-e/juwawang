@@ -58,6 +58,18 @@
         </ul>
     </div>
 <br>
+@if (sizeof($banners) > 0)
+<div class="banner">
+    <div class="swiper-container">
+        <div class="swiper-wrapper">
+        @foreach ($banners as $banner) 
+            <div class="swiper-slide" ><a href="{{ route('frontend.profiles.show', ['user_id'=>$banner->url]) }}"><img src="{{ $banner->pic_url }}" alt=""/></a></div>
+        @endforeach
+        </div>
+        <div class="swiper-pagination"></div>
+    </div>
+</div>
+@endif
 <div class="content">
     <ul>
         @foreach ($industries as $industry) 
@@ -88,6 +100,7 @@
 
 @section('script')
 <script src="/js/public.js"></script>
+<script src="/js/swiper.min.js"></script>
 <script>
     var url = '{!!route("frontend.industries.index", ["category_id"=>$category_id, "time"=>$time, "from"=>$from, "category_ids"=>$category_ids])!!}';
 
@@ -101,6 +114,11 @@
 
     $('.grade-eject li.from').click(function() {
         location.href = url + '&from=' + $(this).attr('data');
+    });
+    var mySwiper = new Swiper('.swiper-container',{
+        autoplay: 4000,
+        pagination : '.swiper-pagination',
+        paginationElement : 'li',
     });
 </script>
 @endsection

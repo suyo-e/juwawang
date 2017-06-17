@@ -5,6 +5,7 @@ namespace App\DataTables\Backend;
 use App\Models\Backend\Banner;
 use Form;
 use Yajra\Datatables\Services\DataTable;
+use Illuminate\Http\Request;
 
 class BannerDataTable extends DataTable
 {
@@ -28,6 +29,17 @@ class BannerDataTable extends DataTable
     public function query()
     {
         $banners = Banner::query();
+        /*
+        if(isset($_GET['type']) && !in_array($_GET['type'], array(0,1,2))) {
+            $banner
+        }
+         */
+        if(_get('category_ids') != '') {
+            $banners->where('display_name', _get('category_ids'));
+        }
+        else {
+            $banners->whereIn('type', array(0,1,2));
+        }
 
         return $this->applyScopes($banners);
     }

@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Backend\Category;
 use App\Models\Access\User\User;
 use App\Models\Backend\Profile;
+use App\Models\Backend\Banner;
 use App\Models\Backend\Industry;
 use App\Models\Backend\Product;
 use Illuminate\Http\Request;
@@ -105,7 +106,9 @@ class IndustryController extends Controller
             province_city_name($industry->profile);
         }
 
-        return view('frontend.industries.index', compact('industries', 'display_name', 'categories', 'time', 'category_id', 'profile_type', 'from', 'category_ids', 'profile'));
+        $banners = Banner::where('display_name', $category_ids)->get();
+
+        return view('frontend.industries.index', compact('industries', 'display_name', 'categories', 'time', 'category_id', 'profile_type', 'from', 'category_ids', 'profile', 'banners'));
     }
 
     /**
