@@ -67,8 +67,8 @@
             <a href="#">
                     <p class="namePhone">
                         <img src="/image/jifen1.png" alt="">
-                        <span class="name">我的积分: 222</span>
-                        <span style="float: right;padding-right: 12px;color: #00a3cc">更多</span>
+                        <span class="name">我的积分: {{ $profile->current_amount }}</span>
+                        <a style="float: right;padding-right: 12px;color: #00a3cc" href="/user/score">更多</a>
                     </p>
 
                 </a>

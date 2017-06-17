@@ -6,6 +6,7 @@ use App\Http\Controllers\AppBaseController;
 
 use App\Models\Backend\Icon;
 use App\Models\Backend\Banner;
+use App\Models\Backend\Score;
 use App\Models\Backend\Product;
 use App\Models\Backend\Category;
 use App\Models\Backend\Industry;
@@ -135,4 +136,5 @@ class FrontendController extends AppBaseController
         $banners = Banner::get();
         return view('frontend.share-register', compact('banners'));
     }
+
 }

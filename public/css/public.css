@@ -56,11 +56,11 @@ input::-webkit-input-placeholder, textarea::-webkit-input-placeholder { color: #
 .rt{
     float: right;
 }
-/*ÕûÌå¹«¹²ÑùÊ½*/
+/*¿¿¿¿¿¿¿¿¿*/
 .bg{
     background-color: #f5f5f5;
 }
-/*¿í¶È88%µÄ°´Å¥*/
+/*¿¿¿¿88%¿¿¿¿*/
 .w-btn{
     width:88%;
     margin:40px auto 0;
@@ -76,7 +76,7 @@ input::-webkit-input-placeholder, textarea::-webkit-input-placeholder { color: #
     font-size: 12px;
     color: #888;
 }
-/*×ÖÌåÑÕÉ«*/
+/*¿¿¿¿¿¿¿*/
 .color1{
     color: #00a3cc;
 }
@@ -98,7 +98,7 @@ input::-webkit-input-placeholder, textarea::-webkit-input-placeholder { color: #
 .font20{
     font-size: 28px;
 }
-/*input  ÌáÊ¾Óï*/
+/*input  ¿¿¿¿¿*/
 .allHints {
     display: none;
     position: fixed;
@@ -125,8 +125,8 @@ input::-webkit-input-placeholder, textarea::-webkit-input-placeholder { color: #
     70% {bottom: 110px;}
     100% {bottom: 92px;}
 }
-/********************************************************µ¯³ö¿ò*/
-/*È·¶¨ÓëÈ¡Ïûµ¯³ö¿ò*/
+/********************************************************¿¿¿¿¿¿*/
+/*¿¿¿¿¿¿¿¿¿¿¿¿¿¿*/
 .confirm{
     display: none;
     position: fixed;
@@ -161,6 +161,7 @@ input::-webkit-input-placeholder, textarea::-webkit-input-placeholder { color: #
     line-height: 40px;
     border-top: 1px solid #a8a8a8;
 }
+
 
 
 

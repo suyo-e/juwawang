@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 
 use App\Models\Access\User\User;
 use App\Models\Backend\Profile;
+use App\Models\Backend\Score;
 use App\Models\Backend\Category;
 use App\Models\Backend\Industry;
 use Illuminate\Http\Request;
@@ -165,6 +166,19 @@ class UserController extends Controller
         Flash::success('密码修改成功');
 
         return redirect('/');
+    }
+
+    public function scoreList() {
+        $scores = Score::where('user_id', access()->user()->id)->get();
+
+        return view('frontend.user.score-list', compact('scores'));
+    }
+
+    public function score(Request $request) {
+        $scores = Score::where('user_id', access()->user()->id)->get();
+        $profile = Profile::where('user_id', access()->user()->id)->first();
+
+        return view('frontend.user.score', compact('scores', 'profile'));
     }
 
     public function postLogin() 
