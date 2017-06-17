@@ -155,3 +155,8 @@
 </li>
 @endif
 
+@role('Administrator')
+<li class="{{ Request::is('scores*') ? 'active' : '' }}">
+    <a href="{!! route('admin.scores.index') !!}"><i class="fa fa-circle-o"></i><span>积分管理</span></a>
+</li>
+@endauth

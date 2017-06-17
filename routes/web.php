@@ -57,3 +57,13 @@ $router->get( '/_debugbar/assets/javascript', '\Barryvdh\Debugbar\Controllers\As
 
 #Route::get('login', 'Frontend\UserController@login');
 #Route::get('register', 'Frontend\UserController@register');
+
+
+Route::get('admin/scores', ['as'=> 'admin.scores.index', 'uses' => 'Backend\ScoreController@index']);
+Route::post('admin/scores', ['as'=> 'admin.scores.store', 'uses' => 'Backend\ScoreController@store']);
+Route::get('admin/scores/create', ['as'=> 'admin.scores.create', 'uses' => 'Backend\ScoreController@create']);
+Route::put('admin/scores/{scores}', ['as'=> 'admin.scores.update', 'uses' => 'Backend\ScoreController@update']);
+Route::patch('admin/scores/{scores}', ['as'=> 'admin.scores.update', 'uses' => 'Backend\ScoreController@update']);
+Route::delete('admin/scores/{scores}', ['as'=> 'admin.scores.destroy', 'uses' => 'Backend\ScoreController@destroy']);
+Route::get('admin/scores/{scores}', ['as'=> 'admin.scores.show', 'uses' => 'Backend\ScoreController@show']);
+Route::get('admin/scores/{scores}/edit', ['as'=> 'admin.scores.edit', 'uses' => 'Backend\ScoreController@edit']);
