@@ -39,6 +39,8 @@ class ScoreController extends AppBaseController
      */
     public function create()
     {
+        if(!access()->hasRole('Administrator')) 
+            return redirect()->back();
         return view('backend.scores.create');
     }
 
@@ -51,6 +53,8 @@ class ScoreController extends AppBaseController
      */
     public function store(CreateScoreRequest $request)
     {
+        if(!access()->hasRole('Administrator')) 
+            return redirect()->back();
         $input = $request->all();
 
         $profile = \App\Models\Backend\Profile::where('user_id', $input['user_id'])->first();
@@ -82,6 +86,8 @@ class ScoreController extends AppBaseController
      */
     public function show($id)
     {
+        if(!access()->hasRole('Administrator')) 
+            return redirect()->back();
         $score = $this->scoreRepository->findWithoutFail($id);
 
         if (empty($score)) {
@@ -102,6 +108,8 @@ class ScoreController extends AppBaseController
      */
     public function edit($id)
     {
+        if(!access()->hasRole('Administrator')) 
+            return redirect()->back();
         $score = $this->scoreRepository->findWithoutFail($id);
 
         if (empty($score)) {
@@ -123,6 +131,8 @@ class ScoreController extends AppBaseController
      */
     public function update($id, UpdateScoreRequest $request)
     {
+        if(!access()->hasRole('Administrator')) 
+            return redirect()->back();
         $score = $this->scoreRepository->findWithoutFail($id);
 
         if (empty($score)) {
@@ -147,6 +157,8 @@ class ScoreController extends AppBaseController
      */
     public function destroy($id)
     {
+        if(!access()->hasRole('Administrator')) 
+            return redirect()->back();
         $score = $this->scoreRepository->findWithoutFail($id);
 
         if (empty($score)) {

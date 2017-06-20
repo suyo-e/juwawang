@@ -199,6 +199,19 @@ class RegisterController extends Controller
             $profile = Profile::create($profile_data);
 
             $profile->invite_code  = $profile->id + 100000;
+
+            //送积分
+            $profile->current_amount += 5;
+            $profile->total_amount += 5;
+            $scoreData = [
+                'user_id' => $profile->user_id,
+                'amount' => 5, //todo
+                'current_amount' => $profile->current_amount,
+                'total_amount' => $profile->total_amount,
+                'typename' => '注册积分',
+                'description' => '注册送积分'
+            ];
+            $score = Score::create($scoreData);
             $profile->save();
 
             $industry_data = array(
@@ -224,9 +237,21 @@ class RegisterController extends Controller
             if($invite_profile) {
                 $invite_profile->current_amount += 5;
                 $invite_profile->total_amount += 5;
+                switch($profile->type) {
+                case 2:
+                    $amount = 20;
+                    break;
+                case 1:
+                    $amount = 100;
+                    break;
+                case 3:
+                default:
+                    $amount = 5;
+                    break;
+                }
                 $scoreData = [
-                    'user_id' => $profile->user_id,
-                    'amount' => 5, //todo
+                    'user_id' => $invite_profile->user_id,
+                    'amount' => $amount, //todo
                     'current_amount' => $invite_profile->current_amount,
                     'total_amount' => $invite_profile->total_amount,
                     'typename' => '邀请好友',

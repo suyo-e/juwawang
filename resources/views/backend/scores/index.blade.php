@@ -3,9 +3,11 @@
 @section('content')
     <section class="content-header">
         <h1 class="pull-left">用户积分详情</h1>
+        @permission('Administrator')
         <h1 class="pull-right">
            <a class="btn btn-primary pull-right" href="{!! route('admin.scores.create') !!}">添加积分</a>
         </h1>
+        @endauth
     </section>
     <div class="content">
         <div class="clearfix"></div>

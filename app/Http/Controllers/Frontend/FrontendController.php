@@ -68,10 +68,12 @@ class FrontendController extends AppBaseController
             ->limit(20)
             ->get();
         
-        $products = Product::where('is_recommand', 1)
-            ->orderBy('updated_at', 'desc')
+        $products = Product::orderBy('updated_at', 'desc')
+            ->where('is_recommand', 1)
             ->limit(6)
             ->get();
+
+        $products = $products->chunk(3);
         
         $gb2260 = new \GB2260\GB2260();
         foreach($profiles as $profile) {

@@ -53,7 +53,7 @@ class ApiController extends AppBaseController
         $verify_code = session('verify_code');
 
         //session(['verify_code' => null, 'verify_time' => null]);
-        if($verify_time && time() - $verify_time < 30000) {
+        if($verify_time && time() - $verify_time < 60) {
             return $this->sendResponse(array(), 'send success');
         }
         else if($verify_time) {

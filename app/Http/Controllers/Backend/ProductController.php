@@ -76,8 +76,25 @@ class ProductController extends AppBaseController
         $profile = \App\Models\Backend\Profile::where('user_id', $input['user_id'])->first();
         if(!$profile) {
             Flash::error('商品发布失败，商户不存在');
-            return redirect()->back();
+            return redirect(route('admin.products.index'));
         }
+
+        if($profile->current_amount  < 1) {
+            Flash::error('商品发布失败，积分不足');
+            return redirect(route('admin.products.index'));
+        }
+        $profile->current_amount -= 1;
+        $profile->total_amount -= 1;
+        $scoreData = [
+            'user_id' => $profile->user_id,
+            'amount' => -1,
+            'current_amount' => $profile->current_amount,
+            'total_amount' => $profile->total_amount,
+            'typename' => '发布商品',
+            'description' => '发布商品扣除积分'
+        ];
+        $score = \App\Models\Backend\Score::create($scoreData);
+        $profile->save();
 
         if(isset($input['banner_urls'])) {
             $input['pic_url'] = $input['banner_urls'][0];

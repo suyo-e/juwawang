@@ -28,6 +28,8 @@ class ScoreDataTable extends DataTable
     public function query()
     {
         $scores = Score::query();
+        if(!access()->hasRole('Administrator')) 
+            $scores->where('user_id', access()->user()->id);
 
         return $this->applyScopes($scores);
     }
@@ -41,7 +43,7 @@ class ScoreDataTable extends DataTable
     {
         return $this->builder()
             ->columns($this->getColumns())
-            ->addAction(['width' => '10%', 'title' => '操作'])
+            #->addAction(['width' => '10%', 'title' => '操作'])
             ->ajax('')
             ->parameters([
                 'dom' => 'Bfrtip',
