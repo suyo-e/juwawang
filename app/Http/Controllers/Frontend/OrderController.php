@@ -44,7 +44,10 @@ class OrderController extends AppBaseController
             $product_array[$product->id] = $product;
         }
 
-        $sell_orders = Order::whereIn('product_id', $product_ids)->orderBy('created_at', 'desc')->get();
+        $sell_orders = Order::whereIn('product_id', $product_ids)
+		// 延迟5min
+		->where('created_at', '<=', date("Y-m-d H:i:s", strtotime('-5 min')))
+		->orderBy('created_at', 'desc')->get();
         foreach($sell_orders as $order) {
             if(isset($product_array[$order->product_id])) {
                 $order->product = $product_array[$order->product_id];

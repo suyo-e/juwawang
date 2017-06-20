@@ -14,13 +14,16 @@
 -->
     <div class="screening">
         <ul>
-            <li class="source" style="width: 33.3%">
+            <li class="source">
                 来源
             </li>
-            <li class="clasStion" style="width: 33.3%">
+            <li class="clasStion">
                 分类
             </li>
-            <li class="ReleaseTime" style="width: 33.3%">
+	    <li id="city-picker" class="clasRegion" data-code="110101" data-codes="110000,110000,110101" value="0">
+                地区
+            </li>
+            <li class="ReleaseTime">
                 时间
             </li>
         </ul>
@@ -101,8 +104,9 @@
 @section('script')
 <script src="/js/public.js"></script>
 <script src="/js/swiper.min.js"></script>
+<script src="/js/city-picker.min.js"></script>
 <script>
-    var url = '{!!route("frontend.industries.index", ["category_id"=>$category_id, "time"=>$time, "from"=>$from, "category_ids"=>$category_ids])!!}';
+    var url = '{!!route("frontend.industries.index", ["category_id"=>$category_id, "time"=>$time, "from"=>$from, "category_ids"=>$category_ids, "province_city_code"=>$province_city_code])!!}';
 
     $('.grade-eject li.category_id').click(function() {
         location.href = url + '&category_id=' + $(this).attr('data');
@@ -115,6 +119,20 @@
     $('.grade-eject li.from').click(function() {
         location.href = url + '&from=' + $(this).attr('data');
     });
+
+    $('.clasRegion').click(function(){
+        $('.ejectAll').hide();
+        $("#city-picker").cityPicker({
+            title: "选择省市区/县",
+            onClose: function(data) {
+                location.href = url + '&province_city_code=' + $("#city-picker").attr('data-codes');
+            },
+            onChange: function (picker, values, displayValues) {
+                console.log(values, displayValues);
+            },
+        });
+    });
+
     var mySwiper = new Swiper('.swiper-container',{
         autoplay: 4000,
         pagination : '.swiper-pagination',

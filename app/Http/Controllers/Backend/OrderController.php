@@ -29,6 +29,7 @@ class OrderController extends AppBaseController
      */
     public function index(OrderDataTable $orderDataTable)
     {
+        //dd(date("Y-m-d H:i:s"));
         return $orderDataTable->render('backend.orders.index');
     }
 

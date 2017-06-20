@@ -60,6 +60,8 @@ class OrderDataTable extends DataTable
                 $orders = $orders->whereIn('product_id', $product_ids);
             }
         }
+        $orders->where('created_at', '<=', date("Y-m-d H:i:s", strtotime('-5 min')))
+            ->orderBy('created_at', 'desc')->get();
 
         return $this->applyScopes($orders);
     }

@@ -27,6 +27,7 @@ class IndustryController extends Controller
         $display_name = $request->input('display_name');
         $category_id = $request->input('category_id');
         $category_ids = $request->input('category_ids');
+        $province_city_code = $request->input('province_city_code');
         $from = $request->input('from');
         $time = $request->input('time');
 
@@ -108,7 +109,7 @@ class IndustryController extends Controller
 
         $banners = Banner::where('display_name', $category_ids)->get();
 
-        return view('frontend.industries.index', compact('industries', 'display_name', 'categories', 'time', 'category_id', 'profile_type', 'from', 'category_ids', 'profile', 'banners'));
+        return view('frontend.industries.index', compact('industries', 'display_name', 'categories', 'time', 'category_id', 'profile_type', 'from', 'category_ids', 'profile', 'banners', 'province_city_code'));
     }
 
     /**

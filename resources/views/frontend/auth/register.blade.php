@@ -51,7 +51,7 @@
         </footer>
     </div>
     <div class="register {{ $step == 4?'': 'hidden' }}">
-        <input class="inputAll" type="text" name="name" value="{{ $name }}" placeholder="真实姓名">
+        <input class="inputAll" type="text" name="name" value="{{ $name }}" placeholder="建议使用真实姓名">
         <input type="hidden" name="category_ids" value="{{ $category_ids }}">
         <input type="hidden" name="manufa_1" value="{{ $manufa_1 }}">
         <input type="hidden" name="manufa_2" value="{{ $manufa_2 }}">
@@ -67,7 +67,7 @@
         <input class="inputAll" id="city-picker" name="province_city_name" value="{{ $province_city_name }}" placeholder="请选择省份城市" />
         <input type="hidden" name="province_city" id="province_city" value="{{ $province_city }}"/>
         
-        <input class="inputAll" type="text" name="invite_code" value="{{ $invite_code }}" placeholder="如果有邀请码，请填写" id="invite_code">
+        <input class="inputAll" type="text" name="invite_code" value="{{ $invite_code }}" placeholder="已拥有朋友邀请注册的邀请码，请填写" id="invite_code">
 
         <input class="inputAll {{ $type == 3?'hidden': '' }}" type="text" name="industry_name" value="{{ $industry_name }}" placeholder="经销商名称或者厂商名称" id="industry_name">
         <a href="#"><button id="submit" class="btnAll" type="submit">提交</button></a>

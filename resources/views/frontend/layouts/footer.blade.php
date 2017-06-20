@@ -10,7 +10,7 @@
         <li>
             <a href="/class">
                 <img class="foter-nav-f" src="/image/{{ Active::checkUriPattern('class')?'fanleilan': 'foter-nav-f' }}.png" data-active="fanleilan" alt=""/>
-                <p>分类</p>
+                <p>分类信息</p>
             </a>
         </li>
         <li>

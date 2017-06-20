@@ -16,6 +16,11 @@
 </div>
 <div class="main">
     <div class="SeeMerchant">
+	<span>
+	建议用户详细填写真实资料，以便后期联系
+	</span>
+    </div>
+    <div class="SeeMerchant">
         <a id="onzhao" class="onbutton" >
             证件照
             <label for="seeimg_file" class="seeimg_file"></label>
@@ -62,7 +67,7 @@
     <div class="SeeMerchant">
         <span>Wechat: </span>
         <span>
-            <input class="inputa" type="text" name="wechat" placeholder="请输入微信账号" value="{{$industry->wechat}}">
+            <input class="inputa" type="text" name="wechat" placeholder="请输入微信绑定的手机号码" value="{{$industry->wechat}}">
         </span>
     </div>
     <div class="SeeMerchant">
