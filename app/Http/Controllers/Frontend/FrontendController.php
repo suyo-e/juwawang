@@ -83,6 +83,7 @@ class FrontendController extends AppBaseController
         }
 
         //$categories = get_categories($profile->type)->slice(0, 7);
+#dd($icons->toArray());
 
         return view('frontend.index', compact('banners', 'profiles', 'icons', 'from', 'products'));
     }

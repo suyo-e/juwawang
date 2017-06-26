@@ -79,6 +79,12 @@ class UserTableController extends Controller
                     return $profile->invite_code;
                 return '';
             })
+	    ->addColumn('amount', function($user) {
+                $profile = \App\Models\Backend\Profile::where('user_id', $user->id)->first();
+                if($profile)
+                    return $profile->current_amount.'/'.$profile->total_amount;
+                return '';
+	    })
             ->addColumn('actions', function ($user) {
                 return $user->action_buttons;
             })

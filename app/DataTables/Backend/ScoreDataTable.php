@@ -17,6 +17,10 @@ class ScoreDataTable extends DataTable
         return $this->datatables
             ->eloquent($this->query())
             ->addColumn('action', 'backend.scores.datatables_actions')
+  	    ->editColumn('total_amount', function($data) {
+		$profile = \App\Models\Backend\Profile::where('user_id', $data->user_id)->first();
+		return $profile->total_amount;
+	    })
             ->make(true);
     }
 

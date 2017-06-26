@@ -84,7 +84,7 @@ class ProductController extends AppBaseController
             return redirect(route('admin.products.index'));
         }
         $profile->current_amount -= 1;
-        $profile->total_amount -= 1;
+        #$profile->total_amount -= 1;
         $scoreData = [
             'user_id' => $profile->user_id,
             'amount' => -1,

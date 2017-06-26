@@ -25,6 +25,7 @@ class Icon extends Model
         'pic_url',
         'type',
         'category_ids',
+        'product_ids',
         'rank'
     ];
 
@@ -38,6 +39,7 @@ class Icon extends Model
         'pic_url' => 'string',
         'type' => 'integer',
         'category_ids' => 'string',
+        'product_ids' => 'string',
         'rank' => 'integer'
     ];
 
@@ -50,7 +52,7 @@ class Icon extends Model
         'title' => 'required',
         'pic_url' => 'required',
         'type' => 'required',
-        'category_ids' => 'required'
+        #'category_ids' => 'required'
     ];
 
     

@@ -146,6 +146,12 @@ class ProductController extends AppBaseController
 
         $user = access()->user();
 
+	$profile = Profile::where('user_id', $user->id)->first();
+	if(!$profile) {
+	    Flash::success('发布失败');
+	    return redirect(route('frontend.class'));
+	}
+
         $input['pic_url'] = $request->input('pic_url');
         $input['banner_urls'] = json_encode($request->input('banner_urls'));
         $input['user_id'] = $user->id;
@@ -164,7 +170,26 @@ class ProductController extends AppBaseController
             $input['brand_name'] = '';
         }
 
+        if($profile->current_amount  < 1) {
+            Flash::error('商品发布失败，积分不足');
+            return redirect(route('admin.products.index'));
+        }
         $product = Product::create($input);
+
+        $profile->current_amount -= 1;
+	# history amount
+        #$profile->total_amount -= 1;
+        $scoreData = [
+            'user_id' => $profile->user_id,
+            'amount' => -1,
+            'current_amount' => $profile->current_amount,
+            'total_amount' => $profile->total_amount,
+            'typename' => '发布商品',
+            'description' => '发布商品扣除积分,商品ID:'.$product->id
+        ];
+        $score = \App\Models\Backend\Score::create($scoreData);
+        $profile->save();
+
         Flash::success('发布成功');
         return redirect(route('frontend.class'));
     }
