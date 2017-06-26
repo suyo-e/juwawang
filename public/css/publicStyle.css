@@ -283,11 +283,10 @@ input[type=file] {
   border-bottom: 1px solid #e6e6e6;
   box-sizing: border-box;
   padding-right: 26px;
-  background: #ffffff url("../../image/on_bottom.png") no-repeat center right 10px;
-  background-size: 12px;
+  background: #ffffff url("../../image/on_bottom.png") no-repeat center right 12px;
 }
 .screening ul li img {
-  width: 0.4rem;
+  width: 0.6rem;
   vertical-align: middle;
   margin-left: 0.2rem;
 }
@@ -310,7 +309,7 @@ input[type=file] {
   margin-top: 0.1rem;
 }
 .ejectAll > li {
-  line-height: 3rem;
+  line-height: 2.2rem;
   padding-left: 1.2rem ;
   border-bottom: 1px solid #e6e6e6;
   font-size: 0.8rem;

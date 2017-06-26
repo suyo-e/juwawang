@@ -21,7 +21,12 @@
 -->
 
 <div class="container">
+<div class="bjMap">
+	<img id="bjMap" src="/image/Sbj.png" width="100%" height="100%"/>
+</div>
+<!--
     <div class="weui_cells_title">上传图片</div>
+-->
     <div class="weui_cells weui_cells_form">
         <div class="weui_cell">
             <div class="weui_cell_bd weui_cell_primary">
@@ -136,8 +141,9 @@ $(function() {
                 $('#upload-avatar-input').val(path);
             }
             $(".flashmessage").fadeOut();
-            var $preview = $('<li class="weui_uploader_file" style="background-image:url('+path+')"><input type="hidden" value="'+path+'" name="banner_urls[]"/></li>');
-            $('.weui_uploader_files').append($preview);
+            //var $preview = $('<li class="weui_uploader_file" style="background-image:url('+path+')"><input type="hidden" value="'+path+'" name="banner_urls[]"/></li>');
+            //$('.weui_uploader_files').append($preview);
+		$("#bjMap").attr('src', path);
         }
     });
 

@@ -18,7 +18,7 @@ class CreateIconsTable extends Migration
             $table->string('title');
             $table->string('pic_url');
             $table->integer('type');
-            $table->string('category_ids');
+            $table->string('category_ids')->nullable();
             $table->integer('rank');
             $table->timestamps();
             $table->softDeletes();

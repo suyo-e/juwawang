@@ -22,6 +22,12 @@
     {!! Form::text('category_ids', null, ['class' => 'form-control']) !!}
 </div>
 
+<!-- Product Ids Field -->
+<div class="form-group col-sm-6">
+    {!! Form::label('product_ids', 'Product Ids:') !!}
+    {!! Form::text('product_ids', null, ['class' => 'form-control']) !!}
+</div>
+
 <!-- Rank Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('rank', 'Rank:') !!}

@@ -19,7 +19,21 @@
         <ul>
             @foreach ($icons as $icon)
             <li>
+		@if ($icon->category_ids != '')
                 <a href="{{route('frontend.industries.index', ['category_ids'=>$icon->category_ids, 'from'=>''])}}">
+		@else
+		<?php
+		switch($icon->type) {
+		case 1:
+			$from = 'user';
+		case 2:
+			$from = 'agent';
+		case 3:
+			$from = 'manufacturer';
+		}
+		?>
+                <a href="{{route('frontend.class', ['product_id'=>$icon->product_ids, 'from'=>$from])}}">
+		@endif
                     <img class="iocn-1" src="{{ $icon->pic_url }}" alt=""/>
                     <p>{{ $icon->title}}</p>
                 </a>

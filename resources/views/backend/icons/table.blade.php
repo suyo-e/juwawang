@@ -3,6 +3,7 @@
         <th>名称</th>
         <th>logo 图片</th>
         <th>目录id</th>
+        <th>商品id</th>
         <th>比重</th>
         <th>广告位</th>
         <th colspan="3">操作</th>
@@ -13,6 +14,7 @@
             <td>{!! $icon->title !!}</td>
             <td><img src="{!! $icon->pic_url !!}" width=50 /></td>
             <td>{!! $icon->category_ids !!}</td>
+            <td>{!! $icon->product_ids !!}</td>
             <td>{!! $icon->rank !!}</td>
             <td><a href="{{ route('admin.banners.index', ['category_ids' => $icon->category_ids]) }}">编辑</a></td>
             <td>

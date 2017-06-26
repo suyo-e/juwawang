@@ -33,6 +33,7 @@
                             <th>是否激活</th>
                             <th>类型</th>
                             <th>邀请码</th>
+                            <th>Coin</th>
                             <th>创建时间</th>
                             <th>{{ trans('labels.general.actions') }}</th>
                         </tr>
@@ -84,6 +85,7 @@
                     //{data: 'roles', name: '{{config('access.roles_table')}}.name', sortable: false},
                     {data: 'type', name: 'type', sortable: false},
                     {data: 'invite_code', name: '邀请码', sortable: false},
+                    {data: 'amount', name: 'coin', sortable: false},
                     {data: 'created_at', name: '{{config('access.users_table')}}.created_at'},
                     //{data: 'updated_at', name: '{{config('access.users_table')}}.updated_at'},
                     {data: 'actions', name: 'actions', searchable: false, sortable: false}
