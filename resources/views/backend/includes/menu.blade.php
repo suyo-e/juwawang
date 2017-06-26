@@ -155,6 +155,36 @@
 </li>
 @endif
 
-<li class="{{ Request::is('scores*') ? 'active' : '' }}">
-    <a href="{!! route('admin.scores.index') !!}"><i class="fa fa-circle-o"></i><span>积分管理</span></a>
+@role('Administrator')
+<li class="active treeview">
+    <a href="#">
+        <i class="fa fa-list"></i>
+        <span>数据报表</span>
+        <i class="fa fa-angle-left pull-right"></i>
+    </a>
+    <ul class="treeview-menu"> 
+        <li class="{{ Request::is('stats*') ? 'active' : '' }}">
+            <a href="{!! route('admin.stats.users') !!}">
+                <i class="fa fa-circle-o"></i><span>用户数据</span>
+            </a>
+        </li>
+        <li class="{{ Request::is('stats*') ? 'active' : '' }}">
+            <a href="{!! route('admin.stats.products') !!}">
+                <i class="fa fa-circle-o"></i><span>商品数据</span>
+            </a>
+        </li>
+        <li class="{{ Request::is('stats*') ? 'active' : '' }}">
+            <a href="{!! route('admin.stats.orders') !!}">
+                <i class="fa fa-circle-o"></i><span>意向订单</span>
+            </a>
+        </li>
+    </ul>
+</li>
+@endauth
+
+<li class="active treeview">
+    <a href="{!! route('admin.scores.index') !!}">
+        <i class="fa fa-list"></i>
+        <span>积分管理</span>
+    </a>
 </li>
