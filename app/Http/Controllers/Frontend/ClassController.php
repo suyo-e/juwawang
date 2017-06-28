@@ -39,7 +39,7 @@ class ClassController extends Controller
         elseif($category_ids) {
             $ids = explode("|", $category_ids);
 
-            $products = $products->whereIn('category_id', $category_ids);
+            $products = $products->whereIn('category_id', $ids);
         }
         else if($types) {
             $category_ids = Category::select('id')
