@@ -6,7 +6,6 @@
 {!! Form::open(['route' => 'frontend.products.store', 'files' => true]) !!}
 
 <input type="hidden" name="category_id" value="{{ $category_id }}" />
-<!--
 <div class="bjMap">
     <img id="upload-avatar-img" src="/image/Sbj.png" alt=""/>
     <p class="bjBtn">
@@ -18,26 +17,19 @@
     </p>
     <span class="Prompt">上传商品图片</span>
 </div>
--->
 
+<!--
 <div class="container">
 <div class="bjMap">
 	<img id="bjMap" src="/image/Sbj.png" width="100%" height="100%"/>
 </div>
-<!--
     <div class="weui_cells_title">上传图片</div>
--->
     <div class="weui_cells weui_cells_form">
         <div class="weui_cell">
             <div class="weui_cell_bd weui_cell_primary">
                 <div class="weui_uploader">
-                    <!--<div class="weui_uploader_hd weui_cell">-->
-                    <!--<div class="weui_cell_bd weui_cell_primary">图片上传</div>-->
-                    <!--<div class="weui_cell_ft js_counter">0/6</div>-->
-                    <!--</div>-->
                     <div class="weui_uploader_bd">
                         <ul class="weui_uploader_files">
-                            <!-- 预览图插入到这 --> 
                         </ul>
                         <div class="weui_uploader_input_wrp">
                             <input id="upload-avatar" class="weui_uploader_input js_file" type="file" accept="image/jpg,image/jpeg,image/png,image/gif" name="file">
@@ -49,6 +41,7 @@
         </div>
     </div>
 </div>
+-->
 <div class="biaoti">
     <div class="title">
         <span>标题</span>
@@ -134,8 +127,8 @@ $(function() {
         },
         done: function (e, data) {
             var path = data.result.data.path;
-            //$("#upload-avatar-input").val(path);
-            //$("#upload-avatar-img").attr('src', path);
+            $("#upload-avatar-input").val(path);
+            $("#upload-avatar-img").attr('src', path);
 
             if( $('.weui_uploader_files li').length == 0 )   {
                 $('#upload-avatar-input').val(path);
@@ -143,7 +136,7 @@ $(function() {
             $(".flashmessage").fadeOut();
             //var $preview = $('<li class="weui_uploader_file" style="background-image:url('+path+')"><input type="hidden" value="'+path+'" name="banner_urls[]"/></li>');
             //$('.weui_uploader_files').append($preview);
-		$("#bjMap").attr('src', path);
+	    //$("#bjMap").attr('src', path);
         }
     });
 

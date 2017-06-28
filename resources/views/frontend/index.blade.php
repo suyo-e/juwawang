@@ -34,7 +34,7 @@
 		?>
                 <a href="{{route('frontend.class', ['category_ids'=>$icon->product_ids, 'from'=>$from])}}">
 		@endif
-                    <img class="iocn-1" src="{{ $icon->pic_url }}" alt=""/>
+                    <img class="iocn-1" src="{{ $icon->pic_url }}" alt="" height="18px"/>
                     <p>{{ $icon->title}}</p>
                 </a>
             </li>
