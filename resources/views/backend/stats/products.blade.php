@@ -7,11 +7,11 @@
 $(function() {
     $(".btn-primary").click(function() {
         $(this).parent().find("input[type='hidden']").val($(this).find('input').attr('data'));
-        location.href="/admin/stats/users?type="+$("#type").val()+"&period="+$("#period").val()+"&province_city="+$("#province_city_name").attr("data");
+        location.href="/admin/stats/products?type="+$("#type").val()+"&period="+$("#period").val()+"&province_city="+$("#province_city_name").attr("data");
     });
 
     $(".btn-error").click(function() {
-        location.href="/admin/stats/users?type="+$("#type").val()+"&period="+$("#period").val();
+        location.href="/admin/stats/products?type="+$("#type").val()+"&period="+$("#period").val();
     });
 
     jQuery("province_city_name").citySelector({
@@ -42,7 +42,7 @@ $(function() {
                 </label>
                 <input type="hidden" id="period" value="{{$period}}" />
             </div>
-            用户类型: 
+            商品类型: 
             <div class="btn-group" data-toggle="buttons">
                 <label class="btn btn-primary {{$type=='3'?'active':''}}">
                     <input type="radio" name="options" data="3"> 普通用户

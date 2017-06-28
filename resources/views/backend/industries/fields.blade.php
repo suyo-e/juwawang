@@ -6,7 +6,7 @@
 
 <div class="form-group col-sm-6">
     {!! Form::label('province_city_name', '地区:') !!}
-    {!! Form::text('province_city_name', null, ['class' => 'form-control']) !!}
+    <div id="province_city_name"></div>
     {!! Form::text('province_city_code', null, ['class' => 'form-control hidden', 'id'=>'province_city_code']) !!}
 </div>
 
@@ -35,7 +35,7 @@
 </div>
 
 <!-- Avatar Field -->
-<div class="form-group col-sm-6">
+<div class="form-group col-sm-12">
     {!! Form::label('avatar', '商户图片:') !!}
     <input id="upload-file" type="file" name="avatar_file" class="upload-file" />
     <img id="avatar_img" src="{{ $industry->avatar }}" height="100"/>

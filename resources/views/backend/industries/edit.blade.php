@@ -23,8 +23,8 @@
 @endsection
 
 @section('scripts')
-<script src="//cdn.bootcss.com/jquery-weui/1.0.1/js/jquery-weui.min.js"></script>
-<script type="text/javascript" src="/js/city-picker.min.js" charset="utf-8"></script>
+<script src="/js/jquery-1.9.1.min.js"></script>
+<script type="text/javascript" src="/js/city-selector.js" charset="utf-8"></script>
 <script src="/js/jquery.ui.widget.js"></script>
 <script src="/js/jquery.iframe-transport.js"></script>
 <script src="/js/jquery.fileupload.js"></script>
@@ -40,23 +40,17 @@ $(function() {
             $("#avatar_img").attr('src', path);
         }
     });
-    jQuery("#province_city_name").cityPicker({
-        title: "请选择收货地址",
-        onClose: function(data) {
-            if($("#province_city_name").attr('data-codes')) {
-                var arr = $("#province_city_name").attr('data-codes').split(',');
-                $("#prov_id").val(arr[0]);
-                $("#city_id").val(arr[1]);
-                $("#area_id").val(arr[2]);
-            }
-        }
+    jQuery("province_city_name").citySelector({
+	prov_id: $("#prov_id").val(),
+	city_id: $("#city_id").val(),
+	area_id: $("#area_id").val(),
+	onChange: function(province_code, city_code, area_code) {
+                $("#prov_id").val(province_code);
+                $("#city_id").val(city_code);
+                $("#area_id").val(area_code);
+	}
     });
 });
 
 </script>
-@endsection
-
-
-@section('before-styles')
-<link href="//cdn.bootcss.com/jquery-weui/1.0.1/css/jquery-weui.min.css" rel="stylesheet">
 @endsection
