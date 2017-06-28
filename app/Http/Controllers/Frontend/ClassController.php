@@ -21,6 +21,7 @@ class ClassController extends Controller
     {
 
         $category_id = $request->input('category_id');
+        $category_ids = $request->input('category_ids');
         $time = $request->input('time');
         $from = $request->input('from');
         $province_city_code = $request->input('province_city_code');
@@ -34,6 +35,11 @@ class ClassController extends Controller
 
         if($category_id) {
             $products = $products->where('category_id', $category_id);
+        }
+        elseif($category_ids) {
+            $ids = explode("|", $category_ids);
+
+            $products = $products->whereIn('category_id', $category_ids);
         }
         else if($types) {
             $category_ids = Category::select('id')
