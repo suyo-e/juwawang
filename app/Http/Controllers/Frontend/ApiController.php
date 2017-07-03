@@ -138,7 +138,14 @@ class ApiController extends AppBaseController
         	$profile = Profile::where('user_id', access()->user()->id)->first();
 			$invite_code = $profile->invite_code;
 		}
-		$setting = Setting::whereIn('setting_key', array('share_title', 'share_description', 'share_url'))->pluck('setting_val', 'setting_key')->toArray();
+		$host = 'http://'.$request->server('HTTP_HOST');
+		$setting = Setting::whereIn('setting_key', array('分享描述', '分享标题', '分享地址'))->pluck('setting_val', 'setting_key')->toArray();
+
+		$data = [];
+		$data['share_title'] = isset($setting['分享描述'])?$setting['分享描述']: '描述';
+		$data['share_description'] = isset($setting['分享标题'])?$setting['分享标题']: '标题';
+		$data['share_url'] = isset($setting['分享地址'])?$setting['分享地址']: '';
+		$data['logo'] = isset($setting['分享图片'])?$setting['分享图片']: '/img/logo.jpg';
 
 		$app = new \EasyWeChat\Foundation\Application($options);
 		$js = $app->js;
@@ -148,12 +155,11 @@ class ApiController extends AppBaseController
 			'onMenuShareTimeline', 
 			'onMenuShareAppMessage'
 		), false, false, false);
-		$host = 'http://'.$request->server('HTTP_HOST');
 
-		$setting['config'] = $config;
-		$setting['invite_code'] = $invite_code;
-		$setting['logo'] = '/img/logo.jpg';
+		$data['config'] = $config;
+		$data['invite_code'] = $invite_code;
+		$data['logo'] = '/img/logo.jpg';
 
-        return $this->sendResponse($setting, 'save success');
+        return $this->sendResponse($data, 'save success');
 	}
 }

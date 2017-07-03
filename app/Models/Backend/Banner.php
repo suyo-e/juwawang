@@ -15,6 +15,8 @@ class Banner extends Model
     use SoftDeletes;
 
     public $table = 'banners';
+
+	const TYPE_SHARE_REGISTER = 10;
     
 
     protected $dates = ['deleted_at'];

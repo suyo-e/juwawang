@@ -16,7 +16,7 @@ class SettingDataTable extends DataTable
     {
         return $this->datatables
             ->eloquent($this->query())
-            ->addColumn('action', '操作')
+			->addColumn('action', 'backend.settings.datatables_actions')
             ->make(true);
     }
 
@@ -41,7 +41,7 @@ class SettingDataTable extends DataTable
     {
         return $this->builder()
             ->columns($this->getColumns())
-            ->addAction(['width' => '10%', 'title' => '操作'])
+            ->addAction(['width' => '15%', 'title' => '操作'])
             ->ajax('')
             ->parameters([
                 'dom' => 'Bfrtip',
