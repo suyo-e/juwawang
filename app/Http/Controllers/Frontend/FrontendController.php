@@ -23,10 +23,11 @@ class FrontendController extends AppBaseController
      */
     public function index()
     {
-        $banners = Banner::get();
-
         $profile = Profile::where('user_id', access()->user()->id)->first();
         $from = '';
+
+        $banners = Banner::whereIn('type', array(0, $profile->type))
+			->get();
 
         $icons = Icon::where('type', $profile->type)
             ->orderBy('rank', 'desc')

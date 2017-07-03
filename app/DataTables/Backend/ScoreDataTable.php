@@ -5,6 +5,7 @@ namespace App\DataTables\Backend;
 use App\Models\Backend\Score;
 use Form;
 use Yajra\Datatables\Services\DataTable;
+use Illuminate\Http\Request;
 
 class ScoreDataTable extends DataTable
 {
@@ -17,10 +18,10 @@ class ScoreDataTable extends DataTable
         return $this->datatables
             ->eloquent($this->query())
             ->addColumn('action', 'backend.scores.datatables_actions')
-  	    ->editColumn('total_amount', function($data) {
-		$profile = \App\Models\Backend\Profile::where('user_id', $data->user_id)->first();
-		return $profile->total_amount;
-	    })
+			->editColumn('total_amount', function($data) {
+				$profile = \App\Models\Backend\Profile::where('user_id', $data->user_id)->first();
+				return $profile->total_amount;
+			})
             ->make(true);
     }
 
@@ -32,6 +33,9 @@ class ScoreDataTable extends DataTable
     public function query()
     {
         $scores = Score::query();
+		$user_id = isset($_GET['user_id'])?$_GET['user_id']: '';
+        if($user_id != '') 
+            $scores->where('user_id', $user_id);
         if(!access()->hasRole('Administrator')) 
             $scores->where('user_id', access()->user()->id);
 
@@ -85,6 +89,8 @@ class ScoreDataTable extends DataTable
             '操作详情' => ['name' => 'description', 'data' => 'description'],
             '当前积分' => ['name' => 'current_amount', 'data' => 'current_amount'],
             '历史积分' => ['name' => 'total_amount', 'data' => 'total_amount'],
+            '操作时间' => ['name' => 'created_at', 'data' => 'created_at'],
+            '操作' => ['name' => 'action', 'data' => 'action'],
         ];
     }
 

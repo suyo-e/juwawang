@@ -201,6 +201,7 @@ if(!function_exists('get_profile_types')) {
             );
         case \App\Models\Backend\Category::TYPE_MANUFACTURER:
             return array(
+                \App\Models\Backend\Category::TYPE_AGENT,
                 \App\Models\Backend\Category::TYPE_MANUFACTURER
             );
         }
@@ -227,7 +228,10 @@ if(! function_exists('get_product_types')){
                 \App\Models\Backend\Category::TYPE_MANUFACTURER_PRODUCT
             );
         case \App\Models\Backend\Category::TYPE_MANUFACTURER:
-            return array(\App\Models\Backend\Category::TYPE_MANUFACTURER_PRODUCT);
+            return array(
+                \App\Models\Backend\Category::TYPE_AGENT_PRODUCT,
+				\App\Models\Backend\Category::TYPE_MANUFACTURER_PRODUCT
+			);
         default:
             return null;
         }
@@ -256,7 +260,11 @@ if(!function_exists('get_categories')) {
             ));
             break;
         case \App\Models\Backend\Category::TYPE_MANUFACTURER:
-            $categories = $categories->where('type', \App\Models\Backend\Category::TYPE_MANUFACTURER);
+            //$categories = $categories->where('type', \App\Models\Backend\Category::TYPE_MANUFACTURER);
+            $categories = $categories->whereIn('type', array(
+                \App\Models\Backend\Category::TYPE_AGENT,
+                \App\Models\Backend\Category::TYPE_MANUFACTURER
+            ));
             break;
         }
 
@@ -328,6 +336,7 @@ if(!function_exists('is_profile_type_permission')) {
             ));
         case \App\Models\Backend\Category::TYPE_MANUFACTURER:
             return in_array($profile_type, array(
+                \App\Models\Backend\Category::TYPE_AGENT,
                 \App\Models\Backend\Category::TYPE_MANUFACTURER
             ));
         }
@@ -349,6 +358,7 @@ if(!function_exists('is_product_type_permission')) {
             ));
         case \App\Models\Backend\Category::TYPE_MANUFACTURER:
             return in_array($profile_type, array(
+                \App\Models\Backend\Category::TYPE_AGENT,
                 \App\Models\Backend\Category::TYPE_MANUFACTURER
             ));
         }

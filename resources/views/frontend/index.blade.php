@@ -26,10 +26,13 @@
 		switch($icon->type) {
 		case 1:
 			$from = 'user';
+			break;
 		case 2:
 			$from = 'agent';
+			break;
 		case 3:
 			$from = 'manufacturer';
+			break;
 		}
 		?>
                 <a href="{{route('frontend.class', ['category_ids'=>$icon->product_ids, 'from'=>$from])}}">

@@ -2,9 +2,18 @@
 
 <link rel="stylesheet" href="/css/weui.css"/>
 
+<div class="weui-uploader__bd"> 
+	<ul class="weui-uploader__files" id="upload-avatar-list">
+	</ul> 
+	<div class="weui-uploader__input-box"> 
+		<input id="upload-avatar" class="weui-uploader__input" type="file" accept="image/*" name="pic_url_file" value="{{ old('pic_url_file') }}"> 
+	</div> 
+</div>
 @section('content')
 {!! Form::open(['route' => 'frontend.products.store', 'files' => true]) !!}
-
+<input id="upload-picurl-input" type="hidden" name="pic_url" value="{{ old('pic_url') }}" />
+<input id="upload-bannerurl-input" type="hidden" name="banner_url" value="{{ old('banner_url') }}" />
+<!--
 <input type="hidden" name="category_id" value="{{ $category_id }}" />
 <div class="bjMap">
     <img id="upload-avatar-img" src="/image/Sbj.png" alt=""/>
@@ -17,6 +26,7 @@
     </p>
     <span class="Prompt">上传商品图片</span>
 </div>
+-->
 
 <!--
 <div class="container">
@@ -127,12 +137,22 @@ $(function() {
         },
         done: function (e, data) {
             var path = data.result.data.path;
-            $("#upload-avatar-input").val(path);
-            $("#upload-avatar-img").attr('src', path);
+			var pic_url = $("#upload-picurl-input").val();
+			if(!pic_url) {
+				$("#upload-picurl-input").val(path);
+			}
+			var banner_url = $("#upload-bannerurl-input").val();
+			if(!banner_url) {
+				banner_url = [];
+			}
+			else {
+				banner_url = JSON.parse(banner_url);
+			}
+			banner_url.push(path)
+			$("#upload-bannerurl-input").val(JSON.stringify(banner_url));
+			
+			$("#upload-avatar-list").append('<li class="weui-uploader__file" style="background-image: url('+path+');"></li>');
 
-            if( $('.weui_uploader_files li').length == 0 )   {
-                $('#upload-avatar-input').val(path);
-            }
             $(".flashmessage").fadeOut();
             //var $preview = $('<li class="weui_uploader_file" style="background-image:url('+path+')"><input type="hidden" value="'+path+'" name="banner_urls[]"/></li>');
             //$('.weui_uploader_files').append($preview);

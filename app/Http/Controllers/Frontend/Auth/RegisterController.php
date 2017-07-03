@@ -201,11 +201,11 @@ class RegisterController extends Controller
             $profile->invite_code  = $profile->id + 100000;
 
             //送积分
-            $profile->current_amount += 5;
-            $profile->total_amount += 5;
+            $profile->current_amount += 20;
+            $profile->total_amount += 20;
             $scoreData = [
                 'user_id' => $profile->user_id,
-                'amount' => 5, //todo
+                'amount' => 20, //todo
                 'current_amount' => $profile->current_amount,
                 'total_amount' => $profile->total_amount,
                 'typename' => '注册积分',

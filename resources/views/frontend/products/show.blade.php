@@ -71,7 +71,7 @@
     <ul class="foterNav">
         <li class="chakanbtn"><a><img src="/image/qq.png" alt=""/>QQ联系</a></li>
         <li class="code2"><a href="tel:{{$product->phone}}"><img src="/image/code.png" alt=""/>电话联系</a></li>
-        <li><a href="sms:{{$product->phone}}"><img src="/image/Short%20.png" alt=""/>短息联系</a></li>
+        <li><a href="sms:{{$product->phone}}"><img src="/image/Short%20.png" alt=""/>短信联系</a></li>
     </ul>
 </footer>
 <div id="tankuang" class="yijizhe">

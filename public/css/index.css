@@ -47,7 +47,7 @@ h6 {
   -webkit-text-size-adjust: none;
 }
 html {
-  font-size: 14px;
+  font-size: 14px !important;
 }
 body {
   font-family: PingFang-SC-Regular, 'MicrosoftYaHei', arial, sans-serif;
@@ -182,6 +182,7 @@ input[type=submit],
 input[type=file] {
   -webkit-appearance: none;
   outline: none;
+  width: 100%;
 }
 .clearOver {
   overflow: hidden;
@@ -307,6 +308,7 @@ input[type=file] {
   overflow-y: auto;
   max-height: 18rem;
   margin-top: 0.1rem;
+  z-index: 100;
 }
 .ejectAll > li {
   line-height: 2.2rem;
@@ -427,11 +429,6 @@ input[type=file] {
 .content {
   width: 100%;
 }
-.hot {
-  width: 100%;
-  text-align: center;
-  padding: 0.6rem 0;
-}
 .content .hot {
   width: 100%;
   text-align: center;
@@ -528,7 +525,7 @@ input[type=file] {
   height: 3.4rem;
   border-top: 1px solid #ddd;
   background: #fff;
-  z-index: 1000000;
+  z-index:500;
 }
 .footerNav ul li {
   float: left;
@@ -704,7 +701,7 @@ input[type=file] {
 .xiala .grade .ejectAll li img {
   float: right;
   width: 0.4rem;
-  margin: 0.8rem 1rem 0 0;
+  margin: 0.4rem 1rem 0 0;
 }
 /*发布提示*/
 .tips {
@@ -901,7 +898,7 @@ input[type=file] {
 .listManufa ul li img {
   float: right;
   margin: 1.2rem 1rem 0 0;
-  width: 0.4rem;
+  width: 1rem;
 }
 /*ѡ�񳧼�*/
 .erjicai {
@@ -1202,6 +1199,7 @@ input[type=file] {
 .SeeMerchant a img {
   float: right;
   margin: 1rem 1rem 0 0;
+  width: 0.8rem;
 }
 .foterNav {
   width: 100%;
@@ -1873,7 +1871,7 @@ section {
   position: absolute;
   bottom: 20%;
   left: 50%;
-  width: 100%;
+/*  width: 100%;*/
   font-size: 0.9rem;
   color: #fff;
   margin-top: -5rem;
@@ -2174,4 +2172,7 @@ section {
   color: #fff;
   margin: 0.4rem 0 1rem;
   font-size: 1.3rem;
+}
+.classContent > ul li:last-child{
+  margin-bottom: 4rem;
 }

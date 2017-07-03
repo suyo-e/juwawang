@@ -43,7 +43,10 @@
     <div id="listManufaLevel2" class="listManufa {{ $step == 3?'': 'hidden' }}">
         <ul>
         @foreach($categories as $category) 
-            <li data-id="{{ $category->id }}" class="select">{{ $category->display_name }} </li>
+            <li data-id="{{ $category->id }}" class="select {!! in_array($category->id, $category_ids_array)? 'selected': '' !!}" >
+				{{ $category->display_name }} 
+                {!! in_array($category->id, $category_ids_array)? '<img src="/image/right.pic" alt="">': '' !!}
+			</li>
         @endforeach
         </ul>
         <footer>
