@@ -47,7 +47,7 @@
 		<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js" type="text/javascript" charset="utf-8"></script>
 		<script>
 			$.get('/jsticket?url=' + location.href, function(data) {
-				wx.config(JSON.parse(data.data.config));
+				wx.config(data.data.config);
 				wx.onMenuShareAppMessage({
 					title: '邀请您加入聚挖网', // 分享标题
 					desc: '加入聚挖网让您的工作变得简单。通过好友邀请完成注册可以直接获得积分哦', // 分享描述

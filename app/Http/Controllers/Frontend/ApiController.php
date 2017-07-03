@@ -141,10 +141,11 @@ class ApiController extends AppBaseController
 		$app = new \EasyWeChat\Foundation\Application($options);
 		$js = $app->js;
 		$js->setUrl($url);
+		#$js->setDebug(false);
 		$config = $js->config(array(
 			'onMenuShareTimeline', 
 			'onMenuShareAppMessage'
-		), true);
+		), false, false, false);
 		$host = 'http://'.$request->server('HTTP_HOST');
 
         return $this->sendResponse(array(
