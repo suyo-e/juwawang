@@ -180,6 +180,12 @@
         </li>
     </ul>
 </li>
+<li class="{{ Request::is('settings*') ? 'active' : '' }} treeview">
+    <a href="{!! route('admin.settings.index') !!}">
+        <i class="fa fa-list"></i>
+		<span>分享配置</span>
+	</a>
+</li>
 @endauth
 
 <li class="active treeview">

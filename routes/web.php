@@ -62,3 +62,15 @@ $router->get( '/_debugbar/assets/javascript', '\Barryvdh\Debugbar\Controllers\As
 
 #Route::get('login', 'Frontend\UserController@login');
 #Route::get('register', 'Frontend\UserController@register');
+
+
+
+
+Route::get('admin/settings', ['as'=> 'admin.settings.index', 'uses' => 'Backend\SettingController@index']);
+Route::post('admin/settings', ['as'=> 'admin.settings.store', 'uses' => 'Backend\SettingController@store']);
+Route::get('admin/settings/create', ['as'=> 'admin.settings.create', 'uses' => 'Backend\SettingController@create']);
+Route::put('admin/settings/{settings}', ['as'=> 'admin.settings.update', 'uses' => 'Backend\SettingController@update']);
+Route::patch('admin/settings/{settings}', ['as'=> 'admin.settings.update', 'uses' => 'Backend\SettingController@update']);
+Route::delete('admin/settings/{settings}', ['as'=> 'admin.settings.destroy', 'uses' => 'Backend\SettingController@destroy']);
+Route::get('admin/settings/{settings}', ['as'=> 'admin.settings.show', 'uses' => 'Backend\SettingController@show']);
+Route::get('admin/settings/{settings}/edit', ['as'=> 'admin.settings.edit', 'uses' => 'Backend\SettingController@edit']);

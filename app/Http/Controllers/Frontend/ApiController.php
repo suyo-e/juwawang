@@ -13,6 +13,7 @@ use Flc\Alidayu\Requests\AlibabaAliqinFcSmsNumSend;
 use App\Models\Backend\Category;
 use App\Models\Backend\Feedback;
 use App\Models\Backend\Profile;
+use App\Models\Backend\Setting;
 
 /**
  * Class FrontendController.
@@ -137,6 +138,7 @@ class ApiController extends AppBaseController
         	$profile = Profile::where('user_id', access()->user()->id)->first();
 			$invite_code = $profile->invite_code;
 		}
+		$setting = Setting::whereIn('setting_key', array('share_title', 'share_description', 'share_url'))->pluck('setting_val', 'setting_key')->toArray();
 
 		$app = new \EasyWeChat\Foundation\Application($options);
 		$js = $app->js;
@@ -148,10 +150,10 @@ class ApiController extends AppBaseController
 		), false, false, false);
 		$host = 'http://'.$request->server('HTTP_HOST');
 
-        return $this->sendResponse(array(
-			'config' => $config,
-			'redirect_url' => $host.'/shareRegister?invite_code='.$invite_code,
-			'logo' => $host.'/img/logo.jpg'
-		), 'save success');
+		$setting['config'] = $config;
+		$setting['invite_code'] = $invite_code;
+		$setting['logo'] = '/img/logo.jpg';
+
+        return $this->sendResponse($setting, 'save success');
 	}
 }
