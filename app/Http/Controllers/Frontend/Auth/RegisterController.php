@@ -264,14 +264,14 @@ class RegisterController extends Controller
             if($profile->type == 3) {
                 $role = Role::find(3);
                 $user->attachRole($role);
-                return redirect(route('frontend.success'));
                 //return redirect($this->redirectPath());
             }
             else {
                 $role = Role::find(2);
                 $user->attachRole($role);
             }
-            return redirect(route('frontend.industries.edit'));
+            return redirect(route('frontend.success'));
+            #return redirect(route('frontend.industries.edit'));
         }
     }
 }

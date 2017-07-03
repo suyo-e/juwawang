@@ -123,7 +123,9 @@ class FrontendController extends AppBaseController
 
     public function success() 
     {
-        return view('frontend.success');
+		$profile = Profile::where('user_id', access()->user()->id)->first();
+		
+        return view('frontend.success', compact('profile'));
     }
 
     public function forget(Request $request) 
