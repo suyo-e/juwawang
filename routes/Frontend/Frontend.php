@@ -71,6 +71,7 @@ Route::get('/user/scoreList', 'UserController@scoreList')->name('scoreList')->mi
 
 Route::get('shareRegister', 'FrontendController@shareRegister')->name('shareRegister');
 Route::get('success', 'FrontendController@success')->name('success');
+Route::get('jsticket', 'ApiController@jsticket')->name('jsticket');
 
 /*
  * These frontend controllers require the user to be logged in

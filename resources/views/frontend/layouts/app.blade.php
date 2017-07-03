@@ -42,5 +42,39 @@
         @include('frontend.includes.messages')
         @yield('script')
         @include('includes.partials.ga')
+
+
+		<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js" type="text/javascript" charset="utf-8"></script>
+		<script>
+			$.get('/jsticket?url=' + location.href, function(data) {
+				wx.config(JSON.parse(data.data.config));
+				wx.onMenuShareAppMessage({
+					title: '邀请您加入聚挖网', // 分享标题
+					desc: '加入聚挖网让您的工作变得简单。通过好友邀请完成注册可以直接获得积分哦', // 分享描述
+					link: data.data.redirect_url, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+					imgUrl: '', // 分享图标
+					type: 'link', // 分享类型,music、video或link，不填默认为link
+					dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
+					success: function () { 
+						// 用户确认分享后执行的回调函数
+					},
+					cancel: function () { 
+						// 用户取消分享后执行的回调函数
+					}
+				});
+				wx.onMenuShareTimeline({
+					title: '邀请您加入聚挖网', // 分享标题
+					link: data.data.redirect_url, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+					imgUrl: '', // 分享图标
+					success: function () { 
+						// 用户确认分享后执行的回调函数
+					},
+					cancel: function () { 
+						// 用户取消分享后执行的回调函数
+					}
+				});
+			});
+		</script>
+
     </body>
 </html>

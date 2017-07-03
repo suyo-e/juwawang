@@ -209,7 +209,9 @@ return [
         App\Providers\MacroServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
+		Overtrue\LaravelWechat\ServiceProvider::class,
         Stevenyangecho\UEditor\UEditorServiceProvider::class
+
 
     ],
 
@@ -273,6 +275,8 @@ return [
         'Flash'       => Laracasts\Flash\Flash::class,
         'Datatables'  => \Yajra\Datatables\Datatables::class,
         'QrCode'      => SimpleSoftwareIO\QrCode\Facades\QrCode::class,
+		'EasyWeChat' => Overtrue\LaravelWechat\Facade::class,
+
 
     ],
 

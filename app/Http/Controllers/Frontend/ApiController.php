@@ -12,6 +12,7 @@ use Flc\Alidayu\Requests\AlibabaAliqinFcSmsNumSend;
 
 use App\Models\Backend\Category;
 use App\Models\Backend\Feedback;
+use App\Models\Backend\Profile;
 
 /**
  * Class FrontendController.
@@ -118,4 +119,38 @@ class ApiController extends AppBaseController
         $feedback->save();
         return $this->sendResponse(array(), 'save success');
     }
+
+	public function jsticket(Request $request) {
+		$url = $request->input('url');
+		$options = [
+			'debug'     => false,
+			'app_id'    => 'wx760da3606af54202',
+			'secret'    => '0831cdf605a9eea8d69825f6a60e5cab',
+			#'token'     => 'easywechat',
+			'log' => [
+				'level' => 'debug',
+				#'file'  => 'storage/easywechat.log',
+			],
+		];
+		$invite_code = '';
+		if(access()->user()) {
+        	$profile = Profile::where('user_id', access()->user()->id)->first();
+			$invite_code = $profile->invite_code;
+		}
+
+		$app = new \EasyWeChat\Foundation\Application($options);
+		$js = $app->js;
+		$js->setUrl($url);
+		$config = $js->config(array(
+			'onMenuShareTimeline', 
+			'onMenuShareAppMessage'
+		), true);
+		$host = 'http://'.$request->server('HTTP_HOST');
+
+        return $this->sendResponse(array(
+			'config' => $config,
+			'redirect_url' => $host.'/shareRegister?invite_code='.$invite_code,
+			'logo' => $host.'/img/logo.jpg'
+		), 'save success');
+	}
 }

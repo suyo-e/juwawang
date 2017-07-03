@@ -134,5 +134,3 @@
 @include('frontend.layouts.footer')
 @endsection
 
-@section('script')
-@endsection
