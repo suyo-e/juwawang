@@ -133,7 +133,12 @@ class FrontendController extends AppBaseController
     }
 
     public function share(Request $request) {
-        $profile = Profile::where('user_id', access()->user()->id)->first();
+		$invite_code = $request->input('invite_code');
+		if(!$invite_code) {
+			return redirect('/');
+		}
+		$profile = Profile::where('invite_code', $invite_code)->first();
+        #$profile = Profile::where('user_id', access()->user()->id)->first();
         if(!$profile) {
             return redirect()->back();
         }

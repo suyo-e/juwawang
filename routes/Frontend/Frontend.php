@@ -64,7 +64,7 @@ Route::get('forget', 'FrontendController@forget')->name('forget');
 Route::get('setting', 'FrontendController@setting')->name('setting')->middleware('auth');
 Route::get('about', 'FrontendController@about')->name('about')->middleware('auth');
 Route::get('feedback', 'FrontendController@feedback')->name('feedback')->middleware('auth');
-Route::get('share', 'FrontendController@share')->name('share')->middleware('auth');
+Route::get('share', 'FrontendController@share')->name('share');
 
 Route::get('/user/score', 'UserController@score')->name('score')->middleware('auth');
 Route::get('/user/scoreList', 'UserController@scoreList')->name('scoreList')->middleware('auth');

@@ -77,7 +77,7 @@
                         <img src="/image/yapqingma.png" alt="">
                         <span class="name">邀请码:</span>
                         <span class="name">{{ $profile->invite_code }}</span>
-                        <a style="float: right;color: #00a3cc;margin-right: 12px;" href="/share">邀请好友</a>
+                        <a style="float: right;color: #00a3cc;margin-right: 12px;" href="/share?invite_code={{ $profile->invite_code }}">邀请好友</a>
                     </p>
 
                 </a>
