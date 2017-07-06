@@ -1,7 +1,7 @@
 @extends('frontend.layouts.app')
 
 <link rel="stylesheet" href="/css/weui.css"/>
-
+<!--
 <div class="weui-uploader__bd"> 
 	<ul class="weui-uploader__files" id="upload-avatar-list">
 	</ul> 
@@ -9,10 +9,13 @@
 		<input id="upload-avatar" class="weui-uploader__input" type="file" accept="image/*" name="pic_url_file" value="{{ old('pic_url_file') }}"> 
 	</div> 
 </div>
+-->
 @section('content')
 {!! Form::open(['route' => 'frontend.products.store', 'files' => true]) !!}
+<!--
 <input id="upload-picurl-input" type="hidden" name="pic_url" value="{{ old('pic_url') }}" />
 <input id="upload-bannerurl-input" type="hidden" name="banner_url" value="{{ old('banner_url') }}" />
+-->
 <!--
 <input type="hidden" name="category_id" value="{{ $category_id }}" />
 <div class="bjMap">
@@ -52,6 +55,28 @@
     </div>
 </div>
 -->
+<div class="weui-cells " style="margin-top: 0.3em">
+  <div class="weui-cell">
+    <div class="weui-cell__bd">
+      <div class="weui-uploader">
+        <div class="weui-uploader__hd">
+          <p class="weui-uploader__title">图片上传</p>
+          <div class="weui-uploader__info">0/2</div>
+        </div>
+        <div class="weui-uploader__bd">
+          <ul class="weui-uploader__files" id="uploaderFiles">
+<!--
+            <li class="weui-uploader__file" style="background-image:url(./images/pic_160.png)"></li>
+-->
+          </ul>
+          <div class="weui-uploader__input-box">
+            <input class="uploaderInput weui-uploader__input" type="file" accept="image/*" name="pic_urls[]" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 <div class="biaoti">
     <div class="title">
         <span>标题</span>
@@ -126,7 +151,6 @@ $(function() {
             debugger;
         }
     });
-     */
     $('#upload-avatar').fileupload({
         url: '/upload',
         dataType: 'json',
@@ -159,9 +183,10 @@ $(function() {
 	    //$("#bjMap").attr('src', path);
         }
     });
+     */
 
     $("#submit").click(function() {
-        if($("input[name='pic_url']").val() == "") {
+        if($("inputi.uploaderInput").length() > 0) {
             alert("至少上传一张图片");
             return false;
         }
@@ -210,6 +235,37 @@ $(function() {
         //showDistrict: false,
         onChange: function() {
             $("#province_city").val( $("#city-picker").attr("data-codes") );
+        }
+    });
+
+
+    $(function(){
+        var tmpl = '<li class="weui-uploader__file" style="background-image:url(#url#)"></li>',
+            $gallery = $("#gallery"), $galleryImg = $("#galleryImg"),
+            $uploaderInput = $(".uploaderInput");
+            $uploaderFiles = $("#uploaderFiles");
+            
+
+        $uploaderInput.on("change", uploadClick);
+        function uploadClick(e){
+            var src, url = window.URL || window.webkitURL || window.mozURL, files = e.target.files;
+            for (var i = 0, len = files.length; i < len; ++i) {
+                var file = files[i];
+
+                if (url) {
+                    src = url.createObjectURL(file);
+                } else {
+                    src = e.target.result;
+                }
+
+                $uploaderFiles.append($(tmpl.replace('#url#', src)));
+            }
+            
+            $(this).hide();
+            $uploaderTemplate = $('<input class="uploaderInput weui-uploader__input" type="file" accept="image/*" name="pic_urls[]" />');
+            $(this).parent().append($uploaderTemplate);
+            $uploaderInput = $(".uploaderInput");
+            $uploaderInput.on("change", uploadClick);
         }
     });
 });

@@ -143,17 +143,25 @@ class ProductController extends AppBaseController
     public function store(CreateProductRequest $request)
     {
         $input = $request->all();
-
         $user = access()->user();
 
-	$profile = Profile::where('user_id', $user->id)->first();
-	if(!$profile) {
-	    Flash::success('发布失败');
-	    return redirect(route('frontend.class'));
-	}
+        $profile = Profile::where('user_id', $user->id)->first();
+        if(!$profile) {
+            Flash::success('发布失败');
+            return redirect(route('frontend.class'));
+        }
 
-        $input['pic_url'] = $request->input('pic_url');
-        $input['banner_urls'] = json_encode($request->input('banner_urls'));
+        $banner_urls = [];
+        foreach($request->file('pic_urls') as $file) {
+            $image_path = '/files';
+            $extension = $file->extension();
+            $filename = md5(time(). '-' . $file->getClientOriginalName()) .".".$extension ;
+            $file->move(public_path($image_path), $filename);
+            $banner_urls[] = $image_path."/$filename";
+        }
+
+        $input['pic_url'] = $banner_urls[0];
+        $input['banner_urls'] = json_encode($banner_urls);
         $input['user_id'] = $user->id;
         $input['contact_name'] = $user->name;
         $input['view_count'] = 0;
