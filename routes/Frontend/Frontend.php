@@ -6,6 +6,7 @@
  */
 Route::get('/', 'FrontendController@index')->name('index')->middleware('auth');
 Route::get('/home', 'FrontendController@index')->name('home')->middleware('auth');
+Route::get('/token', 'FrontendController@token')->name('token');
 Route::get('/class', 'ClassController@index')->name('class')->middleware('auth');
 Route::get('/information', 'InformationController@index')->name('information')->middleware('auth');
 Route::get('/information/show', 'InformationController@show')->name('information.show')->middleware('auth');

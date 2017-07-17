@@ -134,6 +134,12 @@ class FrontendController extends AppBaseController
         return view('frontend.forget', compact('step'));
     }
 
+    public function token() {
+        $auth = new \Qiniu\Auth(env('QINIU_AK'), env('QINIU_SK'));
+        $token = $auth->uploadToken(env('QINIU_BK'));
+        return ['uptoken'=>$token];
+    }
+
     public function share(Request $request) {
 		$invite_code = $request->input('invite_code');
 		if(!$invite_code) {

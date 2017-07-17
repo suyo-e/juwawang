@@ -66,7 +66,7 @@ class Order extends Model
         'phone' => 'required|string',
         'prov_id' => 'numeric',
         'city_id' => 'numeric',
-        'quantity' => 'numeric',
+        'quantity' => 'numeric|between:1,1000000000',
         'remark' => 'string',
         'status' => 'numeric'
     ];

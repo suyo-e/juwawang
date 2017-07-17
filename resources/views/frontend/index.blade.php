@@ -66,7 +66,7 @@
                                 <a href="{{route('frontend.products.show', ['product_id'=>$product->id])}}">
                                 <div class="weui-cell">
                                     <div class="weui-cell__bd lt">
-                                        <img src="image/touxiang.png" alt=""/>
+                                        <img src="{{ $product->pic_url }}" alt=""/>
                                     </div>
                                     <div class="weui-cell__ft lt">
                                         <p><b>{{ $product->title }}</b></p>

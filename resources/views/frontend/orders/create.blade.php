@@ -32,7 +32,7 @@
         </div>
         <div class="name">
             <span>数量 : </span>
-            <input name="quantity" value="{{ old('quantity') }}" type="text" placeholder="请输入购买数量"/>
+            <input name="quantity" value="{{ old('quantity') }}" type="number" placeholder="请输入购买数量"/>
         </div>
         <p class="title">留言</p>
         <div class="texta">

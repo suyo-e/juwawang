@@ -151,6 +151,7 @@ class ProductController extends AppBaseController
             return redirect(route('frontend.class'));
         }
 
+/*
         $banner_urls = [];
         foreach($request->file('pic_urls') as $file) {
             $image_path = '/files';
@@ -162,6 +163,10 @@ class ProductController extends AppBaseController
 
         $input['pic_url'] = $banner_urls[0];
         $input['banner_urls'] = json_encode($banner_urls);
+*/
+        $banner_urls = json_decode($input['banner_urls']);
+        $input['pic_url'] = $banner_urls[0];
+
         $input['user_id'] = $user->id;
         $input['contact_name'] = $user->name;
         $input['view_count'] = 0;
@@ -222,9 +227,14 @@ class ProductController extends AppBaseController
         $product->qq = $request->input('qq');
         $product->wechat = $request->input('wechat');
         $product->phone = $request->input('phone');
-        $product->pic_url = $request->input('pic_url');
 
+        $banner_urls = json_decode($input['banner_urls']);
+        $product->banner_urls = $input['banner_urls'];
+        $product->pic_url = $banner_urls[0];
+/*
+        $product->pic_url = $request->input('pic_url');
         $product->banner_urls = json_encode($request->input('banner_urls'));
+*/
         $product->user_id = $user->id;
         $product->contact_name = $user->name;
         $product->view_count = 0;

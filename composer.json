@@ -26,7 +26,8 @@
         "overtrue/laravel-wechat": "~3.0",
         "simplesoftwareio/simple-qrcode": "^1.5",
         "stevenyangecho/laravel-u-editor": "~1.4",
-        "yajra/laravel-datatables-oracle": "6.*"
+        "yajra/laravel-datatables-oracle": "6.*",
+        "qiniu/php-sdk": "7.x"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
