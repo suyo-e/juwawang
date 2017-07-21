@@ -77,10 +77,15 @@
 @endsection
 
 @section('script')
-<script src="/js/qiniu/moxie.js"></script>
-<script src="/js/qiniu/plupload.min.js"></script>
-<script src="/js/qiniu/qiniu.min.js"></script>
 <script src="//cdn.bootcss.com/jquery-weui/1.0.1/js/city-picker.min.js"></script>
+
+<script src="https://cdn.staticfile.org/plupload/3.1.0/plupload.min.js"></script>
+<script type="text/javascript" src="/js/bower_components/plupload/js/moxie.js"></script>
+<script type="text/javascript" src="/js/bower_components/plupload/js/plupload.dev.js"></script>
+<!-- <script type="text/javascript" src="/js/bower_components/plupload/js/plupload.full.min.js"></script> -->
+<script type="text/javascript" src="/js/bower_components/plupload/js/i18n/zh_CN.js"></script>
+<script type="text/javascript" src="/js/qiniu/qiniu.min.js"></script>
+
 <script> 
 $(function() {
 
@@ -136,7 +141,6 @@ $(function() {
             $("#province_city").val( $("#city-picker").attr("data-codes") );
         }
     });
-
     //引入Plupload 、qiniu.js后
     var uploader = Qiniu.uploader({
         runtimes: 'html5,flash,html4',    //上传模式,依次退化
@@ -145,11 +149,11 @@ $(function() {
         // uptoken : '', //若未指定uptoken_url,则必须指定 uptoken ,uptoken由其他程序生成
         unique_names: true, // 默认 false，key为文件名。若开启该选项，SDK为自动生成上传成功后的key（文件名）。
         // save_key: true,   // 默认 false。若在服务端生成uptoken的上传策略中指定了 `sava_key`，则开启，SDK会忽略对key的处理
-        domain: 'http://ot7spee77.bkt.clouddn.com/',   //bucket 域名，下载资源时用到，**必需**
+        domain: 'http://juwa-cdn.tupppai.com/',   //bucket 域名，下载资源时用到，**必需**
         get_new_uptoken: false,  //设置上传文件的时候是否每次都重新获取新的token
         container: 'container',           //上传区域DOM ID，默认是browser_button的父元素，
         max_file_size: '100mb',           //最大文件体积限制
-        flash_swf_url: 'js/plupload/Moxie.swf',  //引入flash,相对路径
+        flash_swf_url: 'https://cdn.staticfile.org/plupload/3.1.0/Moxie.swf',  //引入flash,相对路径
         max_retries: 3,                   //上传失败最大重试次数
         dragdrop: true,                   //开启可拖曳上传
         drop_element: 'container',        //拖曳上传区域元素的ID，拖曳文件或文件夹后可触发上传

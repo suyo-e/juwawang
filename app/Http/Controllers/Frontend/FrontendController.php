@@ -137,7 +137,7 @@ class FrontendController extends AppBaseController
     public function token() {
         $auth = new \Qiniu\Auth(env('QINIU_AK'), env('QINIU_SK'));
         $token = $auth->uploadToken(env('QINIU_BK'));
-        return ['uptoken'=>$token];
+        return json_encode(['uptoken'=>$token]);
     }
 
     public function share(Request $request) {
